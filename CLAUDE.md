@@ -84,6 +84,88 @@ structural changes — add locale file + country config, nothing else.
 - System prompts in `lib/prompts/`
 - RAG retrieval filtered by `country_code` — never mix law corpora across countries
 
+### API Cost Efficiency Rules
+- Model selection is the primary cost lever. Use the right model for the job — never
+  use Opus where Haiku will do:
+  - claude-opus-4-6: ONLY for full document analysis (legal reasoning, action
+    classification, structured JSON output). One call per document.
+  - claude-haiku-4-5-20251001: everything else — translation checks, short
+    summaries, routing, intent detection, WhatsApp responses, notification copy.
+  - Never use Opus for single-field generation, yes/no decisions, or anything
+    under ~200 tokens output.
+
+- Generate EN + SW summaries in ONE Opus call, not two. The analysis prompt
+  must always return both languages in the same response. Same for action
+  draft_content_en and draft_content_sw. Never make a second call for translation.
+
+- Cache system prompts. The Kenyan law RAG context injected into every analysis
+  call must use Anthropic prompt caching (cache_control: ephemeral on the system
+  prompt block). This cuts repeated-context costs by ~90%. Implement this in
+  lib/analysis/analyzeDocument.ts from day one.
+
+- Chunk documents before sending. Never send a full raw PDF text dump to Opus.
+  Pre-process in lib/parsers/ to extract only: title, date, relevant sections
+  (skip boilerplate headers, page numbers, signatures). Target <4000 tokens input
+  per analysis call.
+
+- RAG retrieval is bounded. lib/rag/query.ts must return a maximum of 5 law
+  chunks per query, ~300 tokens each = 1500 tokens max RAG context. Never
+  return the full corpus.
+
+- Stream all Opus calls. Streaming does not reduce cost but prevents timeouts
+  on long responses, avoiding expensive retries.
+
+- No redundant calls. Before making any API call, check if the analysis already
+  exists in document_analyses for that document hash. Never re-analyse a document
+  that is already in the DB.
+
+- Haiku for WhatsApp/SMS. All outbound notification copy, WhatsApp message
+  formatting, and SMS truncation uses Haiku only.
+
+- Max tokens discipline. Always set max_tokens explicitly:
+  - Opus document analysis: 2048
+  - Haiku summaries/translations: 512
+  - Haiku routing/intent: 256
+  - Never omit max_tokens — runaway responses are a cost leak.
+
+- Log token usage. Every API call must log prompt_tokens, completion_tokens,
+  and model to the error_logs table (or a dedicated api_usage_logs table in
+  Phase 2). This is how we catch cost regressions early.
+
+### Dependency Rules
+- STACK.md is the canonical version reference. Read it before touching any package.
+- NEVER install a package without first checking its version against STACK.md
+- NEVER use version ranges (^, ~, *) — always pin exact versions
+- NEVER upgrade a package without checking breaking changes first
+- If a new package's peer dependencies conflict with STACK.md, stop and flag it
+- After any install: run npm run build — not just npm run dev
+- Update STACK.md immediately after every install or upgrade
+- NEVER mix package managers — this project uses npm only
+- NEVER use next-intl v4.x with Next.js 14 (requires Next.js 15)
+- NEVER use moduleResolution: "bundler" with Next.js 14 — always "node"
+- NEVER add shadcn CSS imports to globals.css with Tailwind v3
+
+### Session Efficiency
+- At the start of every session read CLAUDE.md and SPRINT_CONTEXT.md only.
+  Do NOT read PRD.md, TODOS.md, or CHANGELOG.md unless asked
+- Never re-read a file already read in the current session
+- Build and verify ONE component at a time before starting the next
+- SPRINT_CONTEXT.md is the source of truth for current state
+- Before building any component, check if the file already exists.
+  If it does, read it first — never overwrite without reading
+
+### Testing Standards
+A feature is only complete when ALL of the following pass:
+1. npm run build — zero errors
+2. npm run dev starts without compilation errors
+3. curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/en returns 200
+4. The specific route being built renders without console errors
+
+- Never mark a TODO [x] until all four checks pass
+- Never proceed to the next feature until the current one passes all four
+- If credits run out mid-sprint, start next session with npm run build
+  and report all errors before writing any new code
+
 ### Action Execution Rules
 - NEVER execute a legal action without explicit user confirmation
 - Calendar invites + notifications can fire with standing consent
@@ -108,6 +190,12 @@ structural changes — add locale file + country config, nothing else.
 - Don't write mock data resembling real citizen PII
 - Don't use `console.log` in production paths
 - Don't implement features not in TODOS.md without flagging
+- Don't use next-intl v4.x with Next.js 14 — breaks jsx-runtime
+- Don't use moduleResolution: "bundler" with Next.js 14
+- Don't add shadcn CSS imports with Tailwind v3
+- Don't mark a sprint complete without npm run build passing
+- Don't batch-build multiple components then test at the end
+- Don't proceed after credits die without running npm run build first
 
 ---
 

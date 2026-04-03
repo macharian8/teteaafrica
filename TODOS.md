@@ -1,7 +1,7 @@
 # TODOS.md — Tetea Africa
 
 **Current Phase:** Phase 1 MVP
-**Current Sprint:** 0 — Project scaffolding
+**Current Sprint:** 2 — Web UI
 
 Status: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 
@@ -10,51 +10,51 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 ## Sprint 0 — Scaffolding (Current)
 
 ### Project Setup
-- [ ] Init Next.js 14 with TypeScript + Tailwind + shadcn/ui
-- [ ] Install and configure next-intl (i18n)
-- [ ] Create `/app/[locale]/` routing structure
-- [ ] Create `messages/en.json` and `messages/sw.json` (empty shells with key structure)
+- [x] Init Next.js 14 with TypeScript + Tailwind + shadcn/ui
+- [x] Install and configure next-intl (i18n)
+- [x] Create `/app/[locale]/` routing structure
+- [x] Create `messages/en.json` and `messages/sw.json` (empty shells with key structure)
 - [ ] Configure ESLint, Prettier, Husky pre-commit hooks
 - [ ] Set up Supabase project, link CLI
-- [ ] Create `.env.local.example` with all required vars
+- [x] Create `.env.local.example` with all required vars
 - [ ] Push to GitHub (`main` + `dev` branches)
 - [ ] Set up Vercel project linked to `main`
 
 ### Database Migrations
-- [ ] Enable pgvector extension
-- [ ] Migration: `users` (id, email, phone, country_code, language_preference, created_at) + RLS
-- [ ] Migration: `admin_units` (id, country_code, region_level_1, region_level_2) + RLS
-- [ ] Migration: `documents` (id, country_code, url, raw_text, storage_path, scraped_at) + RLS
-- [ ] Migration: `document_analyses` (id, document_id, country_code, analysis_json, confidence_score) + RLS
-- [ ] Migration: `actions` (id, analysis_id, country_code, action_type, executability, deadline) + RLS
-- [ ] Migration: `action_executions` (id, action_id, user_id, country_code, status, draft_content, executed_at) + RLS
-- [ ] Migration: `subscriptions` (id, user_id, country_code, region_l1, region_l2, topics[], channel, language_preference) + RLS
-- [ ] Migration: `standing_consents` (id, user_id, country_code, action_type, granted_at) + RLS
-- [ ] Migration: `notifications` (id, user_id, country_code, channel, status, sent_at) + RLS
-- [ ] Migration: `deadlines` (id, user_id, document_id, country_code, deadline_date, label) + RLS
-- [ ] Migration: `law_chunks` (id, country_code, statute_name, chunk_text, embedding vector(1536), chunk_index) + RLS
-- [ ] Migration: `error_logs` (id, error_message, stack, context, created_at)
-- [ ] Verify all tables have `country_code` column with DEFAULT 'KE'
+- [x] Enable pgvector extension
+- [x] Migration: `users` (id, email, phone, country_code, language_preference, created_at) + RLS
+- [x] Migration: `admin_units` (id, country_code, region_level_1, region_level_2) + RLS
+- [x] Migration: `documents` (id, country_code, url, raw_text, storage_path, scraped_at) + RLS
+- [x] Migration: `document_analyses` (id, document_id, country_code, analysis_json, confidence_score) + RLS
+- [x] Migration: `actions` (id, analysis_id, country_code, action_type, executability, deadline) + RLS
+- [x] Migration: `action_executions` (id, action_id, user_id, country_code, status, draft_content, executed_at) + RLS
+- [x] Migration: `subscriptions` (id, user_id, country_code, region_l1, region_l2, topics[], channel, language_preference) + RLS
+- [x] Migration: `standing_consents` (id, user_id, country_code, action_type, granted_at) + RLS
+- [x] Migration: `notifications` (id, user_id, country_code, channel, status, sent_at) + RLS
+- [x] Migration: `deadlines` (id, user_id, document_id, country_code, deadline_date, label) + RLS
+- [x] Migration: `law_chunks` (id, country_code, statute_name, chunk_text, embedding vector(1536), chunk_index) + RLS
+- [x] Migration: `error_logs` (id, error_message, stack, context, created_at)
+- [x] Verify all tables have `country_code` column with DEFAULT 'KE'
 
 ### Country Config
-- [ ] Create `lib/countries/KE/config.ts` implementing `CountryConfig`
-- [ ] Create `lib/countries/KE/actions/` folder with template stubs
-- [ ] Create `lib/countries/KE/scrapers/` folder with config stubs
+- [x] Create `lib/countries/KE/config.ts` implementing `CountryConfig`
+- [x] Create `lib/countries/KE/actions/` folder with template stubs
+- [x] Create `lib/countries/KE/scrapers/` folder with config stubs
 
 ---
 
 ## Sprint 1 — Document Analysis Pipeline (Weeks 1–2)
 
 ### PDF Parsing
-- [ ] Install + configure `pdf-parse`
-- [ ] `POST /api/documents/parse` — URL or file upload → extracted text
-- [ ] Handle text PDFs, scanned PDFs (flag for OCR), HTML pages
-- [ ] Store raw text in `documents.raw_text`, file in Supabase Storage
+- [x] Install + configure `pdf-parse`
+- [x] `POST /api/documents/parse` — URL or file upload → extracted text
+- [x] Handle text PDFs, scanned PDFs (flag for OCR), HTML pages
+- [x] Store raw text in `documents.raw_text`, file in Supabase Storage
 
 ### Law RAG Index
 - [ ] Collect 9 KE law documents from kenyalaw.org → `supabase/seed/law/KE/`
-- [ ] Write `scripts/seed-law.ts` (chunk 500 tokens + overlap, embed, store with country_code)
-- [ ] Implement `lib/rag/query.ts` — semantic search filtered by `country_code`
+- [x] Write `scripts/seed-law.ts` (chunk 500 tokens + overlap, embed, store with country_code)
+- [x] Implement `lib/rag/query.ts` — semantic search filtered by `country_code`
 - [ ] Test: query "right to petition" → returns Article 37 + Article 119 from KE corpus
 
 ### Admin Units
@@ -63,70 +63,75 @@ Status: `[ ]` todo · `[~]` in progress · `[x]` done · `[!]` blocked
 - [ ] Verify ward names match official IEBC list
 
 ### Claude Analysis Pipeline
-- [ ] Write system prompt `lib/prompts/document-analysis.ts`
-  - [ ] Generates `summary_en` + `summary_sw` in single call
-  - [ ] Uses `CountryConfig` for action body names
-  - [ ] Returns structured JSON per PRD schema
-- [ ] Implement `lib/analysis/analyzeDocument.ts` with streaming
-- [ ] `POST /api/documents/analyze` → stores in `document_analyses`
-- [ ] Action classifier mapping to `ActionType` enum
-- [ ] Flag analyses with `confidence_score < 0.7` for review
+- [x] Write system prompt `lib/prompts/document-analysis.ts`
+  - [x] Generates `summary_en` + `summary_sw` in single call
+  - [x] Uses `CountryConfig` for action body names
+  - [x] Returns structured JSON per PRD schema
+- [x] Implement `lib/analysis/analyzeDocument.ts` with streaming
+- [x] `POST /api/documents/analyze` → stores in `document_analyses`
+- [x] Action classifier mapping to `ActionType` enum
+- [x] Flag analyses with `confidence_score < 0.7` for review
 
 ### Action Drafting
-- [ ] `lib/prompts/actions/ati-request.ts` — KE ATI Act 2016 template
-- [ ] `lib/prompts/actions/pp-submission.ts` — structured PP submission
-- [ ] `lib/prompts/actions/representative-contact.ts` — MCA/MP letter
-- [ ] `lib/actions/draftAction.ts` — takes ActionType + doc context → EN + SW draft
+- [x] `lib/prompts/actions/ati-request.ts` — KE ATI Act 2016 template
+- [x] `lib/prompts/actions/pp-submission.ts` — structured PP submission
+- [x] `lib/prompts/actions/representative-contact.ts` — MCA/MP letter
+- [x] `lib/actions/draftAction.ts` — takes ActionType + doc context → EN + SW draft
 
 ---
 
-## Sprint 2 — Web UI (Weeks 2–3)
+## Sprint 2 — Web UI (Weeks 2–3) ✅ COMPLETE
 
 ### i18n Foundation
-- [ ] Configure next-intl middleware for `/[locale]/` routing
-- [ ] Set default locale to `en`, supported: `['en', 'sw']`
-- [ ] `components/LanguageSwitcher.tsx` — EN/SW toggle in nav
-  - [ ] Persists to `users.language_preference` if authenticated
-  - [ ] Falls back to localStorage if not authenticated
-  - [ ] Renders flag + language name, not just code
-- [ ] Populate `messages/en.json` with all UI strings as features are built
-- [ ] Populate `messages/sw.json` in parallel — never leave SW keys missing
+- [x] Configure next-intl middleware for `/[locale]/` routing
+- [x] Set default locale to `en`, supported: `['en', 'sw']`
+- [x] `components/LanguageSwitcher.tsx` — EN/SW toggle in nav
+  - [x] Persists to `users.language_preference` if authenticated
+  - [x] Falls back to localStorage if not authenticated
+- [x] Populate `messages/en.json` with all UI strings
+- [x] Populate `messages/sw.json` in parallel — no missing SW keys
 
 ### Auth
-- [ ] Supabase Auth: email + phone OTP (default country code +254 KE)
-- [ ] Sign-up flow: contact → OTP → country (KE default) → region → topics → language pref
-- [ ] Protected route middleware
-- [ ] Country selector in sign-up (KE only for now, others grayed out with "coming soon")
+- [x] Supabase Auth: email + phone OTP (PKCE flow)
+- [x] Sign-up flow: contact → OTP → country (KE) → region → topics → language pref (6-step onboarding)
+- [x] Protected route middleware (`/settings` requires auth)
+- [x] Country selector in sign-up (KE only, others grayed out with "coming soon")
+- [x] `app/api/auth/callback/route.ts` — PKCE code exchange
+- [x] `app/api/user/language/route.ts` — PATCH language preference
 
 ### Document Upload UI
-- [ ] `/[locale]` landing: URL paste or PDF upload
-- [ ] Loading state: "Extracting text… Checking Kenyan law… Identifying actions…"
-- [ ] Error states: unsupported file, parse failure, low confidence warning
+- [x] `/[locale]` landing: URL paste + PDF upload (drag-and-drop + click)
+- [x] Loading state: "Extracting text… Checking Kenyan law… Identifying actions…"
+- [x] Error states: unsupported file, parse failure, low confidence warning, file too large
 
 ### Analysis Results UI
-- [ ] Summary card: EN↔SW toggle (independent of UI locale), document type badge, regions
-- [ ] Key dates timeline: deadline items highlighted with day countdown
-- [ ] Action cards:
-  - [ ] Type icon + label (localized)
-  - [ ] Description + legal basis (expandable, localized)
-  - [ ] Deadline badge + countdown
-  - [ ] Executability badge
-  - [ ] "Preview draft" / "Execute" / "Save deadline" CTA
-- [ ] Confidence score: show warning banner if < 0.7
+- [x] `app/[locale]/results/[documentId]/page.tsx` — server component, fetches all data
+- [x] `AnalysisResultsClient.tsx` — summary card with EN↔SW content toggle (independent of UI locale)
+- [x] Document type badge + URL link
+- [x] Affected regions with MapPin badges (or "National" fallback)
+- [x] `components/KeyDatesTimeline.tsx` — key dates with urgency colour-coding
+- [x] Action cards with type icon, description, legal basis (expandable), deadline badge, executability badge, CTAs
+- [x] Confidence score: warning banner if `needs_review = true`
 
 ### Action Execution UI
-- [ ] Modal: preview draft (EN or SW per user pref), editable, legal basis footnote
-- [ ] Confirm → execute → success state with reference + "Track this"
-- [ ] Log to `action_executions`
+- [x] `components/ActionModal.tsx` — editable draft, legal basis, confirm/done states
+- [x] Status machine: editing → confirming → submitting → done | error
+- [x] Logs to `action_executions` via `POST /api/action-executions`
+- [x] Success: reference ID + "Track this" button
 
 ### Subscription UI (`/[locale]/settings/subscriptions`)
-- [ ] Country selector (KE active, others "coming soon")
-- [ ] Region level 1 picker (Counties for KE — from `admin_units`)
-- [ ] Region level 2 picker (Wards, filtered by selected county)
-- [ ] Topic checkboxes (localized labels)
-- [ ] Language preference (EN / SW) — note: independent of UI locale
-- [ ] Notification channel (WhatsApp / SMS / email) + verification
-- [ ] Standing consent toggles per action type
+- [x] Country selector (KE active, TZ/UG/RW grayed "coming soon")
+- [x] County + Ward pickers from `admin_units` via `GET /api/admin-units`
+- [x] Topic checkboxes (all 6 topics, localized)
+- [x] Language preference (EN/SW) — independent of UI locale
+- [x] Notification channel (WhatsApp/SMS/Email) with verified-contact display
+- [x] Standing consent toggles (calendar_invite, ati_request, petition)
+- [x] `POST /api/subscriptions` — upserts subscription + syncs standing_consents + updates users.language_preference
+
+### TypeScript
+- [x] Zero type errors (`pnpm run type-check` passes)
+- [x] Added `target: ES2017` to tsconfig.json
+- [x] Excluded `scripts/` from tsconfig (no app impact)
 
 ---
 

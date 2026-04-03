@@ -1,0 +1,82 @@
+Read CLAUDE.md, SPRINT_CONTEXT.md, and STACK.md carefully before doing anything.
+STACK.md now exists in the project root — read it first.
+
+The Next.js frontend is broken due to two compounding errors from the previous sprint:
+1. next-intl@4.9.0 was installed — this requires Next.js 15, we have Next.js 14.
+   This caused the react/jsx-runtime resolution failure.
+2. tsconfig.json had moduleResolution: "bundler" — broken with Next.js 14.
+
+DO NOT start from scratch. The following are intact and must not be touched:
+- lib/ (entire directory)
+- supabase/ (entire directory)
+- scripts/ (entire directory)
+- messages/ (en.json and sw.json)
+- app/api/ (entire directory)
+- .env.local
+- CLAUDE.md, PRD.md, STACK.md, SPRINT_CONTEXT.md, TODOS.md, CHANGELOG.md
+- .mcp.json
+
+Do exactly these steps in order. Stop and report after each step before
+proceeding to the next.
+
+STEP 1 — Fix package.json
+Replace the versions of these packages with the exact pinned versions from STACK.md:
+- next → 14.2.35
+- react → 18.3.1
+- react-dom → 18.3.1
+- next-intl → 3.26.3 (CRITICAL — downgrade from 4.x)
+- typescript → 5.3.3
+- tailwindcss → 3.4.1
+All versions must be exact strings with no ^ or ~ prefix.
+Report the updated dependency block before proceeding.
+
+STEP 2 — Fix tsconfig.json
+Change "moduleResolution" from "bundler" to "node".
+Change "target" to "ES2017" if not already set.
+Report the updated compilerOptions block before proceeding.
+
+STEP 3 — Fix app/globals.css
+Replace entire file contents with exactly:
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+Nothing else. No imports. Report file contents before proceeding.
+
+STEP 4 — Clean install
+Run:
+  rm -rf node_modules .next
+  npm install
+Report the output. If any peer dependency warnings appear, flag them before
+proceeding.
+
+STEP 5 — Verify build
+Run: npm run build
+This MUST pass with zero errors before proceeding.
+If it fails, report the exact error and stop. Do not attempt to fix it
+without reporting first.
+
+STEP 6 — Verify dev server
+Run: npm run dev
+Then in a separate check: curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/en
+This MUST return 200 before sprint is considered unblocked.
+
+STEP 7 — Fix next-intl imports (if needed)
+next-intl v3 has different import paths than v4. If any component imports
+from next-intl in a way that breaks after the downgrade, fix those imports.
+Common changes:
+- v4: import { ... } from 'next-intl/navigation'  
+- v3: same — usually compatible
+Check middleware.ts and i18n/routing.ts for v4-specific APIs and update if needed.
+Report any files changed.
+
+STEP 8 — Final verification
+Run npm run build again. Confirm zero errors.
+Run npm run dev. Confirm localhost:3000/en returns 200.
+Update CHANGELOG.md with what was fixed.
+Update SPRINT_CONTEXT.md status.
+
+CRITICAL RULES FOR THIS SESSION:
+- Report after every step before proceeding
+- Never fix multiple things at once
+- If unsure about a next-intl v3 vs v4 API difference, search for the v3 docs first
+- Do not install any new packages not in STACK.md without flagging it first

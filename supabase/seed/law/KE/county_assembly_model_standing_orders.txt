@@ -1,0 +1,1548 @@
+MODEL COUNTY ASSEMBLY
+PROCEDURE AND PRACTICE
+MANUAL
+
+-- 1 of 54 --
+
+-- 2 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE
+AND PRACTICE MANUAL
+JANUARY 2018
+
+-- 3 of 54 --
+
+-- 4 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	iii
+TABLE OF CONTENTS
+Foreword ................................................................................................................................................ vii
+Acknowledgement ...................................................................................................................................ix
+Executive Summary .................................................................................................................................xi
+INTRODUCTION ................................................................................................................................ 1
+Purpose of this Manual ............................................................................................................................ 1
+Mandates and Role of County Assemblies ................................................................................................ 1
+PART ONE: SITTINGS AND ADJOURNMENT OF COUNTY ASSEMBLY ...................................................... 3
+First Sitting of a County Assembly ............................................................................................................ 3
+Proceedings during First Sitting and Role of Clerk ............................................................................... 3
+Swearing in of Members ..................................................................................................................... 3
+Election of Speaker - Candidates and Process ..................................................................................... 4
+Proceedings on Election of Speaker .................................................................................................... 4
+Secret Ballot ....................................................................................................................................... 4
+Election threshold .............................................................................................................................. 5
+Withdrawal of Candidate .................................................................................................................... 5
+Equality of Votes ................................................................................................................................ 5
+Custody of Ballot Papers ..................................................................................................................... 5
+Single duly nominated Candidate ....................................................................................................... 5
+Swearing-in of the Speaker ................................................................................................................. 5
+Notification of opening of County Assembly ....................................................................................... 6
+Election of Chairpersons of Committees or Deputy Speaker ............................................................... 6
+Adjournment of First Sitting after General Elections ........................................................................... 6
+Sittings Generally ............................................................................................................................... 6
+Adjournment ..................................................................................................................................... 6
+PART TWO: PROCEEDINGS OF THE COUNTY ASSEMBLY ....................................................................... 9
+Before Plenary ......................................................................................................................................... 9
+During Plenary ......................................................................................................................................... 9
+After Plenary ........................................................................................................................................... 9
+PART THREE: PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY .......................................... 11
+Statements ............................................................................................................................................ 11
+Responses to Statements ................................................................................................................. 12
+Personal Statements ........................................................................................................................ 12
+Timing for Approval/Presentation of Statements .............................................................................. 12
+Notices of Motion ............................................................................................................................ 12
+Motions ................................................................................................................................................ 12
+
+-- 5 of 54 --
+
+TABLE OF CONTENTS
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+iv
+Types ............................................................................................................................................... 12
+Processing of Motions ...................................................................................................................... 14
+Motions that may be moved without notice ..................................................................................... 14
+Manner of Considering Motions ....................................................................................................... 15
+Public Petitions ...................................................................................................................................... 15
+Meaning ........................................................................................................................................... 15
+Submission and Processing of Petitions ............................................................................................ 15
+General Form of a Public Petition ..................................................................................................... 15
+Presentation of Petitions .................................................................................................................. 16
+Comments on Petitions .................................................................................................................... 16
+Committal of Petitions ..................................................................................................................... 16
+Transmission of Assembly Reports on Petitions ................................................................................ 16
+Papers ................................................................................................................................................... 16
+PART FOUR: PROCEDURE FOR PROCESSING, CONSIDERATION OF BILLS AND
+THE COMMITTEE OF THE WHOLE ASSEMBLY ............................................................................. 17
+Meaning and Import of Bills................................................................................................................... 17
+Origination of Bills ................................................................................................................................. 17
+Procedure for Processing Bills by Members’ Initiative ............................................................................ 17
+Publication of Bills ................................................................................................................................. 18
+Publication Period for Bills ..................................................................................................................... 18
+Stages of a Bill ....................................................................................................................................... 18
+First Reading .................................................................................................................................... 18
+Second Reading ................................................................................................................................ 18
+Committee Stage .............................................................................................................................. 18
+Report Stage .................................................................................................................................... 18
+Third Reading ................................................................................................................................... 19
+Governor’s Assent ............................................................................................................................ 19
+Consideration of Governor’s Memorandum on Refusal to Assent to a Bill(s) .......................................... 19
+Step 1: Conveyance of the Message.................................................................................................. 19
+Step 2: Referral to the Committee .................................................................................................... 19
+Step 3: Consideration in the Committee of the Whole Assembly ...................................................... 19
+Step 4: Approval of the Report of the Committee of the Whole Assembly ........................................ 20
+Withdrawal of Bills ................................................................................................................................ 20
+Processing Amendments to Bills ............................................................................................................ 20
+Submission and Timing of Amendments ........................................................................................... 20
+Admissibility of Amendments ........................................................................................................... 21
+Procedure in Committee of the whole County Assembly on a Bill:.......................................................... 21
+Meaning, Mandate and Powers of the ‘Committee of the Whole Assembly ...................................... 21
+Powers and Duties of Chairperson of the Committee of the Whole Assembly ................................... 21
+
+-- 6 of 54 --
+
+TABLE OF CONTENTS
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+v
+Procedure ........................................................................................................................................ 22
+Reporting Committee Stage Consideration of Bills to the County Assembly ...................................... 23
+Reporting Progress of the Committee of the Whole Assembly .......................................................... 24
+PART FIVE: RULES OF DEBATE IN THE COUNTY ASSEMBLY.................................................................. 25
+Disorderly Conduct ................................................................................................................................ 27
+Gross disorderly conduct .................................................................................................................. 27
+Grave disorderly conduct ................................................................................................................. 27
+PART SIX: ANNEXES......................................................................................................................... 28
+ANNEXTURE I: NOMINATION PAPER – CANDIDATES FOR ELECTION AS SPEAKER .................................. 29
+ANNEXTURE II: GENERAL FORM OF A PUBLIC PETITION ....................................................................... 32
+ANNEXTURE II: COMMITTEE OF THE WHOLE SCHEDULE OF PROPOSED AMENDMENTS ........................ 33
+ANNEXTURE IV: COMMITTEE OF THE WHOLE REPORTING PROGRESS FORM ......................................... 34
+ANNEXTURE V: STANDARD FORM OF A MOTION .................................................................................. 35
+ANNEXTURE VI: STANDARD STATEMENT (REQUEST) .............................................................................. 36
+ANNEXTURE VII: STANDARD ORDER PAPER ............................................................................................ 37
+
+-- 7 of 54 --
+
+-- 8 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	vii
+FOREWORD
+There being no precedence of a devolved system in Kenya, disharmony and duplication of efforts affected the
+County Assemblies after the 2013 General Elections as a result, most Assemblies have since then operated their
+committees without a standardized manuals.
+To address this problem, the Steering Committee of SOCATT, directed the Procedure and Practice Committee
+to develop a model Procedure and Practice manual. The manual is intended for adoption by the 47 County
+Assemblies in Kenya, with or without amendments.
+The County Assemblies Procedure and Practice Manual will guide the standard operating procedures of the
+County Assemblies committees and the staff.
+This will ensure that the work of County Assemblies is conducted in a systematic and formal manner with a view
+to strengthen their legislative and oversight roles as provided for in the Constitution of Kenya 2010.
+The manual was developed by the SOCATT (K) Committee on procedure and practice. We appreciate The Senate
+and USAID-AHADI who provided technical and financial resources that made the development of this manual a
+success.
+The objectives of this manual include but are not limited to;
+1. Provide the standard operating procedures for members and staff in the County Assembly and,
+2. Facilitate effective and efficient County Assembly operations in the chambers
+We therefore urge County Assemblies to use this manual as maybe applicable to them.
+
+-- 9 of 54 --
+
+-- 10 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	ix
+ACKNOWLEDGEMENT
+We wish to acknowledge the membership of (SOCATT) (K), the convener and members of the Procedure and
+Practice Committee, the secretariat specifically the executive director. Special recognition goes to the staff and
+Clerk of the Senate, the technical committee team and AHADI towards the development of this manual and the
+financial support for the publication of the manual respectively.
+SOCATT Committee on Procedure and Practice
+1. Mr. Jasper Mutwiri — Committee convener and Clerk, Laikipia County Assembly
+2. Mr. Edward Libendi — Clerk, Makueni County Assembly
+3. Mr. Jacob Ngwele — Clerk, Nairobi County Assembly
+4. Mr. Chris Kinyanjui — Clerk Murang’a County Assembly
+5. Mr. Julius Ariwomoi — Clerk, West Pokot County Assembly
+6. Mr. Shedd Simotwo — Clerk, Narok County Assembly
+7. Mr. Osman Mohamed — Clerk, Wajir County Assembly
+8. Mr. Patrick Kamwessar — Clerk, Kakamega County Assembly
+9. Mr. Mkare Jefwa — Clerk, Kilifi County Assembly
+10. Mr. Daniel Orina — Clerk, Nyamira County Assembly
+11. Mr. Salad Boru — Clerk, Isiolo County Assembly
+Technical Support Team
+Team Leader Gavin R. Castro, senior clerk assistant, Nairobi City County Assembly
+Core Team Mr. Abraham Mendi, Senior Clerk Assistant, Trans Nzoia County Assembly;
+Ms Caroline Irungu, Senior Clerk Assistant, Laikipia County Assembly;
+Ms Beatrice Masago, Principal Clerk Assistant, Narok County Assembly;
+Ms Elizabeth Njoroge, Principal Clerk Assistant Kirinyaga County Assembly;
+Mr. Katana Nyanje, Principal Clerk Assistant, Kilifi County Assembly;
+Ms Angela Kagunyi, First Clerk Assistant, Kiambu County Assembly and
+Mr. Khamis Abdalla, Director Committee Services, Mombasa County Assembly.
+
+-- 11 of 54 --
+
+-- 12 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	xi
+EXECUTIVE SUMMARY
+The County Assembly in Kenya is the law-making organ of the County Government. It is one of the state organs
+that the Constitution delegates power to. The defunct transitional authority (TA) in a way to support transition
+developed an interim Standing Order that would be used to provide for the legislative processes in the Assemblies.
+The TA Standing Orders (SO) that borrowed heavily from the National Parliament SO was only applicable with
+amendments to provide for the unique contexts of the different County Assemblies. By the end of the inaugural
+Assemblies, most Assemblies had domesticated their Standing Orders to align to their operating environment.
+Legislative procedure and practice is advised by the standing orders and precedence that has been set in previous
+legislative processes. In the absence of precedence for the county assemblies there was need to document
+standard operating procedure and practices that will act as a resource for all assembly legislative processes.
+The manual is organized in six parts, part one introduces the sittings of the assembly and what procedures should
+guide the first silting of the assembly after a general election. Part two goes ahead to explore the proceedings of
+the assembly with a view to outline the process before, during and after the plenary meetings of the assembly.
+The third part speaks to procedure of business in the house while part four details the step to step requirements
+during the committee of the whole house. Part five speaks to the rules of debate in the County Assemblies with
+a keen focus on the definition of gross and grave misconduct.
+In the last part sample documentations that is used in the different parts is provided for guidance to the user
+during the development of the same.
+
+-- 13 of 54 --
+
+-- 14 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	1
+INTRODUCTION
+Purpose of this Manual
+The basic purpose of this Manual is to provide officers with direction and guidance as relates to how County
+Assemblies exercise their mandates through Committees and the Plenary. The Constitution establishes County
+Assemblies and defines their composition under Article 176. The roles of the County Assemblies are provided for
+variously under the Constitution and the County Governments Act, 2012. Broadly, Article 185 provides for the
+exclusive law making mandate of the County Assembly. Further functions are provided for under Sections 8 and
+9 of the County Governments Act, 2012.
+Note that the Procedures, by which the Assembly’s functions are realized, as outlined in this manual, find
+their basis under Section 14 of the County Governments Act, 2012, codified in the Standing Orders.
+The said Section provides that–
+A County Assembly—
+(a) may make standing orders consistent with the Constitution and this Act regulating the procedure of the
+County Assembly including, in particular, orders for the proper conduct of proceedings; and (b) subject to
+standing orders made under paragraph (a), may establish committees in such manner and for such general
+or special purposes as it considers fit, and regulate the procedure of any committee so established.
+The procedures and processes outlined in this Manual derive from the Standing Orders, and simplify the said
+processes and procedures for easier application.
+Mandates and Role of County Assemblies
+Article 185 of the Constitution provides for the role of the County Assembly as follows:
+(1) The legislative authority of a County is vested in, and exercised by, it’s County Assembly.
+(2) A County Assembly may make any laws that are necessary for or incidental to the effective performance
+of the functions and exercise of the powers of the County government under the Fourth Schedule.
+(3) A County Assembly, while respecting the principle of separation of powers, may exercise oversight over
+the County executive committee and any other County executive organs.
+(4) A County Assembly may receive and approve plans and policies for—
+(a) The management and exploitation of the County’s resources.
+(b) The development of the County.
+In addition to the legislative authority of the County Assembly as provided for by Article 185 of the Constitution,
+the specific mandates of County assemblies are stipulated under Section 9(1) of the County Governments Act as
+follows -
+Section 9(1) of the CGA 2012 establishes the roles of Members of County Assembly as follows–
+(1) A member of a County Assembly shall—
+(a) maintain close contact with the electorate and consult them on issues before or under discussion in
+the County Assembly;
+(b) present views, opinions and proposals of the electorate to the County Assembly;
+(c) attend sessions of the County Assembly and its committees;
+(d) provide a linkage between the County Assembly and the electorate on public service delivery; and
+
+-- 15 of 54 --
+
+INTRODUCTION
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+(e) extend professional knowledge, experience or specialized knowledge to any issue for discussion in
+the County Assembly.
+The mandate and role of the County Assemblies from the foregoing can thus be summarized as–
+1. Law making
+2. Oversight
+3. Representation
+
+-- 16 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	3
+PART ONE
+SITTINGS AND ADJOURNMENT OF COUNTY ASSEMBLY
+First Sitting of a County Assembly
+1. The standing orders provide comprehensively for the procedure during the first sitting of a new county
+assembly, swearing-in of members, and election of speaker and chairpersons of committees. The
+processes can be summed up as follows:
+Proceedings during First Sitting and Role of Clerk
+2. The first sitting of a new County Assembly is set in motion by the placement of a notice in the Kenya
+Gazette and County Gazette communicating the date, time, and venue of the first sitting. This function is
+the reserve of the governor, who is sworn in 10 days following a general election. The Clerk prepares the
+draft Gazette notice and shares it with the governor for his signature.
+3. This date shall not be later than 14 days pursuant to Section 9(3) of the County Governments Act, 2012.
+4. At the first sitting of a new county assembly after a general election, the Clerk–
+a) Reads the notification convening the county assembly as published in the Kenya Gazette and the
+County Gazette.
+b) Lays a list of the names of the persons elected as members on the table of the county assembly.
+c) Administers the Oath or Affirmation of Office provided for in the First Schedule of the County
+Governments Act, 2012 to all members present in the County Assembly in the order set out in the
+standing orders.
+5. Most importantly, for purposes of presiding during the first sitting and before the speaker is elected
+and sworn in, the Clerk is effectively the presiding officer and as such enjoys the final say on procedural
+questions that may arise in the interim period before the elected speaker takes over the sitting for
+purposes of election of the chairperson of committees or adjournment of the assembly.
+Swearing in of Members
+6. The Clerk of the County Assembly shall preside over the swearing-in of members and the administration
+of the oath. The Clerk administers the oath to members of the County Assembly in alphabetical order,
+generally using the following order of precedence:
+a) Members with the longest cumulative period of service in the County Assembly.
+b) Members with the longest cumulative period of service in the County Assembly and any local
+authority existing prior to the final announcement of all the results of Parliament, as contemplated
+under section 2 of the Sixth Schedule to the Constitution.
+c) All other members.
+7. Pursuant to Article 74 of the Constitution, no person shall assume or perform any functions of the office
+of a member before taking and subscribing to the Oath or Affirmation of Office.
+8. When the Clerk is administering the oath to members and before the Clerk has administered the oath
+to the speaker, any question arising in the County Assembly shall be determined by the Clerk, who shall,
+during that period, exercise the powers of the speaker.
+
+-- 17 of 54 --
+
+SITTINGS AND ADJOURNMENT OF COUNTY ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+9. At any other time, the Oath or Affirmation of Office shall be administered by the speaker immediately
+after prayers. When a member first attends to take his or her seat after the first sitting of the County
+Assembly, the member shall, before taking his or her seat, be escorted to the table by two members and
+be presented by them to the speaker, who shall then administer to the member the Oath or Affirmation
+of Office.
+10. The practice has been that on the day when the election of the speaker is to be conducted after a general
+election, the sitting of the County Assembly shall commence at 9am.
+Election of Speaker - Candidates and Process
+11. Upon the governor notifying the place and date for the first sitting of a new County Assembly, the Clerk
+shall by notice in the Gazette notify that fact and invite interested persons to submit their nomination
+papers for election to the office of speaker.
+12. The names of candidates for election to the office of speaker shall be entered upon nomination papers
+obtained from the Clerk and handed back to the Clerk, at least 48 hours before the time appointed at
+which the County Assembly is to meet to elect a speaker.
+13. The nomination papers (First Schedule) of a candidate shall be accompanied by the names and signatures
+of at least two members of the County Assembly (MCA) who support the candidate and a declaration by
+them that the candidate is qualified to be elected as a member of County Assembly under Article 193 of
+the Constitution and is willing to serve as speaker of the County Assembly.
+14. The Clerk shall maintain a register in which shall be shown the date and time when each candidate’s
+nomination papers were received and shall ascertain that every such candidate for election to the office
+of speaker is qualified to be elected as such under Article 193 of the Constitution.
+15. Immediately upon the close of the nomination period, the Clerk shall-
+a) Publicize and make available to all members a list showing all qualified candidates.
+b) Make available to all members copies of the curriculum vitae of the qualified candidates.
+16. The Clerk shall, at least two hours before the meeting of the County Assembly, prepare ballot papers
+upon which shall be shown the names of all candidates validly nominated.
+Proceedings on Election of Speaker
+17. The standing orders require the election of the speaker at the beginning of an assembly and again any
+time a vacancy occurs. At the first sitting of a new assembly, the second business to be conducted after
+swearing-in of the members of the County Assembly is the election of a speaker.
+18. If the office of speaker falls vacant at any time before the expiry of the term of the County Assembly,
+no business shall be transacted by the County Assembly until the election of a new speaker. A member
+elected by the County Assembly in accordance with Article 178(2) of the Constitution shall preside over
+the election.
+Secret Ballot
+19. The election of the speaker shall be by secret ballot. The Clerk shall, at the commencement of each
+ballot, cause the ballot box, empty and unlocked, to be displayed to the County Assembly and shall, in
+the presence of the County Assembly, lock the box, which shall thereafter be kept in the full view of the
+County Assembly until the conclusion of the ballot.
+20. The Clerk shall issue not more than one ballot paper to each member who comes to the table to obtain it
+and each member who wishes to vote shall proceed to a booth or designated area provided by the Clerk
+for that purpose and located next to and within reasonable distance of the ballot box and shall, while
+
+-- 18 of 54 --
+
+SITTINGS AND ADJOURNMENT OF COUNTY ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+there, mark the ballot paper by placing a mark in the space opposite the name of the candidate for whom
+the member wishes to vote, fold the marked ballot paper before leaving the booth or area, and place the
+folded ballot paper in the ballot box.
+21. A member who, before the conclusion of a ballot has marked a paper in error may, by returning it to
+the Clerk, obtain another in its place and the Clerk shall immediately cancel and destroy the paper so
+returned.
+22. The Clerk shall make such arrangements as may be necessary to enable any member with disability to
+vote. When it appears to the Clerk that all members who are present and who wish to vote have placed
+their ballot papers in the ballot box, the Clerk shall unlock the box, examine the ballot papers and, having
+rejected those unmarked or spoilt, report the result of the ballot. No member who has not already
+recorded his or her vote shall be entitled to do so after the Clerk has unlocked the ballot box.
+23. A ballot paper is spoilt if, in the Clerk’s opinion, it does not identify the candidate purported to be selected
+by the member voting.
+Election threshold
+24. A person shall not be elected as speaker unless supported in a ballot by the votes of two-thirds of all
+members. If no candidate is supported by the votes of two-thirds of all members, the candidate or
+candidates who received the highest number of votes in the ballot and the candidate or candidates
+who in that ballot received the next highest number of votes shall alone stand for election in a further
+ballot and the candidate who receives the highest number of votes in the further ballot shall be elected
+speaker.
+Withdrawal of Candidate
+25. A candidate may, by written notice to the Clerk, withdraw his or her name before a ballot is started, and
+in the event of such withdrawal, the Clerk shall cross out the name of that candidate on any ballot papers
+issued for that or any subsequent ballot.
+Equality of Votes
+26. If, in the further ballot, more than one candidate receives the highest number of votes, the ballot shall
+again be taken, and if there is an equality of the highest number of votes, a further ballot shall be taken
+until one candidate obtains more votes than the other or others.
+Custody of Ballot Papers
+27. Immediately the results are declared, all the ballot papers used in the election of a speaker shall be
+packed and sealed in the presence of the County Assembly and kept in the custody of the Clerk for a
+period of six months and shall thereafter be destroyed.
+Single duly nominated Candidate
+28. Despite the provisions of this part, if there is only one candidate who has been duly nominated for
+election as speaker at the expiry of the nomination period, that candidate shall be declared forthwith to
+have been elected speaker without any ballot or vote being required.
+Swearing-in of the Speaker
+29. Immediately following the election of the speaker, the Clerk shall administer the Oath or Affirmation of
+Office to the speaker in the presence of the assembled County Assembly.
+
+-- 19 of 54 --
+
+SITTINGS AND ADJOURNMENT OF COUNTY ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Notification of Opening of County Assembly
+30. Immediately after taking and subscribing to the Oath or Affirmation of Office, the speaker shall notify the
+members of the place, date, and time of the opening of the County Assembly. Following the notification
+by the speaker, the sitting of the County Assembly shall stand adjourned until the date and time of the
+opening of the County Assembly.
+Election of Chairpersons of Committees or Deputy Speaker
+31. As soon as practicable after the election of a speaker following a general election, a chairperson of
+committees shall be elected.
+32. The chairperson of committees shall preside over all committees of the whole County Assembly but
+in the absence of the chairperson of committees, a member elected by the County Assembly for that
+purpose shall preside.
+33. If the office of chairperson of committees falls vacant at any time before the end of the term of the
+County Assembly, the assembly shall, as soon as practicable, elect a member to that office.
+34. The procedure for electing a chairperson of committees shall, with necessary modifications, be the same
+as that prescribed for the election of the speaker.
+35. If the chairperson of committees considers that it is desirable that he or she take part in any proceedings
+in the committee otherwise than as the person presiding, the speaker shall take the chair.
+Adjournment of First Sitting after General Election
+36. Once elected, the new speaker effectively takes over the presiding duties from the Clerk. Once the
+speaker has issued notification of the place and date of the next sitting of the County Assembly, the
+assembly stands adjourned until the date and time of the opening of the County Assembly.
+Sittings Generally
+37. Assemblies have different sitting times depending on their specific standing orders regulating sittings.
+But most sitting days may commence at 9.30am or 2.30pm and are interrupted at 6.30pm or earlier,
+whichever applies. However, an assembly may resolve to:
+a) Extend its sitting time.
+b) Meet at any other time on a sitting day.
+c) Meet on any other day in order to transact business.
+Adjournment
+38. The interruption of proceedings of normal sittings is regulated by a County Assembly’s standing orders
+on sitting hours. However, an assembly may also be adjourned in the event of lack of quorum. Such
+adjournment is without question being put.
+Adjournment Motions
+39. Additionally, an assembly may be adjourned through a motion. Such a motion may be moved at any time
+in the course of the proceedings. Motions in this regard include those seeking the adjournment of the
+assembly to facilitate attendance of the assembly to some urgent county matter outside the assembly.
+Adjournment to a Day other than next Normal Sitting Day
+40. Whenever the assembly has to adjourn to a day other than the next normal sitting day, the adjournment
+is secured through an adjournment motion, in which case the assembly decides, by a vote, whether
+to adjourn or not. Such adjournment motions are moved without notice and have often been for the
+convenience of the assembly.
+
+-- 20 of 54 --
+
+SITTINGS AND ADJOURNMENT OF COUNTY ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Adjournment in Accordance with Calendar
+41. However, if the adjournment is in accordance with the assembly calendar, the assembly adjourns without
+question put. This is for the simple fact that the date is already specified in the calendar that is approved
+by the assembly at the commencement of each session.
+Adjournment to Discuss a Matter of County Importance
+42. The assembly may also adjourn to discuss a definite matter of urgent county importance. An adjournment
+motion to discuss a definite matter of urgent county importance usually enables a member to raise
+a matter considered urgent and of county importance. Motions seeking this kind of adjournment are
+moved at any time and without notice. The sequence of events leading up to the moving of such motions
+is as follows:
+a) The member submits a written notification of the matter to the speaker at least (specified hours per
+assembly standing orders) before the commencement of a sitting at which he or she intends to raise
+the matter.
+b) The speaker decides whether the matter falls within the meaning of “a definite matter of urgent
+county importance”.
+c) When the speaker decides in the affirmative, he or she informs the assembly accordingly when the
+matter is raised and if not less than five (or whichever number prescribed by the standing orders)
+other members rise in their places in support, the speaker nominates a time on the same day at
+which such a motion may be moved.
+d) This form of motion is intended to facilitate the discussion of a specific subject and only that subject
+may be discussed. The object is not literally to adjourn the assembly but to set aside scheduled
+business and time to facilitate deliberation on the matter.
+e) At the conclusion of the debate, no question is put.
+
+-- 21 of 54 --
+
+-- 22 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	9
+PART TWO
+PROCEEDINGS OF THE COUNTY ASSEMBLY
+43. The administration of all assembly business scheduled for the plenary, whether relating to legislation or
+reports, is a function of the Clerks at the table and journals office. The office facilitates plenary business
+by processing all bills, preparing legislative documents such as schedule of amendments, preparing
+reports for laying, making copies available to members, preparing the chamber folders, speaker’s
+communications etc.
+Before Plenary
+44. Before a sitting of the assembly, the table office must liaise with the speaker’s office and the Clerk’s office
+to be updated on what is before the assembly for the day. This may include documents such as the
+supplementary order paper, reports to be tabled, and communication/messages from the speaker.
+45. The officers at the table office are in charge of preparing the folders of the speaker and the Clerks at the
+table before any sitting of the assembly.
+46. Each folder should contain ALL documentation as may be necessary for transacting business as appears
+on the order paper.
+47. The rule of thumb, however, is that all folders for use in the assembly MUST ALWAYS HAVE THE
+CONSTITUTION, STANDING ORDERS OF THE ASSEMBLY, AND A LIST OF ALL MEMBERS OF THE COUNTY
+ASSEMBLY.
+48. All documentation from within the assembly that is to be tabled before the assembly must always be
+passed through the table office for standardization and information.
+During Plenary
+49. All necessary arrangements must be made to ensure that the staff at the table office follow the proceedings
+of the assembly.
+50. This will go a long way in supporting the officers in the assembly if need be and members of the assembly
+who may need documentation while the assembly is sitting.
+After Plenary
+51. The Clerks at the table prepare votes and proceedings and list of members to speak.
+52. All documentation that may have been laid or any lists of speakers that may have been made by the
+Clerks at the table should always at first instance be delivered to the table office.
+53. This will enable seamless flow of information to the public such as the media fraternity and even members
+of the assembly who may not have been present during particular proceedings and need an update.
+54. Any documentation that is kept at the table office must be kept in a systematic manner, to be agreed
+upon by the team.
+55. All members of staff in the office should be aware of the system. Original documents must never be given
+out to members. Only PHOTOCOPIES may be circulated.
+
+-- 23 of 54 --
+
+-- 24 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	11
+PART THREE
+PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY
+Statements
+56. Meaning: It is a brief request or pronouncement presented to the house by a member of the County
+Assembly or chairperson of sectoral committee(s) to convey or seek information on a particular matter.
+57. General Statements – raised by a member on an issue(s) of topical concern in the county. A member who
+so wishes to raise a general statement must hand a written notification to the speaker before such time
+as prescribed if the statement is to be made on that day.
+58. County Assembly Business Committee Statement – is an informative statement presented by a designated
+member of the County Assembly business committee, bringing to the attention of the assembly the
+business prioritized for consideration by the assembly for the subsequent week.
+59. Statement by the Leader of the Majority/Minority Party – presented by the majority leader or the
+minority leader, as the case may be, relating to their responsibilities in the assembly or the activities of a
+committee.
+60. Committee Statements – These are inquisitive statements sought by a member of the County Assembly
+from the county executives through a committee chairperson relating to the matters of concern within
+the mandate of a committee. All members’ requests for statements from committee chairpersons must
+be addressed to the Clerk in writing for transmission to the speaker for approval.
+61. Statements take the form of questions since their primary objective is to seek information. Before
+processing statements, care must be taken to ensure that the request meets the threshold of the standard
+criteria. The following guidelines may be applied when handling members’ statement requests:
+a) The request should fall within the subjects under the mandate of a particular committee.
+b) The request ought to be seeking to address a matter of a county scope and not specific to a certain
+ward, area, or region. If it must tackle a matter within an area/ward, it should be structured in a
+manner that funnels in from the general to the specific.
+c) It should not be a pretext for a question or seek an expression of an opinion.
+d) The request should not seek to repeat in substance any matter already addressed by the assembly
+within the preceding six months.
+e) The request should not refer to or seek information on a matter already before a committee.
+f) The statement should also not seek information that is readily available in ordinary works of
+reference or official publication.
+g) The request should not be made on a matter(s) that is sub judice.
+h) Should not be requested from a committee by a member a member of that particular committee
+(by virtue of being a member of the committee, one can raise any matter during committee sittings
+rather than through statements).
+62. In case the statement request is urgent or requires a multi-sectoral response by virtue of touching on
+a matter that cuts across various county executive departments or is urgent, such statements may be
+
+-- 25 of 54 --
+
+PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+directed to the leader of the majority/minority party (whichever is in government), who then reports the
+response to the assembly. When a request is made to the leader of the majority/minority party, she/he
+may confirm whether a replying statement would be done the following week or later.
+63. Statements requested through this avenue maybe be utilized for issues that:
+a) Are of a county scope and raise cross-cutting issues under more than one committee or department.
+b) May not be properly addressed by a single committee due to its urgency or nature.
+c) May be properly addressed under the office of the leader of the majority party.
+64. While presenting requests for statements, members should confine themselves to the text of the
+statement as approved by the speaker.
+Responses to Statements
+65. Ordinarily, the chairperson of the committee to which the request was made presents responses on
+statements to the assembly orally. Whenever a reply is orally presented to the assembly, the speaker
+may allow limited comments or supplementary questions on the replying statement. Supplementary
+questions should not introduce a new subject but should be confined to the subject matter of the original
+statement by seeking clarification.
+66. In some cases, the reply statement is laid on the table of the County Assembly. This method may be
+applied under the discretion of the speaker and occurs when the member who requested the statement
+is not in the assembly at the time the reply is to be made, or where there is inadequate time to allow it
+to be read.
+Personal Statements
+67. A short factual pronouncement by a member on a matter of personal character such as a personal apology,
+correction of information made in a speech made by him/her in the house, or a reply to allegations/
+misrepresentation of facts made against him/her in the house or outside the house. This mechanism
+provides a limited opportunity for a member to explain matters of a personal nature although the
+statement is not debatable for there is no question before the assembly.
+Timing for Approval/Presentation of Statements
+68. A member seeking to make a request for a personal statement should present to the speaker a written
+notice of their intention within the prescribed timeline prior to the sitting in which she/he intends to
+present the statement.
+Notices of Motion
+69. Avenue by which motions are formally introduced to the assembly. This is an opportunity for a member
+who has a motion he or she intends to move in the future to bring the terms of such a motion to the
+attention of the assembly. Notices relate only to substantive motions, which will have been approved by
+the speaker and balloted by the assembly business committee.
+Motions
+70. A motion is a persuasive proposal seeking to have the assembly note or resolve, urge or call upon the
+county executive to take action on a matter.
+Types
+There are two main categories of motions:
+
+-- 26 of 54 --
+
+PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+a) Resolution Motions
+71. A motion by which the assembly is requested to make a definite decision on a matter, which if passed
+constitutes a formal decision of the assembly on the said matter. Such motions are worded as: “This
+assembly resolves…”
+i) Substantive – is a self-contained proposal (not dependent on another proposal) seeking the assembly
+to take a decision on a matter. The assembly lists such motions for consideration after a notice of
+motion has been given.
+ii) Procedural – these are formal motions through which the assembly regulates its own proceedings
+and/or conduct of business. For example, a motion resolving to extend the hours for a sitting of
+the assembly. Such motions afford no window of opportunity to members to prosecute issues of
+concern to the people.
+Guidelines for Drafting Resolution Motions
+72. Generally, draft motions should be short and succinct and framed so as to express with as much clarity as
+possible the distinct decision of the assembly.
+A draft motion must:
+i) Deal with matters within the competence of the county assembly.
+ii) Deal with only one substantive matter.
+iii) Consist of a clear and succinct proposed resolution or order of the County Assembly. Any extraneous
+matter meant to motivate a decision should be omitted and can be put forward when the member
+introduces the motion for debate in the assembly.
+iv) Not contain statements, quotations, or other matter not strictly necessary to make the proposed
+resolution or order intelligible.
+v) Not be the same in substance as a resolution that has been approved or rejected by the assembly
+during the same session.
+vi) Not contain unbecoming or offensive expression.
+vii) Not issue an instruction to the executive.
+viii) Be in writing, signed by the member, and handed over to the Clerk (preferably through the Clerks in
+the table office.)
+b) Subject for Discussion Motions
+73. These are motions by which the assembly adjourns its programmed business to allow discussion of
+topical or urgent matters without obligating the assembly to take a decision.
+74. Motions of this nature are couched as “motion for adjournment of the assembly to discuss an urgent
+matter of county importance pursuant to standing order…” They are introduced and can only proceed
+with the leave of the assembly. At the end of debate, no question is put.
+Guidelines for Drafting Subject for Discussion Motions
+i) The wording of a subject for discussion should be limited to identifying the topic, which should be
+clearly established. A topic that is too vague or broad will lead to unstructured debate.
+ii) The subject matter must be of so serious a nature that it requires immediate action.
+
+-- 27 of 54 --
+
+PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+iii) The subject must relate to a specific matter of recent occurrence and not the general state of affairs
+or to a matter of policy.
+iv) The request must not deal with more than one matter.
+v) The request must concern a matter for which the county government can be held responsible.
+vi) The matter must be raised at the earliest opportunity.
+Processing of Motions
+75. Once a member has drafted (in some cases with the assistance of technical staff) she/he shall present
+the signed motion to the Clerk. The Clerk then presents it to the speaker, who may approve it in the form
+presented or direct that it be altered or that it is inadmissible.
+76. When the speaker approves the motion, it is presented to the assembly business committee for
+prioritization for consideration. This stage is often referred to as “balloting”, the purpose of which is to
+determine the order in which motions shall be considered in the assembly.
+77. While balloting motions, the assembly business committee takes into account the fact that party-
+sponsored motions are always given precedence over all other motions. Once a motion has been balloted
+by the assembly business committee, a “notice of motion” must be given by the member for the motion
+to become a property of the assembly.
+78. The notice is given under the order “notices of motion” by reading the motion in the form approved by
+the speaker. This requirement does not apply to motions that may be moved without notice.
+Motions that may be moved without notice
+79. Motions of procedural implication do not require “notice”. They include:
+a) Motion by way of amendment to a question already proposed from the chair.
+b) Motion for the adjournment of the county assembly or of a debate.
+c) Motion that the county assembly do dissolve itself into a committee of the whole county assembly.
+d) Motion moved when the county assembly is in committee.
+e) Motion for the suspension of a member.
+f) Motion made in accordance with the standing orders governing the procedure as to bills.
+g) Motion for the agreement of the county assembly with a committee in a resolution reported, or for
+the recommittal thereof or for the postponement of the further consideration thereof.
+h) Motion raising a question of privilege.
+i) Motion for the orders of the county assembly under the standing orders.
+j) Motion made for the exemption of business from standing orders.
+k) Motion made for the limitation of a debate.
+l) Motion made for the postponement or discharge of, or giving precedence to, an order of the day.
+m) Motion for the extension of sitting time of the county assembly.
+
+-- 28 of 54 --
+
+PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Manner of Considering Motions
+80. On the day appointed by the assembly business committee for consideration of the motion, the “owner”
+of the motion shall move it while emphasizing the import and objectives of the motion.
+81. Every motion must be seconded lest it be deemed to have been lost. In order to reserve the right to speak
+later on the motion, the member seconding it may do so by rising in his or her place and bowing without
+speaking.
+82. Any member may amend a motion in the course of its consideration by the assembly. A member wishing
+to amend the motion can do so by submitting to the Clerk the proposed amendment in writing. Any
+member may propose to further amend the amendments so proposed. Proposed amendments may take
+the following forms:
+a) Leaving out some words in the motion.
+b) Deletion of some words in the motion and replacing them with other words.
+c) Insertion of words in the motion.
+83. Any amendment(s) to a motion shall only be proposed after the motion has been moved, seconded, and
+the question upon the motion has been proposed and before it is put.
+84. Proposed amendments must be relevant to the motion, may not introduce a new subject or extend the
+scope of the original motion, and should not be a direct negation of the question proposed.
+Public Petitions
+Meaning
+85. A petition is a written prayer to the County Assembly by a member of the public or a private entity
+requesting the County Assembly to consider any matter within its authority, including enacting, amending,
+or repealing any legislation. A member shall not be eligible to present a petition on his/her own behalf.
+Submission and Processing of Petitions
+86. All petitions to the County Assembly shall be submitted to the Clerk by the petitioner(s). The Clerk
+reviews the petition within seven days of the date of receipt to ascertain whether the petition meets the
+requirements of the standing orders and the applicable law.
+87. If the petition does not comply with the standing orders or the law, the Clerk may give such directions
+as are necessary to ensure that the petition is amended to comply with the standing orders and the
+applicable law.
+88. Once the Clerk is satisfied that the petition meets the requirements set out in the standing orders and
+the applicable law, she/he shall forward the petition to the speaker for approval and presentation to the
+County Assembly.
+89. The Clerk shall keep and maintain a register in which shall be recorded all petitions and supporting
+documents and the decisions of the County Assembly. The register shall be accessible to the public upon
+request.
+General Form of a Public Petition
+90. Further to the requirements relating to petitions, the standard form for public petitions is found in the
+schedules to the standing orders.
+
+-- 29 of 54 --
+
+PROCEDURE FOR PROCESSING BUSINESS IN THE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Presentation of Petitions
+91. Petitions may be reported to the County Assembly under the order “petitions” by:
+a) The speaker (in case of a petition presented through the Clerk).
+b) A member on behalf of a petitioner, with the consent of the speaker (in case of a petition presented
+by a member.) A notice of two sitting days or such time as prescribed in the standing orders is
+required for a petition to be presented by a member.
+92. The Clerk may, for convenience purposes, append a list of petitions scheduled for presentation to the
+order paper of the sitting day during which the petition is scheduled for presentation.
+93. The member presenting the petition shall read the petition in the form approved by the speaker and shall
+confine him/herself to the subject of the prayer and the material allegations therein. Thereafter, she/he
+shall lay the petition on the table of the County Assembly without question put.
+94. A member presenting a petition shall not speak for more than five minutes, unless with the permission
+of the speaker.
+Comments on Petitions
+95. A member wishing to make comments, observations, or seek clarifications on a petition may do so with
+the indulgence of the speaker. The speaker may allow the request(s), provided that the total time for the
+petition does not exceed 30 minutes.
+Committal of Petitions
+96. Every petition presented or reported to the County Assembly shall stand committed to the relevant
+sectoral committee.
+97. A sectoral committee has a prescribed number of calendar days depending on the standing orders from
+the time of presentation of the petition to consider and table a report on it in the County Assembly.
+98. Depending on the specific standing orders of an assembly, the report of a committee on a petition may
+either be laid for noting in the assembly, in which case the speaker may allow debate for a prescribed
+short period of time, or laid and introduced for formal debate at a later stage by way of a notice of
+motion.
+Transmission of Assembly Reports on Petitions
+99. The Clerk is expected to notify the petitioner(s) of the decision of the County Assembly on the petition
+and forward to them a copy of the sectoral committee report on a petition within the prescribed period
+in the standing orders of the petition being laid before the assembly.
+Papers
+100. Any printed or electronic material laid on the table of the assembly or a committee of the assembly
+pursuant to any law or standing orders or any other material as the speaker may determine. This is an
+opportunity for official documents, such as reports of statutory bodies or those of select committees, to
+be formally presented to the assembly.
+
+-- 30 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	17
+PART FOUR
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN
+THE COMMITTEE OF THE WHOLE ASSEMBLY
+Meaning and Import of Bills
+101. A bill is a proposed law at a post-publication stage. Bills seek to introduce new legislation, amend, or
+repeal existing law(s).
+Origination of Bills
+102. Bills may originate from–
+a) The county executive (introduced to the assembly through the leader of the majority party).
+b) Individual member(s) of the assembly (introduced to the assembly through the members sponsoring
+the bill).
+c) Sectoral committee of the assembly (introduced to the assembly through the chairperson of the
+relevant sectoral committee).
+d) Private citizens/stakeholders/interest groups by way of a petition (introduced to the assembly by
+way of a petition conveyed by the speaker and committed to the relevant sectoral committee for
+action).
+Procedure for Processing Bills by Members’ Initiative
+103. A member wishing to introduce a bill first needs to present to the speaker a legislative proposal in
+accordance with the standing orders. The following requirements should be met when presenting a
+legislative proposal:
+a) A letter presenting the legislative proposal to the speaker.
+b) A draft copy of the legislative proposal.
+c) A memorandum of objectives and reasons for which the legislative proposal is made.
+d) A statement whether the proposal will occasion additional expenditure i.e. is a “money bill” or not.
+e) A statement on limitation of fundamental rights and freedoms, if any.
+104. The legislative proposal is subjected to a review to ascertain whether it conforms to the provisions of the
+standing orders, statutes, and the Constitution. The scrutiny includes establishing that the bill is drafted
+in the prescribed legal language.
+105. If the bill meets the stipulated threshold and does not fall within the definition of “money bill” in terms
+of Section 21 of the County Governments Act, it is referred to the relevant sectoral committee for pre-
+publication scrutiny.
+106. If in the opinion of the speaker the legislative proposal has the effect of occasioning additional expenditure
+from public funds, the bill is referred to the relevant sectoral committee and/or the county budget and
+appropriations committee for consideration.
+
+-- 31 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Publication of Bills
+107. Before approving publication of a legislative proposal into a bill, the speaker shall take into account the
+recommendations of the relevant committee that undertook pre-publication scrutiny of the proposal. In
+the case of “money bills”, the speaker must satisfy himself/herself that the relevant sectoral committee
+and the county budget and appropriations committee has taken into consideration the opinion of the
+county executive responsible for finance.
+108. Once approved by the speaker, the legislative proposal shall be published in the County Gazette and the
+Kenya Gazette.
+Publication Period for Bills
+109. This is the period within which a bill matures before introduction in the assembly for the first reading.
+110. Save for a county revenue fund bill, an appropriation bill, or a supplementary appropriation bill, whose
+publication period is seven days, any other bill shall mature at the expiration of 14 days..
+111. However, the assembly may, by way of a resolution, shorten the publication period by such number of
+days as shall be deemed fit.
+Stages of a Bill
+112. Bills in the assembly go through six main stages, namely:
+First Reading
+The bill is introduced in the assembly for the first time and the Clerk reads out the LONG TITLE of the bill. No
+debate arises at this stage. Upon being read a first time, the bill stands committed to the relevant sectoral
+committee for consideration without question put.
+Second Reading
+This is the stage at which the assembly extensively undertakes the main debate on the principles and objectives
+of the bill. At the commencement of this stage, the member in charge of the bill moves that “the xyz bill be
+now read a second time” and proceeds to make a case for the bill. No amendments are proposed at this stage.
+However, members may indicate in general terms how the bill might be amended but discussion on points of the
+detail of the conceived amendments shall be left to the committee stage. At the end of the debate, a question is
+put, which if carried, the bill proceeds to the committee stage but if negatived, the bill is lost.
+Committee Stage
+At this stage, the assembly dissolves itself into a committee of the whole County Assembly to consider the bill
+clause by clause. Proposed amendments to the bill are considered and a vote would decide whether to accept or
+reject the amendments so proposed. A member dissatisfied with the decision of the committee on any clause(s)
+may indicate the intention to re-commit a particular clause(s) for re-consideration by the committee during the
+reporting stage when the house resumes.
+Report Stage
+This is the stage at which the chairperson of the committee of the whole County Assembly convened to consider
+a bill(s) at the committee stage reports to the assembly, having resumed in plenary, its consideration of a bill.
+Thereafter, a motion for agreement with the report of the committee of the whole County Assembly is moved,
+seconded, and question proposed.
+At this point, a member may move that the motion be amended by inserting the words “subject to re-committal
+of clause(s)/schedule/title (as the case may be) of the bill”. If the motion is accepted, the assembly shall dissolve
+into a committee of the whole County Assembly henceforth, or upon a day appointed by the County Assembly
+business committee. The committee shall confine itself to dealing with the clause(s), schedule, or title as re-
+committed.
+
+-- 32 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Third Reading
+This is the stage at which a bill is passed. The third reading of a bill is confined to a motion “that .......... bill be
+now read a third time”. At this stage, no amendment may be moved to this motion, save for the amendment
+proposing to leave out the word “now” and adding at the end of the question the words “upon this day” (specify
+the day/date).
+At this stage, members take a vote upon the motion “that xyz bill be now read a third time”. If the result of the
+vote is in the affirmative, the assembly is deemed to have passed the bill. If the motion is negatived, the bill is
+lost.
+Governor’s Assent
+Upon passage of a bill by the assembly, the speaker shall, within 14 days, present it for assent by the governor.
+Pursuant to Standing Order 135(2), the governor shall within 14 days after receipt of a bill–
+a) Assent to the bill.
+b) Or refer the bill back to the county assembly with a memorandum outlining the reasons for the
+referral.
+If the governor refers a bill back to the County Assembly, the assembly shall re-consider the bill. The assembly
+shall confine itself to the clauses to which the governor has expressed reservation.
+Consideration of Governor’s Memorandum on Refusal to Assent to a Bill(s)
+113. Whenever the governor declines to assent to a bill(s) and refers it back to the assembly, the following
+steps shall be followed:
+Step 1: Conveyance of the Message
+114. The speaker conveys to the assembly a message on the memorandum pursuant to the provisions of the
+standing orders on “messages from the governor” and where applicable, gives any special guidelines.
+Step 2: Referral to the Committee
+115. Upon conveyance of the message on the governor’s memorandum to the assembly, it shall be committed
+to the relevant sectoral committee for consideration and the Clerk shall circulate copies of the said
+memorandum to the committee and all members. The committee then lays a report, containing its
+recommendations on the memorandum, on the table of the assembly.
+116. The report informs the assembly of its consideration of the governor’s memorandum, especially when
+it disagrees with the governor’s recommendations. The committee may propose amendments to the
+governor’s recommendations. Members are also at liberty to file with the Clerk their amendments to the
+recommendations in their individual capacities.
+Step 3: Consideration in the Committee of the Whole Assembly
+117. On the day set aside for consideration of the governor’s recommendations on a bill, the said
+recommendations (amendments) shall be published in the notice paper attached to the order paper
+for the sitting day. The same is done for amendments proposed by the committee and members on the
+governor’s recommendations.
+118. The memorandum is considered directly in the committee of the whole assembly, which confines itself
+to the clauses/schedule/title to which the governor has raised recommendations in a sequential manner.
+119. Each clause is considered separately in the following sequence:
+a) Clerk calling out the clause as follows: “The governor’s recommendations to clause…”
+b) The chairperson proposes the question that: “The governor’s recommendations to clause … be now
+approved”.
+
+-- 33 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+c) Members with amendments (if any) are called sequentially to move their amendments.
+d) Debate on the proposed amendments may be initiated if members express an interest.
+e) Question is put for the amendments, which question requires two-thirds majority of the assembly
+to be carried.
+f) If the amendment is carried, the chairperson puts the question that “the governor’s recommendations
+to clause … as amended be now approved”.
+g) The process is replicated for all clauses (including the title) to which the governor raised
+recommendations.
+h) The mover moves reporting as follows: “That the committee of the whole do report to the assembly
+its consideration of the governor’s recommendations to …. bill”.
+i) The chairperson puts the question “that the committee of the whole assembly do report to the
+assembly its consideration of the governor’s recommendations to …. bill”.
+j) The assembly reconvenes in plenary.
+Step 4: Approval of the Report of the Committee of the Whole Assembly
+120. At this stage, consideration of the governor’s memorandum is reported to the assembly. The sequence is
+as follows:
+a) The chairperson of the committee of the whole assembly moves that “the committee of the whole
+assembly has put in consideration the governor’s recommendations to …. bill and approved the
+same with/without amendments”
+b) The speaker calls upon the mover of the bill to move that “the assembly do agree with the committee
+of the whole assembly in the said report”.
+c) The speaker then proposes the question that “the assembly do agree with the committee of the
+whole assembly in the said report”.
+d) Where members express an interest, the speaker may allow minimal debate to arise.
+e) The speaker puts the question that “the assembly do agree with the committee of the whole
+assembly in the said report”.
+f) Once the question has been put, the process ends. The bill does not require to be read a third time
+again.
+Withdrawal of Bills
+121. If a member in charge of a bill desires to withdraw it before it is introduced in the County Assembly, she/
+he shall, in writing specifying the reasons for the withdrawal, notify the speaker of the withdrawal..
+122. In instances where the bill is already before the assembly, the mover may, without notice, withdraw it in
+accordance with the provisions of the standing orders. This can be done either before the commencement
+of business or upon the reading out of the order of the day for any stage of the bill.
+Processing Amendments to Bills
+Submission and Timing of Amendments
+123. Upon conclusion of the second reading of a bill and before a bill is scheduled for consideration in the
+committee of the whole, a member wishing to amend any provision of the bill shall submit his/her
+proposed amendments to the Clerk in writing.
+
+-- 34 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+124. All proposed amendments must be notified to the Clerk in writing at least 24 hours before the
+commencement of the sitting at which that bill is to be considered. Notwithstanding this requirement,
+the member in charge of a bill may submit amendments at any time, including during the committee
+stage, by simply delivering the proposed amendment in writing, to the chairperson presiding over the
+committee of the whole. Such amendments by the mover while in the committee of the whole are
+commonly referred to as “floor amendments”.
+125. In instances where the proposed amendments are numerous to the extent that virtually every clause of
+the bill is being amended, and the speaker is of the opinion that they require harmonization she/he may
+direct all members proposing amendments to the bill to appear before the relevant sectoral committee
+handling the bill for purposes of harmonizing and condensing them. This process is commonly couched as
+“winnowing” after which the harmonized amendments are taken over by the relevant sectoral committee
+and moved by the chairperson of that committee.
+Admissibility of Amendments
+126. The speaker/Clerk shall take into account, among others, the following parameters in determining
+admissibility of proposed amendments:
+a) The amendments must be relevant to the subject matter of the bill and in particular, to the specific
+clause/schedule/title it is proposing to amend.
+b) The proposed amendments must not be inconsistent with a previous decision already taken at the
+committee stage, except where an alternative amendment is proposed to the same place in the bill.
+c) In the case of amendments to the schedule, such amendments should not go beyond the scope of
+or contravene the relevant clause already considered by the committee in the affirmative.
+d) The amendments in respect of the title should only have the import of rectifying a mistake in the
+title as published and/or aligning it with the amendments consequential thereto.
+e) Amendments to correct punctuation and/or amend headings of clauses or parts of the bill should
+be disallowed since they are technically not part of the bill and are, therefore, not subject to
+amendment.
+Procedure in Committee of the Whole County Assembly on a Bill:
+Meaning, Mandate and Powers of the Committee of the Whole Assembly
+127. The committee of the whole County Assembly, as implicit in the name, consists of all the members of the
+assembly. Otherwise put, it is in fact the assembly itself in a less formal guise of the assembly in plenary,
+presided over by a chairperson and conducting its business according to more flexible rules of procedure.
+128. The mandate and powers of the committee of the whole assembly are limited to the following:
+a) Consideration of bills referred to it by the assembly while taking into account any instructions given
+to it by the assembly through the speaker.
+b) The committee cannot adjourn a sitting of the assembly or adjourn its consideration of a bill to a
+future sitting unless the committee reports to the assembly its conclusive consideration of a bill
+or progress made in consideration of a bill committed to it. Such a decision is the preserve of the
+assembly sitting in plenary.
+Powers and Duties of Chairperson of the Committee of the Whole Assembly
+129. The chairperson of the committee of the whole assembly wields powers similar to those conferred to the
+speaker when presiding over a sitting of the assembly.
+130. His/her duties are largely confined to the following:
+a) Presiding over the committee of the whole assembly (the chairperson therefore has no vote).
+
+-- 35 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+b) Proposing the question for amendments to clauses, schedules, title of the bill under consideration
+and putting the question thereon.
+c) Making a formal report of the committee of the whole assembly to the plenary upon resumption of
+the assembly.
+Procedure
+131. Consideration of bills in the committee of the whole County Assembly shall proceed in the manner
+prescribed by the standing orders. Once the order for committee of the whole County Assembly has been
+called, the chairperson has taken his/her seat, and the committee has been called to order, deliberation
+on the bill under consideration shall proceed in the sequence provided for in the standing orders, which
+is:
+a) Clauses as printed, excluding the clauses providing for the citation of the bill, the commencement,
+if any, and the interpretation.
+b) New clauses.
+c) Schedules.
+d) New schedules.
+e) Interpretation.
+f) Preamble, if any.
+g) Long title.
+h) The clauses providing for the citation of the bill and the commencement.
+Clauses/schedules without amendments
+132. For a clause to which there are no proposed amendments, the question that “Clause ‘x’ be part of the
+bill” shall be proposed and put forthwith by the chairperson. In instances where several consecutive
+clauses to which no amendment has been proposed, the question framed as “clauses ‘p’ to ‘z’ be part
+of the bill” shall be proposed and put forthwith on all of them en bloc. No debate shall be entertained
+whatsoever on clauses without proposed amendments.
+Clauses/schedules with amendments
+133. Consideration of clauses/schedules with amendments is done in two stages.
+Stage one: Proposition of the question and consideration of proposed amendments
+Once the question “that clause ‘x’ be part of the bill” has been proposed, members desirous of amending
+the said clause/schedule are accorded the opportunity to move their respective amendments in their
+logical sequence. Proposed amendments shall be moved after the question has been proposed but
+before it is put.
+All proposed amendments are moved by way of a motion couched as “clause ‘x’ be amended as proposed
+in the order paper”, after which debate ensues on the proposed amendment(s).
+Consideration of amendment to the proposed amendment
+134. An amendment to an amendment is an alteration proposing to change a question for an amendment to
+a clause/schedule/title already proposed by the chairperson of the committee. The cardinal feature of an
+amendment to an amendment is that its content must be related to the subject of the question already
+proposed. Secondly, notice is not required for such an amendment to be moved, and they may or may
+not appear in the order paper.
+
+-- 36 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+135. In disposing of the amendment, precedence shall be accorded to the amendment to the amendment.
+If a question for the latter amendment is carried, then the original amendment is deemed to have been
+defeated and if the converse happens, the assembly shall revert to consider the original amendment at
+the end of which a question for the amendment is put.
+Consideration of further amendments
+136. Unlike amendment to an amendment, a further amendment is a subsequent amendment to the same
+clause/schedule/title for which another amendment has already been proposed and disposed of. Notice
+for all further amendments must be given at least 24 hours before commencement of the sitting in which
+the bill they relate to is scheduled for consideration in the committee of the whole County Assembly.
+They must also be published in the order paper. This condition precludes floor amendments proposed by
+the owner of the bill.
+137. In disposing of clauses or schedules where various amendments have been proposed, precedence shall
+be accorded to the amendment proposing deletion.
+138. Stage two: Putting of the question for the clause - Once the committee has expressed itself on all
+proposed amendments to a clause/schedule/title, the chairperson shall put the question that “clause/
+schedule/title as amended be part of the bill”.
+New Clauses/Schedules
+139. In principle, new clauses/schedules are expected to be considered at all stages preceding the committee
+stage. However, it is presumed that having their publication in the order paper constitutes the first
+reading. Consideration of new clauses/schedules therefore progresses through the following stages:
+Stage One: Second Reading
+140. First, the Clerk calls out the new clause or schedule. Thereafter, the chairperson calls the mover to move
+the second reading of the new clause or schedule. This is done by way of motion framed as: “I beg to move
+that the new clause/schedule ‘3A’ be read a second time” and proceeds to explain the meaning, purpose,
+and effect of the proposed amendment. The motion does not necessarily require to be seconded.
+The chairperson then proposes the question that “the new clause/schedule ‘3A’ be read a second time”
+and allows debate to ensue (if interest is demonstrated by members). If no debate arises, or at the end of
+debate (as the case may be), the chairperson shall put the question that the “new clause/schedule ‘3A’
+be read a second time”. This marks the end of stage one.
+Stage Two: Putting the Question
+141. This stage implies inclusion of the approved new clause/schedule in the bill. At this stage, the chairperson
+proposes the question that “the new clause/schedule ‘3A’ be part of the bill”, then allows interested
+members to debate the motion. Thereafter, the chairperson puts the question that “the new clause/
+schedule ‘3A’ be part of the bill”. If the question is agreed to, the new clause/schedule as approved
+stands as part of the bill.
+Reporting Committee Stage - Consideration of Bills to the County Assembly
+142. Upon conclusion of the proceedings on a bill(s) in the committee of the whole County Assembly, the
+member(s) in charge of the bill(s) shall move the motion, “that the committee do report to the County
+Assembly its consideration of the ‘xyz’ bill and its approval thereof with/without amendments (whichever
+is applicable).”
+143. The chairperson shall put the question thereon and once the committee agrees to the question, the
+chairperson shall forthwith leave the chair of the committee and the County Assembly shall resume.
+Upon resumption of the assembly, the bill(s) shall be reported in accordance with the provisions of the
+standing orders.
+
+-- 37 of 54 --
+
+PROCEDURE FOR PROCESSING AND CONSIDERATION OF BILLS IN THE COMMITTEE OF THE WHOLE ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Reporting Progress of the Committee of the Whole Assembly
+144. Reporting progress of the committee of the whole assembly may be invoked under the following two
+scenarios:
+a) At the time of adjournment of the assembly and no procedural motion to extend sitting time has
+been moved and agreed, yet the committee stage on a bill has not been concluded.
+b) When the mover, the chairperson of the relevant sectoral committee, or any other member is
+desirous of postponing consideration of a bill(s) at committee stage to a later date for one reason
+or another. For example, when additional time is required to allow more members to file proposed
+amendments to the bill or to harmonize proposed amendments through the winnowing process.
+145. Any member wishing to indulge the house to report progress of the committee of the whole assembly
+shall do so by way of a motion. The motion is generally framed as follows:
+“I beg to move that the committee do report to the assembly its partial consideration of the ‘xyz’
+bill up to clause/schedule…, and its approval thereof with/without amendments (whichever is
+applicable), and seek leave to sit again.”
+Thereupon, the chairperson shall put the question -
+“That the committee do report to the assembly its partial consideration of the … bill up to clause/
+schedule …, and its approval thereof with/without amendments (whichever is applicable), and seek
+leave to sit again.”
+146. If the question is decided in the affirmative, the chairperson shall leave the chair and the chairperson, or,
+if the chairperson has taken the speaker’s chair, the member in charge of the bill shall report progress to
+the County Assembly and shall seek leave to sit again. This shall be reported as follows:
+“I beg to report that the committee of the whole county assembly has partially considered the ….
+bill up to clause/schedule …, and its approval thereof with/without amendments (whichever is
+applicable), and seek leave to sit again.”
+147. The speaker then calls upon the owner of the bill to move agreement with the said report of the
+committee. This motion needs to be seconded. Subsequently, the speaker shall propose the question
+for adoption of the said report and thereafter put the question forthwith or at the end of the ensuing
+debate.
+148. Resumption of consideration of the bill(s) in question shall be determined by the county assembly
+business committee in consultation with the member in charge of the bill.
+Note: The procedure in the committee of the whole assembly on a memorandum by the governor on
+refusal to a bill(s) is covered under ‘stages of a bill’.
+
+-- 38 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	25
+PART FIVE
+RULES OF DEBATE IN THE COUNTY ASSEMBLY
+149. These are the guidelines expected to be observed by members for the orderly conduct of business before
+the County Assembly. These rules are provided for in the County Assembly standing orders. They include:
+a) Language: Proceedings are to be transacted in the official languages, being English, Kiswahili, and
+the Kenya sign language. Noteworthy, a member must speak in the same language and conclude
+his/her contribution in the language the member started with.
+b) Reference to the speaker: All requests to speak to a motion must be channeled though the
+chairperson. Furthermore, a member speaking to a motion shall address the speaker at all times.
+c) Number of members speaking to a motion: At any one given time, only one member shall speak to
+a motion. In the event that two or more members have requested to speak, the member called by
+the speaker shall speak to the motion.
+d) Reference to written materials: Members shall not read speeches. Nonetheless, a member can
+read short extracts from written documents and the speaker shall allow printed papers in support
+of the argument being prosecuted. An entire speech may only be read when the speaker is satisfied
+that it is necessary for precision of facts and avoidance of doubt on the matter being prosecuted.
+e) Speaking to a motion for which a question has been put: No member shall speak to a motion after
+the question has been put by the speaker, regardless of whether it is decided in the affirmative or
+negative.
+f) Speaking twice on a question: No member shall speak more than once to a question except under
+the following circumstances:
+i) In the committee of the whole assembly.
+ii) When required to offer an explanation on some material part of the member’s speech.
+iii) When replying to a substantive motion which she/he had moved.
+iv) When speaking to an amendment to a substantive motion before the county assembly.
+g) Points of order: Any member may raise a point of order at any time during the speech of another
+member through the speaker. If the request is acceded to, the member shall be required to indicate
+the standing order upon which the point of order is raised.
+h) Personal statement: A member wishing to explain the indulgence of the County Assembly - a
+member may explain matters of a personal nature with the indulgence of the house.
+i) Anticipating debate: No member shall, while contributing to another motion, raise matters relating
+to a bill, report, or motion before such matter is brought before the house for debate.
+j) Reference to proceedings of select committees: Members shall not refer to the proceedings of
+select committees before the committee(s) has laid its report on the table of the County Assembly.
+k) Contents of speeches: Members shall not discuss, adversely refer to, or discuss the conduct of the
+governor, the speaker, a judge, head of state or government, a representative of a friendly country,
+or holders of an office(s) whose removal is dependent upon a decision of the County Assembly
+without a substantive motion for which at least three days’ notice is required.
+
+-- 39 of 54 --
+
+RULES OF DEBATE IN THE COUNTY ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+l) Retraction and apologies: Whenever the speaker determines that a member has used exceptionable
+words that demean or impute improper motive on the dignity of the assembly or a member of the
+assembly, the member shall be ordered to withdraw and apologize. In the event that the member
+defies the order, she/he shall be deemed to be of disorderly conduct and shall be sanctioned by the
+speaker in accordance with the provisions of the standing orders.
+m) Matters sub judice (pending in court): A matter is considered sub judice if civil or criminal proceedings
+relating to it are ongoing in a court of law or constitutional tribunal and deliberating on it by the
+assembly is likely to influence fair determination of the matter(s). Determination of whether a
+matter is sub judice or not shall be based on the criteria set out in the standing orders.
+The sub judice rule is based on the assumption that the privilege of freedom of speech in the
+assembly places a corresponding duty on members to use their freedom responsibly. Therefore,
+members shall not refer to any particular matter(s) which is active in a court of law or constitutional
+tribunal, or which, by the operation of any written law, is secret, save in exceptional circumstances
+where the speaker may allow reference to such matters.
+n) Declaration of interest: A member who wishes to speak on any matter in which he or she has a
+pecuniary or proprietary interest shall first declare that interest. This is meant to eliminate the
+eventuality of conflict of interest.
+o) Allegations of fact(s): Members must not allege specific matters of fact as being true unless they
+can substantiate them by producing evidence that reasonably justifies such allegations. A member
+shall be responsible for the accuracy of any fact(s) she/he alleges to be true and shall be required to
+substantiate immediately on not later than the next sitting day, as may be ordered by the speaker.
+p) Debate on amendments: Any member contributing to an amendment(s) shall confine himself or
+herself to the amendment. A member who speaks to an amendment but had not spoken to the
+main question shall reserve the right to speak to the question once the amendment is disposed of,
+save for the circumstances contemplated by the standing orders.
+q) Reserving the right to speak after seconding a motion: A member who has been called upon by
+the mover to second a motion may reserve the right to contribute to that motion at a later time by
+simply bowing to signify agreement to have seconded the motion.
+r) Questions for which the mover has a right to reply: At the point of deliberation on a question of a
+motion whose mover has the right to reply has been proposed, any member may move the house
+to close debate on the question. This is done by way of a motion, “that the mover be now called
+upon to reply”. However, the discretion whether to put the question or not rests with the speaker. If
+he or she decides to put the question and the assembly decides in the affirmative, then the mover
+replies forthwith.
+s) Questions for which the mover has no right to reply: Closure of debate: at any point of debate
+on a motion for which a question has been proposed, any member wishing to close debate on the
+question may move the motion “that the question be now put”. Unless the speaker is of the opinion
+that the motion is an infringement on the rights of members, she/he shall proceed and put the
+question, “that the question be now put”. If it is decided in the affirmative, the speaker shall put the
+question accordingly in accordance with the standing orders.
+t) Adjournment of debate: This provision is invoked when a member wishes to postpone debate on a
+motion for a question to a future sitting through the motion – “that the debate be now adjourned”.
+If the speaker is satisfied that the motion is not tantamount to an abuse to the proceedings of the
+County Assembly she/he shall put the question forthwith. If carried, debate is adjourned but if
+negative, debate continues.
+Note: The import of the motion is similar to the one for the motion for reporting progress when the
+assembly is in committee.
+
+-- 40 of 54 --
+
+RULES OF DEBATE IN THE COUNTY ASSEMBLY
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+u) Limitation of debate: Is meant to impose a limit on the duration of a debate on any particular
+motion and/or the maximum time each member wishing to speak to the debate may be entitled
+to. Such motions are commonly moved at the commencement of a session or part of a session but
+may also be moved during a sitting of the assembly, provided that such a motion is moved after
+a question has been proposed but before commencement of debate on the specific question for
+which limitation of time is sought.
+v) Irrelevance or repetition: While speaking to questions before the assembly, members shall ensure
+that their speeches are relevant to the subject matter of the motion. Persistent irrelevance or
+tedious repetition of arguments already advanced by the member in question or any other member
+who has already spoken on a question may necessitate the speaker to discontinue the member’s
+debate after warning the member. Irrelevance could cause the speaker to discontinue a member’s
+speech.
+w) Personal interest: A member who wishes to speak on any matter in which he or she has a pecuniary
+or proprietary interest shall first declare that interest.
+x) Anticipation: It shall be out of order to anticipate the debate of a bill that has been published in the
+Gazette. A member cannot also anticipate the debate of a motion for which notice has been given.
+Disorderly Conduct
+Gross disorderly conduct
+Grave disorderly conduct
+
+-- 41 of 54 --
+
+PART SIX
+ANNEXES
+Annexure I Nomination Paper – Candidates for Election as Speaker
+Annexure II General Form of a Public Petition
+Annexure III Committee of the whole Schedule of Proposed Amendments
+Annexure IV Committee of the whole Reporting Progress Form
+Annexure V Standard Form of a Motion
+Annexure VI Standard Statement (Request)
+Annexure VII Standard Order Paper
+
+-- 42 of 54 --
+
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	29
+ANNEXURE I: NOMINATION PAPER – CANDIDATES FOR ELECTION AS SPEAKER
+COUNTY ASSEMBLY OF …………………… Nth …… ASSEMBLY
+NOMINATION PAPER FOR ELECTION TO THE OFFICE OF SPEAKER OF THE COUNTY ASSEMBLY OF KIRINYAGA
+PART A: CANDIDATE PERSONAL INFORMATION
+Last Name Other Names
+Postal Address Mobile Phone Number
+Email Phone Number
+Gender Date of Birth
+Occupation
+PART B: PROPOSED AND SECONDED BY
+a) Proposer
+First Name ......................................................................................................................
+Other Names ..................................................................................................................
+b) Seconder
+First Name ......................................................................................................................
+Other Names ..................................................................................................................
+We the undersigned having been duly elected to the County Assembly of .................... do hereby certify that, of
+our personal knowledge, the candidate named above is not a Member of the County Assembly of .................... is
+willing to serve in the office of Speaker of the County Assembly and is qualified to be elected as a Member of the
+County Assembly under Article 193 of the Constitution of Kenya. We further confirm that we have not nominated
+any other candidate for the position of Speaker of the County Assembly of.............................
+Signature
+• Proposer ............................................ Date ............................................................
+• Seconder ........................................... Date ............................................................
+CANDIDATE’S CONSENT TO NOMINATION
+I…………………………………………………………………... do hereby consent to my nomination as a candidate for election
+as Speaker of the County Assembly of …………………………. and attach herewith my curriculum vitae and relevant
+supporting documents.
+
+-- 43 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+Signature of Candidate................................................... Date……....…………………………...
+CERTIFICATE OF THE CLERK OF THE COUNTY ASSEMBLY
+I certify that this nomination paper was delivered to me at my office
+by.........................................................................................................
+at........................ a.m./p.m.1 on the ........... day of.................... 2017
+Signature of the Clerk..........................................................................
+Clerk of the County Assembly
+1 A nomination paper must be delivered duly completed by the candidate and supported by two Members of the County Assembly to the Clerk of the
+County Assembly at his office at least forty-eight hours before the time appointed at which the County Assembly is to meet to elect a Speaker
+
+-- 44 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+IN THE MATTER OF THE OATHS AND STATUTORY DECLARATION ACT
+(CAP 15 OF THE LAWS OF KENYA)
+AND
+IN THE MATTER OF THE ELECTION OF THE SPEAKER OF THE COUNTY ASSEMBLY OF
+...............................................
+AFFIDAVIT OF CANDIDATE FOR ELECTION AS SPEAKER OF THE COUNTY ASSEMBLY
+1. I……………………………………………..................……. of P. O Box …………...........…………… in the republic of Kenya
+hereby make oath and state as follows:–
+2. THAT I am an adult Kenyan citizen of sound mind and the holder of National Identity Card/Passport
+Number..................................... and competent to swear this Affidavit.
+3. THAT I have been nominated to stand for election to the office of Speaker of the County Assembly.
+4. THAT I am registered as a voter in............................................. Constituency and that my Elector’s number
+issued by the Independent Electoral and Boundaries Commission is............................................................
+............
+5. THAT I satisfy the educational, moral and ethical requirements prescribed by the Constitution and by
+other legislation for election as a Member of County Assembly.
+6. THAT I am not a person who is disqualified from being elected as a Member of County Assembly under
+Article 193(2) of the Constitution.
+7. THAT I swear this affidavit in support of my nomination to stand for election to the office of Speaker of
+the County Assembly of..................................................
+8. THAT all what is deponed herein is true to the best of my knowledge, information and belief.
+SWORN at............................................ ]
+on this............................... day of 2017 ]
+by the said ______________________ ] _____________________________
+BEFORE ME DEPONENT
+]
+]
+]
+(JUDGE/MAGISTRATE/COMMISSIONER FOR OATHS
+
+-- 45 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+ANNEXTURE II: GENERAL FORM OF A PUBLIC PETITION
+I/We, the undersigned,
+(Here, identify in general terms who the petitioner or petitioners are, for example, citizens of Kenya, residents of
+province or region, workers of industry, etc.)
+DRAW the attention of the assembly to the following:
+(Here, briefly state the reasons underlying the request for the intervention of the assembly by outlining the
+grievances or problems by summarizing the facts that the petitioner or petitioners wish the assembly to consider.)
+THAT
+[Here confirm that efforts have been made to have the matter addressed by the relevant body, and it failed to
+give satisfactory response.]
+THAT
+[Here confirm that the issues in respect of which the petition is made are not pending before any court of law,
+or constitutional or legal body.]
+HEREFORE your humble petitioner(s) pray that assembly—
+(Here, set out the prayer by stating in summary what action the petitioners wish the assembly to take or refrain
+from.)
+Name of petitioner Full Address National ID. or Passport No. Signature/Thumb impression
+............................... .................................. ............................................. ................................................
+............................... .................................. ............................................. ................................................
+............................... .................................. ............................................. ................................................
+(Here, repeat the summary in first page)
+Name of petitioner Signature/Thumb impression
+.............................................. ..............................................
+.............................................. ..............................................
+.............................................. ..............................................
+(Subsequent Pages)
+* This form may contain such variations as the circumstances of each case may require.
+
+-- 46 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+ANNEXTURE III: COMMITTEE OF THE WHOLE SCHEDULE OF PROPOSED AMENDMENTS
+REPUBLIC OF KENYA
+THE .................................... ASSEMBLY
+........................................... ASSEMBLY
+(.................. SESSION)
+THE ........................ BILL, 20....... (ASSEMBLY BILL NO. .............. OF 20.......)
+COMMITTEE OF THE WHOLE ASSEMBLY (DATE)
+Clause 3:
+Clause 4:
+Clause 5: Proposed Amendment by Hon. ...........................
+Clause 6:
+New Clause 1A:
+New Clause 7A: Proposed New Clause by Hon. ............................
+Schedule:
+New Second Schedule:
+Clause 2:
+Long Title:
+Clause 1:
+
+-- 47 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+ANNEXTURE IV: COMMITTEE OF THE WHOLE REPORTING PROGRESS FORM
+MOVER OF THE
+BILL:
+To move that Chairperson, I beg to move that the committee do report to the
+assembly its consideration of the …....................……. Bill, 20.....
+(assembly bill No. ..... of 20.....) and its approval thereof without
+amendments.
+CHAIRPERSON: To put the question I will put the question, which is that the committee do report to
+the assembly in consideration of the …....................……. Bill, 20.....
+(assembly bill No. ..... of 20.....) and its approval thereof with/
+without amendments.
+CHAIRMAN IMMEDIATELY LEAVES THE CHAIR AND SPEAKER RESUMES HIS CHAIR
+CHAIRPERSON: To report to the
+house
+Hon. Speaker Sir, I beg to report that the committee of the whole
+assembly has considered the …....................……. Bill, 20…..
+(assembly bill No. ..... of 20…..) and its approval thereof with/
+without amendments.
+MOVER OF THE
+BILL:
+To move agreement
+to report
+Hon. Speaker, Sir, I beg to move that the assembly do agree with the
+committee in the said report.
+SPEAKER: Proposes adoption of
+report
+I will propose the question, which is that the assembly do agree with
+the committee in the said report;
+SPEAKER: Puts question for
+adoption Report
+I will put the question, which is that the assembly does agree with
+the committee in the said report.
+“As many, etc”...................
+MOVER OF THE
+BILL:
+To move the third
+reading
+Mr. Speaker, Sir, I beg to move that the …....................……. bill,
+20….. (assembly bill No. ….. of 20….) be now read a third time.
+SPEAKER: Proposes question of
+third reading
+I will propose the question, which is that the ………. bill, 20…..
+(assembly bill No. ….. of 20…..) be now read a third time.
+SPEAKER: Puts question of third
+reading
+I will put the question, which is that the …....................……. bill,
+20..... (assembly bill No. ..... of 20.....) be now read a third time;
+“As many, etc”...................
+Clerk reads the bill a third time (long title)
+
+-- 48 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+ANNEXTURE V: STANDARD FORM OF A MOTION
+ASSEMBLY
+LOGO
+COUNTY GOVERNMENT OF _____________________
+SECOND ASSEMBLY
+(FIRST SESSION)
+THE COUNTY ASSEMBLY
+MOTION - (Hon. , MCA)
+THAT, aware that _______________________________ (summarize subject matter of motion in brief/background)
+FURTHER AWARE that ____________________________ (give synopsis of subject matter of Motion);
+NOTING THAT ___________________________________ (any key observations that can be made from subject
+matter and how it has been dealt with or should be dealt with)
+DEEPLY CONCERNED that _______________________________ (additional information to note which buttresses
+the subject of the Motion);
+This ASSEMBLY URGES/RESOLVES that ___________________________________ (insert resolution of Motion
+from subject matter).
+The Hon. _______________________, MCA
+Member for _____________________ Ward
+Date: ___________________________
+(Serialization is any) SAMPLE COUNTY
+
+-- 49 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+ANNEXTURE VI: STANDARD STATEMENT (REQUEST)
+ASSEMBLY
+LOGO
+SAMPLE COUNTY ASSEMBLY
+SECOND ASSEMBLY - FIRST SESSION
+REQUEST FOR STATEMENTS
+Hon. Speaker,
+Pursuant to Standing Order ________, I wish to request for a statement from the Chairperson of the Sectoral/
+Select Committee on _____________________ regarding the ___________________ (subject of request in
+summary).
+Hon. Speaker, _____________________________________ (explain subject of request in detail, keeping to the
+main issues but detailing what the problem is and efforts if any to address the problem which have failed).
+Hon. Speaker, in the statement, the Chairperson should inquire into and report on:–
+i) Steps taken to _______________________________________________ (list issues you want dealt
+with); and
+ii) Measures being taken to ____________________________ (detail questions that seek to answer
+subject matter sufficiently).
+Hon. _______________________, MCA
+Member for _____________________ Ward
+Date: ___________________________
+Second Assembly First Session
+
+-- 50 of 54 --
+
+ANNEXES
+MODEL COUNTY ASSEMBLY PROCEDURE AND PRACTICE MANUAL	
+
+ANNEXTURE VII: STANDARD ORDER PAPER
+(No. of sitting ) (Page number )
+ASSEMBLY
+LOGO
+REPUBLIC OF KENYA
+SAMPLE COUNTY ASSEMBLY
+SECOND ASSEMBLY – (FIRST SESSION)
+ORDERS OF THE DAY
+(DAY) (MONTH) (DATE), (YEAR) AT (TIME) AM/P.M.
+ORDER OF BUSINESS
+PRAYERS
+1. Administration of Oath
+2. Communication from the Chair
+3. Messages
+4. Petitions
+5. Papers
+6. Notices of Motion
+7. Statements
+8*. MOTION – (Chairperson of Select Committee on Budget and Appropriations)
+THAT, this Assembly adopts THE REPORT OF THE SELECT COMMITTEE ON BUDGET AND APPROPRIATIONS
+ON THE BUDGET ESTIMATES FOR THE SAMPLE COUNTY GOVERNMENT AND COUNTY ASSEMBLY FOR THE
+FINANCIAL YEAR 2014/2015, laid on the Table of the Assembly on Tuesday 17th June, 2014.
+(No. _____) (DAY) (MONTH) (DATE), (YEAR) (_____)
+N O T I C E
+The Assembly resolved on Wednesday, February 19, 20___ as follows:–
+(List here Limitation Motions and any other Notices)
+___________________________________
+* Denotes Orders of the Day
+___________________________________
+
+-- 51 of 54 --
+
+-- 52 of 54 --
+
+-- 53 of 54 --
+
+-- 54 of 54 --

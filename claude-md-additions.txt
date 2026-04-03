@@ -1,0 +1,43 @@
+## ADDITIONS TO CLAUDE.md
+## Add these sections in the positions indicated below
+
+---
+
+## ADD AFTER "## Session Efficiency" SECTION:
+
+## Dependency Rules
+- STACK.md is the canonical version reference. Read it before touching any package.
+- NEVER install a package without first checking its version against STACK.md
+- NEVER use version ranges (^, ~, *) — always pin exact versions
+- NEVER upgrade a package without checking breaking changes first
+- If a new package's peer dependencies conflict with STACK.md, stop and flag it
+- After any install: run npm run build — not just npm run dev
+- Update STACK.md immediately after every install or upgrade
+- NEVER mix package managers — this project uses npm only
+
+## ADD AFTER "## Dependency Rules" SECTION:
+
+## Testing Standards
+A feature is only complete when ALL of the following pass:
+
+1. npm run build — zero errors, zero warnings treated as errors
+2. npm run dev starts without compilation errors
+3. curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/en returns 200
+4. The specific route or component being built renders without console errors
+
+Rules:
+- Never mark a TODO item [x] until all four checks pass
+- Never proceed to the next feature until the current one passes all four checks
+- Build and verify ONE component at a time — never batch-build then test
+- If credits run out mid-sprint, start the next session with:
+    npm run build
+    Report all errors before writing any new code
+
+## ADD TO "## What NOT to Do" SECTION:
+
+- Don't use next-intl v4.x with Next.js 14 (requires Next.js 15)
+- Don't use moduleResolution: "bundler" with Next.js 14
+- Don't add shadcn CSS imports (@import "shadcn/tailwind.css") with Tailwind v3
+- Don't mark a sprint complete without running npm run build
+- Don't batch-build multiple components then test — build one, verify, then next
+- Don't proceed after credits die without running npm run build first in new session
