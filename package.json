@@ -10,13 +10,15 @@
     "type-check": "tsc --noEmit",
     "fetch:law-docs": "npx tsx scripts/fetch-law-docs.ts",
     "seed:law": "npx tsx scripts/seed-law.ts",
-    "seed:admin-units": "npx tsx scripts/seed-admin-units.ts"
+    "seed:admin-units": "npx tsx scripts/seed-admin-units.ts",
+    "analyze:seed": "npx tsx scripts/analyze-seed-docs.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
     "@base-ui/react": "^1.3.0",
     "@supabase/ssr": "^0.10.0",
     "@supabase/supabase-js": "^2.101.1",
+    "cheerio": "1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.7.0",
@@ -24,6 +26,7 @@
     "next-intl": "3.26.3",
     "openai": "^6.33.0",
     "pdf-parse": "^2.4.5",
+    "playwright": "1.59.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "shadcn": "^4.1.2",

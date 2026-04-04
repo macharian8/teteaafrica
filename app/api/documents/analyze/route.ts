@@ -5,7 +5,6 @@ import { createServiceRoleClient } from '@/lib/supabase/server';
 import { analyzeDocument } from '@/lib/analysis/analyzeDocument';
 import { logError } from '@/lib/supabase/errors';
 import type { ApiResponse, DocumentAnalysisResult } from '@/lib/types';
-import type { Json } from '@/lib/supabase/types';
 
 interface AnalyzeRequestBody {
   document_id: string;
@@ -16,7 +15,6 @@ export interface AnalyzeResult {
   result: DocumentAnalysisResult;
   needs_review: boolean;
   already_existed: boolean;
-  fallback?: boolean;
 }
 
 export async function POST(
@@ -75,49 +73,10 @@ export async function POST(
       const message = analysisErr instanceof Error ? analysisErr.message : 'Analysis failed';
       await logError(supabase, message, { path: '/api/documents/analyze', document_id: body.document_id });
 
-      const fallbackResult = {
-        title: 'Manual Review Required',
-        summary_en: 'This document could not be analysed automatically. Please review manually.',
-        summary_sw: 'Hati hii haiwezi kuchambuliwa kiotomatiki.',
-        actions: [],
-        confidence_score: 0,
-      };
-
-      // Persist fallback row so results page can display it
-      let analysisId: string | null = null;
-      try {
-        const { data: fallbackRow } = await supabase
-          .from('document_analyses')
-          .insert({
-            document_id: body.document_id,
-            country_code: doc.country_code,
-            document_type: null,
-            summary_en: fallbackResult.summary_en,
-            summary_sw: fallbackResult.summary_sw,
-            affected_region_l1: [],
-            affected_region_l2: [],
-            key_dates: [] as unknown as Json,
-            analysis_json: fallbackResult as unknown as Json,
-            confidence_score: 0,
-            needs_review: true,
-          })
-          .select('id')
-          .single();
-        analysisId = fallbackRow?.id ?? null;
-      } catch {
-        // Non-fatal — return fallback response regardless
-      }
-
-      return NextResponse.json({
-        success: true,
-        data: {
-          analysis_id: analysisId,
-          needs_review: true,
-          already_existed: false,
-          fallback: true,
-          result: fallbackResult as unknown as DocumentAnalysisResult,
-        },
-      });
+      return NextResponse.json(
+        { success: false, error: 'analysis_failed', message: 'Document too complex. Try uploading a specific section.' },
+        { status: 422 }
+      );
     }
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Analysis failed';

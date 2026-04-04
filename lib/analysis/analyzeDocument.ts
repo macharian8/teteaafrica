@@ -11,7 +11,7 @@ import type { CountryConfig } from '@/lib/countries/KE/config';
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 const ANALYSIS_MODEL = 'claude-opus-4-6';
-const MAX_TOKENS = 4096; // 2048 is insufficient for multi-action Acts (JSON truncates mid-array)
+const MAX_TOKENS = 8192; // 4096 insufficient for complex Acts with many actions
 const CONFIDENCE_REVIEW_THRESHOLD = 0.7;
 
 // Country config registry — extend when adding new countries
@@ -42,17 +42,17 @@ export interface AnalyzeDocumentOutput {
  * 500-char windows around civic-action keywords, deduplicates overlapping
  * ranges, and falls back to a simple prefix slice if under budget.
  */
-function extractRelevantText(rawText: string, maxChars = 12000): string {
+function extractRelevantText(rawText: string, maxChars = 80000): string {
   if (rawText.length <= maxChars) return rawText;
 
   const KEYWORDS = [
     'public participation', 'citizen', 'right', 'deadline', 'penalty',
-    'objection', 'appeal', 'county', 'ward', 'budget',
+    'objection', 'appeal', 'budget',
   ];
   const WINDOW = 500;
 
-  // Seed with the document opening
-  const segments: [number, number][] = [[0, Math.min(2000, rawText.length)]];
+  // Seed with the document opening (first 3,000 chars always included)
+  const segments: [number, number][] = [[0, Math.min(3000, rawText.length)]];
   const lower = rawText.toLowerCase();
 
   for (const kw of KEYWORDS) {
@@ -114,12 +114,13 @@ export async function analyzeDocument(
     .from('document_analyses')
     .select('id, analysis_json, confidence_score, needs_review')
     .eq('document_id', documentId)
-    .gt('confidence_score', 0) // skip fallback rows (confidence_score = 0) so they can be re-analysed
+    .gt('confidence_score', 0.3) // skip low-confidence / fallback rows so they can be re-analysed
     .order('created_at', { ascending: false })
     .limit(1)
     .maybeSingle();
 
   if (existing) {
+    console.log(`Cache hit for document_id: ${documentId}`);
     return {
       analysisId: existing.id,
       result: existing.analysis_json as unknown as DocumentAnalysisResult,
@@ -195,8 +196,19 @@ export async function analyzeDocument(
 
   // ── 5. Parse JSON response ────────────────────────────────────────────────
   const jsonMatch = fullText.match(/\{[\s\S]*\}/);
-  if (!jsonMatch) throw new Error('No JSON object found in response');
-  const result = JSON.parse(jsonMatch[0]) as DocumentAnalysisResult;
+  if (!jsonMatch) {
+    const err = new Error('Document too complex. Try uploading a specific section.');
+    (err as NodeJS.ErrnoException).code = 'ANALYSIS_FAILED';
+    throw err;
+  }
+  let result: DocumentAnalysisResult;
+  try {
+    result = JSON.parse(jsonMatch[0]) as DocumentAnalysisResult;
+  } catch {
+    const err = new Error('Document too complex. Try uploading a specific section.');
+    (err as NodeJS.ErrnoException).code = 'ANALYSIS_FAILED';
+    throw err;
+  }
 
   const needsReview =
     !result.confidence_score || result.confidence_score < CONFIDENCE_REVIEW_THRESHOLD;

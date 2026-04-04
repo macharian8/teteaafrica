@@ -57,9 +57,13 @@ export async function POST(
       isScanned = parsed.isScanned;
     }
 
-    if (!rawText || rawText.length < 50) {
+    if (!rawText || rawText.length < 500) {
       return NextResponse.json(
-        { success: false, error: 'Could not extract meaningful text from this document' },
+        {
+          success: false,
+          error: 'insufficient_text',
+          message: 'Could not extract readable text. Try a different URL or text-based PDF.',
+        },
         { status: 422 }
       );
     }

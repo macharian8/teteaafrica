@@ -1,5 +1,5 @@
 # STACK.md — Tetea Africa
-**Last updated:** 2026-04-03
+**Last updated:** 2026-04-04
 **Status:** Authoritative version reference — update after every install
 
 ---
@@ -38,7 +38,9 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
   "pdf-parse": "1.1.1",
   "xlsx": "0.18.5",
   "zod": "3.23.8",
-  "zustand": "4.5.5"
+  "zustand": "4.5.5",
+  "playwright": "1.59.1",
+  "cheerio": "1.2.0"
 }
 ```
 

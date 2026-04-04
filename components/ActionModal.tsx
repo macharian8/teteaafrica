@@ -19,7 +19,7 @@ interface Props {
   actionId: string; // DB actions.id
 }
 
-type Status = 'editing' | 'confirming' | 'submitting' | 'done' | 'error';
+type Status = 'editing' | 'submitting' | 'done' | 'error';
 
 export default function ActionModal({ action, open, onClose, langPref, actionId }: Props) {
   const tAction = useTranslations('action');
@@ -59,13 +59,15 @@ export default function ActionModal({ action, open, onClose, langPref, actionId 
     onClose();
   }
 
-  const actionTypeLabel = tAction(`types.${action.type}`);
+  const actionTitle = langPref === 'sw'
+    ? (action.title_sw || action.title_en)
+    : action.title_en;
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{tAction('draft.title', { actionType: actionTypeLabel })}</DialogTitle>
+          <DialogTitle>{actionTitle}</DialogTitle>
         </DialogHeader>
 
         {status !== 'done' && (
@@ -96,9 +98,6 @@ export default function ActionModal({ action, open, onClose, langPref, actionId 
               <p className="text-sm text-destructive">{errorMsg}</p>
             )}
 
-            {status === 'confirming' && (
-              <p className="text-sm font-medium">{tAction('draft.submitConfirm')}</p>
-            )}
           </>
         )}
 
@@ -124,19 +123,16 @@ export default function ActionModal({ action, open, onClose, langPref, actionId 
         <DialogFooter className="gap-2">
           {status === 'done' ? (
             <Button onClick={handleClose}>{tCommon('close')}</Button>
-          ) : status === 'confirming' ? (
-            <>
-              <Button variant="outline" onClick={() => setStatus('editing')}>{tCommon('back')}</Button>
-              <Button onClick={handleConfirm}>{tAction('confirmAction')}</Button>
-            </>
           ) : (
             <>
-              <Button variant="outline" onClick={handleClose}>{tCommon('cancel')}</Button>
+              <Button variant="outline" onClick={handleClose} disabled={status === 'submitting'}>
+                {tCommon('cancel')}
+              </Button>
               <Button
-                onClick={() => setStatus('confirming')}
+                onClick={handleConfirm}
                 disabled={!draft.trim() || status === 'submitting'}
               >
-                {tAction('execute')}
+                {status === 'submitting' ? tCommon('loading') : tAction('execute')}
               </Button>
             </>
           )}

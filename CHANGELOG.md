@@ -8,6 +8,49 @@ Format: `[YYYY-MM-DD] type(scope): description`
 
 ---
 
+## [2026-04-04] feat(scraping): Sprint 3 — automated scraping pipeline
+
+### New scrapers
+- `lib/scrapers/base.ts` — shared `ScraperResult`, `ScraperRunSummary` types, `scrapeFetch`, `sleep`, `SCRAPER_USER_AGENT`
+- `lib/scrapers/dedup.ts` — SHA-256 URL + content deduplication, `buildScraperSupabaseClient`
+- `lib/countries/KE/scrapers/gazette.ts` — Kenya Gazette (kenyalaw.org), max 10/run, 2s crawl delay, scanned PDF detection
+- `lib/countries/KE/scrapers/county-nairobi.ts` — Nairobi County (nairobi.go.ke/downloads), max 20/run
+- `lib/countries/KE/scrapers/parliament.ts` — Parliament bills (parliament.go.ke), RSS+HTML fallback, max 15/run
+
+### New API routes
+- `POST /api/scrapers/run` — Bearer-auth webhook, routes to gazette/county-nairobi/parliament scraper
+- `POST /api/notifications/dispatch` — Batch-processes queued notifications (stub: marks as 'sent'; Sprint 4 wires actual send)
+
+### Notification pipeline stub
+- `lib/notifications/matcher.ts` — `queueNotificationsForDocument`: matches active subscriptions by country_code + region + topic overlap; inserts `notifications` rows with `status='queued'` in batches of 100
+- Sprint 4 stubs: `sendWhatsAppNotification`, `sendSmsNotification`, `sendEmailNotification` (no-ops)
+
+### pg_cron migration
+- `supabase/migrations/20260404000001_pg_cron_schedules.sql` — schedules gazette (Fri 05:00 UTC), county (daily 04:00 UTC), parliament (daily 04:15 UTC), notification dispatcher (every 5 min)
+- Uses `net.http_post` + `app.webhook_base_url` / `app.scraper_secret` Vault settings
+
+### Analysis pipeline fixes (same session)
+- `lib/analysis/analyzeDocument.ts`: `MAX_TOKENS` 4096→8192; smart text extraction 12k→80k chars with first-3k guarantee + keyword windows (public participation, deadline, penalty, appeal, budget); cache dedup threshold raised to `confidence_score > 0.3`; cache hit logged as `"Cache hit for document_id: X"`; JSON parse failure throws typed `ANALYSIS_FAILED` error instead of inserting fallback row
+- `app/api/documents/analyze/route.ts`: removed fallback 0%-confidence card; analysis errors return HTTP 422 `{success:false, error:'analysis_failed',...}`
+- `app/api/documents/parse/route.ts`: fast-fail threshold raised 50→500 chars, returns `{success:false, error:'insufficient_text',...}`
+- `scripts/analyze-seed-docs.ts` (new): processes 9 KE seed law txt files through full analysis pipeline; `package.json` script `analyze:seed`
+
+### Type fixes
+- `lib/supabase/types.ts`: added `notifications` table Row/Insert/Update (was missing; caused `never` type errors in dispatch route)
+
+### Dependencies
+- `playwright@1.59.1` (exact pin)
+- `cheerio@1.2.0` (exact pin, built-in TS types)
+- `STACK.md` updated
+
+### Verification
+- `npm run build` → zero errors ✓
+- All three scrapers instantiate without errors ✓
+- pg_cron migration file created ✓
+- Notification matcher and dispatch route compile cleanly ✓
+
+---
+
 ## [2026-04-03] fix(stack): unblock frontend — downgrade next-intl, revert webpack alias, fix globals.css
 
 ### Root causes fixed

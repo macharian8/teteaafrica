@@ -280,6 +280,36 @@ export interface Database {
         Update: Partial<Database['public']['Tables']['deadlines']['Insert']>;
       } & NoRelationships;
 
+      notifications: {
+        Row: {
+          id: string;
+          user_id: string;
+          country_code: CountryCode;
+          channel: 'whatsapp' | 'sms' | 'email';
+          status: 'queued' | 'sent' | 'delivered' | 'failed';
+          subject: string | null;
+          body: string;
+          document_id: string | null;
+          action_id: string | null;
+          sent_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          country_code?: CountryCode;
+          channel: 'whatsapp' | 'sms' | 'email';
+          status?: 'queued' | 'sent' | 'delivered' | 'failed';
+          subject?: string | null;
+          body: string;
+          document_id?: string | null;
+          action_id?: string | null;
+          sent_at?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<Database['public']['Tables']['notifications']['Insert']>;
+      } & NoRelationships;
+
       error_logs: {
         Row: {
           id: string;
