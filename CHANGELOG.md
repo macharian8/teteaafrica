@@ -8,6 +8,50 @@ Format: `[YYYY-MM-DD] type(scope): description`
 
 ---
 
+## [2026-04-06] fix(scraping): Sprint 3 — scrapers debugged, all three live
+
+### Gazette scraper (`lib/countries/KE/scrapers/gazette.ts`)
+- Replaced deprecated `www.kenyalaw.org/kenya_gazette/` (HTTP 403) with `new.kenyalaw.org/gazettes/`
+- Index page lists year links (`/gazettes/YYYY`); year pages use HTMX — fetched with `HX-Request: true` header to render document table
+- Individual gazette PDF pattern: `{page_url}/source.pdf` (confirmed via `data-pdf` attribute)
+- Added county legislation as second source in the same run: `new.kenyalaw.org/legislation/counties` → per-county pages (e.g. `/legislation/ke-047/`) also use HTMX
+- County act PDF pattern: same `/source.pdf` suffix on AKN URLs (`/akn/ke-NNN/act/...`)
+- Shared `fetchHtmxDocumentList()` helper used by both gazette and county sources
+- Combined cap: `MAX_ISSUES_PER_RUN = 10` across gazette issues + county acts; gazette processed first
+- Verified: 299 gazette issues found (45 in 2026, 254 in 2025), 40 county acts found across 3 counties; 10/10 inserted, 0 errors
+
+### Nairobi County scraper (`lib/countries/KE/scrapers/county-nairobi.ts`)
+- Replaced broken downloads page scraper (returned 0 links) with RSS feed: `nairobi.go.ke/download-category/downloads/feed`
+- RSS gives clean titles + WPDM package page URLs (`/download/[slug]`) without pagination
+- Package page resolution: extracts `wpdmdl=ID` from `data-downloadurl` attribute → constructs `/?wpdmdl=ID` for direct PDF download
+- SSL fix: `nairobi.go.ke` uses eMudhra Technologies CA not in Node.js bundle; added `undici Agent({ connect: { rejectUnauthorized: false } })` scoped to this scraper only (`nairobiScrapeFetch`)
+- `MAX_DOCS_PER_RUN` reduced 20 → 10
+- Verified: 10/10 inserted (Tariffs Policy, Regularisation Act, Revenue Admin Act, AI Bill, OGP Action Plan, CFSP 2026, etc.), 0 errors
+
+### Parliament scraper (`lib/countries/KE/scrapers/parliament.ts`)
+- Replaced broken `parliament.go.ke` URL with `new.kenyalaw.org/bills/`
+- Same HTMX pattern as gazette: `HX-Request: true` renders document table; links are `/akn/ke/bill/...`
+- PDF pattern: `{bill_page_url}/source.pdf`
+- Removed RSS fallback + multi-strategy HTML scraping — single clean fetch replaces ~100 lines
+- `MAX_BILLS_PER_RUN` reduced 15 → 10
+- Verified: 50 bills found, 10/10 inserted (Constitution Amendment, AI Bill, Sovereign Wealth Fund, Division of Revenue, etc.), all `scanned=false`, 0 errors
+
+### scraper base (`lib/scrapers/base.ts`)
+- `SCRAPER_USER_AGENT`: replaced Tetea bot string with realistic Chrome UA
+- `scrapeFetch`: added `Accept`, `Accept-Language`, `Referer` headers to mimic browser (required by nginx on new.kenyalaw.org)
+
+### CLI entry point + npm scripts
+- `scripts/run-scraper.ts` — new: accepts `gazette | nairobi | parliament` arg, imports + calls correct `runXxxScraper()`, prints run summary table
+- `package.json`: added `scraper:gazette`, `scraper:nairobi`, `scraper:parliament` scripts (all use `tsx`)
+
+### Verification
+- `npm run build` → zero errors ✓
+- `npm run scraper:gazette` → 10 inserted, 0 errors ✓
+- `npm run scraper:nairobi` → 10 inserted, 0 errors ✓
+- `npm run scraper:parliament` → 10 inserted, 0 errors ✓
+
+---
+
 ## [2026-04-04] feat(scraping): Sprint 3 — automated scraping pipeline
 
 ### New scrapers

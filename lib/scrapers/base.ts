@@ -31,7 +31,7 @@ export interface ScraperRunSummary {
 }
 
 export const SCRAPER_USER_AGENT =
-  'TeteaAfrica/1.0 Scraper (+https://tetea.africa/bot)';
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
 
 export const DEFAULT_CRAWL_DELAY_MS = 2_000; // 2 seconds between requests
 
@@ -50,8 +50,14 @@ export async function scrapeFetch(
   url: string,
   timeoutMs = 30_000
 ): Promise<Response> {
+  const parsedUrl = new URL(url);
   const response = await fetch(url, {
-    headers: { 'User-Agent': SCRAPER_USER_AGENT },
+    headers: {
+      'User-Agent': SCRAPER_USER_AGENT,
+      'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+      'Accept-Language': 'en-US,en;q=0.9',
+      'Referer': `${parsedUrl.protocol}//${parsedUrl.host}/`,
+    },
     signal: AbortSignal.timeout(timeoutMs),
   });
   if (!response.ok) {

@@ -3,9 +3,16 @@
 
 ---
 
-## Current Sprint: 3 — Automated Scraping Pipeline ✅ COMPLETE
+## Current Sprint: 4 — Notification Delivery (IN PROGRESS)
 
-**Date completed:** 2026-04-04
+**Started:** 2026-04-06
+**Branch:** main
+
+---
+
+## Sprint 3 — Automated Scraping Pipeline ✅ COMPLETE
+
+**Date completed:** 2026-04-06 (scrapers debugged + all three live against correct URLs)
 **Branch:** main
 
 ---

@@ -11,7 +11,10 @@
     "fetch:law-docs": "npx tsx scripts/fetch-law-docs.ts",
     "seed:law": "npx tsx scripts/seed-law.ts",
     "seed:admin-units": "npx tsx scripts/seed-admin-units.ts",
-    "analyze:seed": "npx tsx scripts/analyze-seed-docs.ts"
+    "analyze:seed": "npx tsx scripts/analyze-seed-docs.ts",
+    "scraper:gazette": "tsx scripts/run-scraper.ts gazette",
+    "scraper:nairobi": "tsx scripts/run-scraper.ts nairobi",
+    "scraper:parliament": "tsx scripts/run-scraper.ts parliament"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.82.0",
