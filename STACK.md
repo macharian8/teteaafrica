@@ -40,7 +40,10 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
   "zod": "3.23.8",
   "zustand": "4.5.5",
   "playwright": "1.59.1",
-  "cheerio": "1.2.0"
+  "cheerio": "1.2.0",
+  "africastalking": "0.7.9",
+  "resend": "6.10.0",
+  "googleapis": "171.4.0"
 }
 ```
 

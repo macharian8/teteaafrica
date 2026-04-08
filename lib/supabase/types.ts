@@ -18,6 +18,9 @@ export interface Database {
           phone: string | null;
           country_code: CountryCode;
           language_preference: string;
+          google_access_token: string | null;
+          google_refresh_token: string | null;
+          google_token_expiry: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -27,6 +30,9 @@ export interface Database {
           phone?: string | null;
           country_code?: CountryCode;
           language_preference?: string;
+          google_access_token?: string | null;
+          google_refresh_token?: string | null;
+          google_token_expiry?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -291,6 +297,7 @@ export interface Database {
           body: string;
           document_id: string | null;
           action_id: string | null;
+          external_id: string | null;
           sent_at: string | null;
           created_at: string;
         };
@@ -304,6 +311,7 @@ export interface Database {
           body: string;
           document_id?: string | null;
           action_id?: string | null;
+          external_id?: string | null;
           sent_at?: string | null;
           created_at?: string;
         };

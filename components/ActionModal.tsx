@@ -1,13 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import Link from 'next/link';
 import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { CheckCircle2, ExternalLink } from 'lucide-react';
+import { CheckCircle2, ExternalLink, ArrowRight } from 'lucide-react';
 import type { ActionDraft } from '@/lib/types';
 
 interface Props {
@@ -17,13 +18,16 @@ interface Props {
   /** The language to show the draft in ('en' | 'sw') */
   langPref: string;
   actionId: string; // DB actions.id
+  /** When false: show full draft preview but replace Send with sign-up CTA */
+  isAuthenticated?: boolean;
 }
 
 type Status = 'editing' | 'submitting' | 'done' | 'error';
 
-export default function ActionModal({ action, open, onClose, langPref, actionId }: Props) {
+export default function ActionModal({ action, open, onClose, langPref, actionId, isAuthenticated = true }: Props) {
   const tAction = useTranslations('action');
   const tCommon = useTranslations('common');
+  const locale = useLocale();
 
   const initialDraft = langPref === 'sw'
     ? (action.draft_content_sw || action.draft_content_en)
@@ -120,10 +124,17 @@ export default function ActionModal({ action, open, onClose, langPref, actionId 
           </div>
         )}
 
+        {/* Unlock prompt for unauthenticated users */}
+        {!isAuthenticated && status !== 'done' && (
+          <p className="text-sm text-blue-700 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 -mb-1">
+            {tAction('unlockToSend')}
+          </p>
+        )}
+
         <DialogFooter className="gap-2">
           {status === 'done' ? (
             <Button onClick={handleClose}>{tCommon('close')}</Button>
-          ) : (
+          ) : isAuthenticated ? (
             <>
               <Button variant="outline" onClick={handleClose} disabled={status === 'submitting'}>
                 {tCommon('cancel')}
@@ -134,6 +145,18 @@ export default function ActionModal({ action, open, onClose, langPref, actionId 
               >
                 {status === 'submitting' ? tCommon('loading') : tAction('execute')}
               </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="outline" onClick={handleClose}>
+                {tCommon('cancel')}
+              </Button>
+              <Link href={`/${locale}/sign-up`}>
+                <Button className="gap-1.5">
+                  {tAction('signUpFree')}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              </Link>
             </>
           )}
         </DialogFooter>

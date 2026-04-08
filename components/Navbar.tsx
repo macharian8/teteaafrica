@@ -41,6 +41,12 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
 
+          <Link href={`/${locale}/analyze`}>
+            <Button variant="ghost" size="sm">
+              {t('analyze')}
+            </Button>
+          </Link>
+
           {user ? (
             <>
               <Link href={`/${locale}/settings/subscriptions`}>

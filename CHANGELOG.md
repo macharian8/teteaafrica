@@ -4,7 +4,126 @@ Format: `[YYYY-MM-DD] type(scope): description`
 
 ---
 
-## Unreleased
+## [2026-04-08] feat(pipeline): Scraper→Analysis pipeline integration
+
+### Pipeline orchestrator (`lib/scrapers/pipeline.ts`)
+- `runFullPipeline(scraperName)` — runs scraper then analyzes all new unanalyzed documents
+- `runHistoricalAnalysis(limit)` — analyzes old documents with no analysis (no time constraint)
+- 5s delay between analysis calls (rate limit buffer)
+- Queries documents where raw_text > 500 chars, not scanned, no existing analysis with confidence > 0.3
+
+### CLI updates (`scripts/run-scraper.ts`)
+- Scraper commands now run full pipeline (scrape + analyze)
+- New `historical` command (20 docs) and `historical:all` (200 docs)
+- npm scripts: `analyze:historical`, `analyze:historical:all`
+
+### Historical bulk scraper (`scripts/scrape-historical.ts`)
+- Fetches last 6 months of gazette issues (no per-run cap)
+- Fetches all parliament bills (no cap)
+- Fetches all Nairobi County RSS items (no cap)
+- 3s polite delay between requests; stores only, no analysis
+- npm script: `scrape:historical`
+
+### API route update (`app/api/scrapers/run/route.ts`)
+- Now calls `runFullPipeline()` instead of raw scraper functions
+- Supports `historical` scraper type for historical analysis
+- 5-minute max duration for pipeline runs
+
+### pg_cron schedule update (`supabase/migrations/20260408000001_update_cron_schedules.sql`)
+- Gazette: daily at 07:00 EAT (was weekly Fridays)
+- Nairobi County: every 2 days at 07:30 EAT (was daily)
+- Parliament: every 2 days at 08:00 EAT (was daily)
+
+### RLS policies (`supabase/migrations/20260408000002_public_read_policies.sql`)
+- Codified public read policies for documents, document_analyses, actions, action_executions
+- Idempotent (DO $$ EXCEPTION WHEN duplicate_object)
+
+### Bug fixes
+- Fixed unused `RawAnalysis` type lint error in `lib/feed/query.ts`
+- Fixed implicit `any` type errors in `lib/feed/query.ts`
+- Added `--env-file=.env.local` to scraper npm scripts
+
+---
+
+## [2026-04-06] feat(feed): Sprint 5 — Document Feed + Subscription Matching
+
+### Feed query (`lib/feed/query.ts`)
+- `getFeedDocuments(userId, page)` — loads user's active subscriptions, queries documents with analyses + actions
+- Subscription matching: country_code + region_level_1 overlap + topic match (document_type prefix)
+- National documents (no regions) match all subscribers
+- Paginated, 20 docs/page, sorted by created_at desc
+
+### FeedCard component (`components/FeedCard.tsx`)
+- Client component with document type badge (colour-coded), source label, date
+- Truncated summary (locale-aware EN/SW), affected regions with MapPin icon
+- Nearest deadline with urgency colouring, action count badge
+- Links to `/[locale]/results/[documentId]`
+
+### Feed page (`app/[locale]/feed/page.tsx`)
+- Server component, auth-guarded (redirects to sign-in)
+- Pagination via `?page=N` query param
+- Empty states: no subscriptions (with CTA to set up), no matching documents
+
+### Feed API (`app/api/feed/route.ts`)
+- `GET /api/feed?page=N` — returns `{ success, data: { documents, page, hasMore } }`
+- Auth-guarded (401 if not signed in)
+
+### Navbar update
+- Added "Feed" link for authenticated users (between logo and Subscriptions)
+
+### i18n
+- Added `feed` namespace to `messages/en.json` and `messages/sw.json`
+- Added `nav.feed` key ("Feed" / "Mlisho")
+
+---
+
+## [2026-04-06] feat(notifications): Sprint 4 — notification delivery + deadline tracking
+
+### SMS (`lib/notifications/sms.ts`)
+- `sendSMS(phone, body, countryCode)` via Africa's Talking SDK `africastalking@0.7.9`
+- Truncates body to 160 chars; sandbox mode when `AFRICASTALKING_USERNAME=sandbox`
+- Country-aware sender ID (KE/TZ/UG → 'Tetea'; omitted in sandbox)
+- `POST /api/webhooks/africastalking` — delivery receipt webhook; maps AT status values (`DeliveredToTerminal`, `Failed`, etc.) to DB `delivered`/`failed`; updates `notifications.external_id`
+
+### Email (`lib/notifications/email.ts`)
+- `sendEmail(data)` via Resend SDK `resend@6.10.0`
+- Branded HTML template: header bar, document metadata, body, CTA button, footer
+- Bilingual EN/SW labels driven by `locale` field
+- Falls back to `onboarding@resend.dev` sender in dev (no verified domain needed)
+
+### Google Calendar (`lib/notifications/calendar.ts`, `app/api/auth/google/`)
+- `buildGoogleAuthUrl`, `exchangeGoogleCode`, `createCalendarInvite` using `googleapis@171.4.0`
+- OAuth2 flow: `GET /api/auth/google?userId=` → consent screen → `GET /api/auth/google/callback`
+- Callback stores `google_access_token`, `google_refresh_token`, `google_token_expiry` in `users` table
+- Invite includes 7d/3d/1d email + popup reminders; `sendUpdates: 'all'` dispatches invite email
+
+### Notification processor (`lib/notifications/processor.ts`)
+- `processNotificationBatch(limit=50)` — loads queued notifications + users in one query each, routes by channel, updates `status` + `external_id`
+- `processDeadlineReminders()` — scans `deadlines` table, queues 7d/3d/1d reminders per subscriber channel preference, sets `notified_Xd` flags; ATI escalation after 21 days no-response queues CAJ complaint draft notification
+- `POST /api/notifications/process` — manual trigger: runs batch + deadlines in parallel, returns combined result
+- `POST /api/notifications/dispatch` — legacy pg_cron endpoint now delegates to processor (replaces Sprint 3 stub)
+
+### Deadlines page (`app/[locale]/deadlines/page.tsx`)
+- Server component, auth-guarded, sorted by `deadline_date` ascending
+- Urgency tiers: overdue (red) / today (orange) / tomorrow (amber) / urgent ≤3d (yellow) / normal (white)
+- Per-row: label, date, days-left badge, link to document, notified_7d/3d/1d tick badges
+
+### DB migration (`supabase/migrations/20260406000001_sprint4_notification_columns.sql`)
+- `notifications.external_id TEXT` + index for AT receipt webhook matching
+- `users.google_access_token/refresh_token/token_expiry` for Calendar OAuth
+
+### i18n — `messages/en.json` + `messages/sw.json`
+- Added `deadlines` namespace: title, description, empty state, urgency labels, daysLeft, viewDocument, reminders
+
+### Dependencies
+- `africastalking@0.7.9` (exact pin)
+- `resend@6.10.0` (exact pin)
+- `googleapis@171.4.0` (exact pin)
+- `STACK.md` updated
+
+### Verification
+- `npm run build` → zero errors ✓
+- All 5 pieces built individually before proceeding to next ✓
 
 ---
 

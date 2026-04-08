@@ -10,6 +10,7 @@
     "analyze": "Changanua Hati",
     "subscriptions": "Usajili",
     "settings": "Mipangilio",
+    "feed": "Mlisho",
     "signIn": "Ingia",
     "signOut": "Toka",
     "profile": "Wasifu"
@@ -143,7 +144,10 @@
       "trackPrompt": "Fuatilia hatua hii kwenye dashibodi yako?",
       "cancelConfirm": "Tupa rasimu?"
     },
-    "signInToExecute": "Ingia ili kuchukua hatua"
+    "signInToExecute": "Fungua akaunti ya bure ili kuandika na kutuma hatua hii.",
+    "signInLink": "Ingia",
+    "unlockToSend": "Fungua akaunti ya bure kutuma hii — inachukua sekunde 30",
+    "signUpFree": "Jisajili bure"
   },
   "subscription": {
     "title": "Usajili",
@@ -190,6 +194,57 @@
     "en": "English",
     "sw": "Kiswahili",
     "switchTo": "Badilisha lugha"
+  },
+  "deadlines": {
+    "title": "Tarehe Zangu",
+    "pageDescription": "Fuatilia tarehe muhimu kutoka kwa hati za serikali ulizochanganua.",
+    "empty": "Hakuna tarehe zinazofuatiliwa bado. Changanua hati ili kuanza.",
+    "overdue": "Imepita muda",
+    "today": "Inakamilika leo",
+    "tomorrow": "Inakamilika kesho",
+    "daysLeft": "Siku {count} zimebaki",
+    "due": "Tarehe ya mwisho",
+    "viewDocument": "Tazama hati",
+    "reminders": "Vikumbusha siku 7, 3 na 1 kabla ya tarehe ya mwisho"
+  },
+  "feed": {
+    "title": "Mlisho Wako",
+    "pageDescription": "Hati za serikali zinazoathiri haki zako, zimepangwa kwa dharura.",
+    "unauthTitle": "Kinachoendelea Kenya sasa hivi",
+    "authTitle": "Kinachoendelea {region} sasa hivi",
+    "unauthSubtext": "Hati za serikali zinazoathiri haki zako, zimepangwa kwa dharura",
+    "noSubscription": "Huna usajili unaotumika. Weka moja ili kuona hati zinazolingana.",
+    "noDocuments": "Hakuna hati zinazolingana bado. Tutakuarifu hati mpya zitakapowasili.",
+    "processingEmpty": "Hati zinachakatwa. Angalia tena baada ya dakika chache.",
+    "refresh": "Onyesha upya",
+    "personalizeHint": "Weka eneo lako na mada ili kuona hati zinazokuhusiana nawe.",
+    "locationBanner": "Ona hati zinazohusiana na eneo lako",
+    "setLocation": "Weka eneo lako",
+    "noSummary": "Muhtasari haupatikani",
+    "national": "Kitaifa",
+    "overdue": "Imepita muda",
+    "daysLeft": "Siku {count} zimebaki",
+    "actionCount": "Hatua {count}",
+    "actionCountBadge": "Hatua {count} zinapatikana",
+    "setupSubscription": "Weka usajili",
+    "loadMore": "Pakia zaidi",
+    "loading": "Inapakia mlisho…",
+    "affecting": "Inaathiri: {region}",
+    "affectingAll": "Inaathiri: Kenya yote",
+    "socialProof": "Watu {count} wamechukua hatua hii",
+    "filterAllCounties": "Kaunti zote",
+    "clearFilters": "Ondoa vichujio",
+    "share": "Shiriki",
+    "copied": "Imenakiliwa! Shiriki kwenye WhatsApp",
+    "urgency": {
+      "closesIn": "Inafungwa siku {count} — chukua hatua sasa",
+      "closesToday": "Inafungwa leo — chukua hatua sasa",
+      "closesTomorrow": "Inafungwa kesho — chukua hatua sasa",
+      "daysLeft": "Siku {count} zimebaki kujibu",
+      "canAct": "Unaweza kuchukua hatua hii",
+      "knowRights": "Jua haki zako",
+      "overdue": "Muda umepita"
+    }
   },
   "errors": {
     "notFound": "Ukurasa haupatikani",

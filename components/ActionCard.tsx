@@ -43,9 +43,10 @@ interface Props {
   actionId: string;
   langPref: string;
   contentLang: string;
+  isAuthenticated?: boolean;
 }
 
-export default function ActionCard({ action, actionId, langPref, contentLang }: Props) {
+export default function ActionCard({ action, actionId, langPref, contentLang, isAuthenticated = true }: Props) {
   const tAction = useTranslations('action');
   const tDoc = useTranslations('document');
   const [legalOpen, setLegalOpen] = useState(false);
@@ -119,7 +120,7 @@ export default function ActionCard({ action, actionId, langPref, contentLang }: 
             <Button size="sm" onClick={() => setModalOpen(true)}>
               {tAction('previewDraft')}
             </Button>
-            {action.deadline && (
+            {isAuthenticated && action.deadline && (
               <Button size="sm" variant="outline">
                 {tAction('saveDeadline')}
               </Button>
@@ -134,6 +135,7 @@ export default function ActionCard({ action, actionId, langPref, contentLang }: 
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         langPref={langPref}
+        isAuthenticated={isAuthenticated}
       />
     </>
   );

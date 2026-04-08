@@ -191,65 +191,6 @@ GOOGLE_REDIRECT_URI=https://your-domain.com/api/auth/google/callback
 
 ---
 
-## Manual fixes applied outside Claude Code (Sprint 5)
-
-### Fix 1 — RLS blocking feed query
-**Symptom:** Feed API returned `documents: []` despite 72 matching
-rows confirmed via raw SQL join.
-**Root cause:** RLS policies on documents/document_analyses/actions
-blocked the anon Supabase client used by the server component.
-Query returned 0 rows with no error.
-**Fix:** Added public read policies manually in Supabase Dashboard.
-These are NOT yet in a migration file — must be codified before
-next `supabase db push`.
-
-Policies applied in production Supabase:
-```sql
-CREATE POLICY "Public can read documents"
-ON documents FOR SELECT USING (true);
-
-CREATE POLICY "Public can read analyses"
-ON document_analyses FOR SELECT USING (true);
-
-CREATE POLICY "Public can read actions"
-ON actions FOR SELECT USING (true);
-
-CREATE POLICY "Public can read action_executions count"
-ON action_executions FOR SELECT USING (true);
-```
-
-### Fix 2 — shapeDocs() filtered all documents
-**Symptom:** Feed still empty after RLS fix. Debug log showed
-`docs count: 0` — Supabase returning nothing from nested select.
-**Root cause:** `shapeDocs()` in `lib/feed/query.ts` treated
-`document_analyses` as an array. Supabase returns it as a single
-object for 1:1 relations. `.length` was undefined, every doc skipped.
-**Fix applied in `lib/feed/query.ts`:**
-```typescript
-// Before (broken):
-const analysesArr = doc.document_analyses as unknown as RawAnalysis[];
-if (!analysesArr || analysesArr.length === 0) continue;
-const a = analysesArr[0];
-
-// After (fixed):
-const rawAnalysis = doc.document_analyses;
-if (!rawAnalysis) continue;
-const analysesArr = Array.isArray(rawAnalysis)
-  ? rawAnalysis
-  : [rawAnalysis];
-if (analysesArr.length === 0) continue;
-const a = analysesArr[0];
-```
-
-### Analysis pipeline state as of 2026-04-08
-- Total documents with raw_text: 57
-- Analyzed (confidence_score > 0.3): 20
-- Unanalyzed remaining: ~27
-- Reason stopped: Anthropic 529 overload after bulk run (attempt 10/10)
-- Fix: run `npm run analyze:historical` once API recovers
-
----
-
 ## Key file paths (Sprint 5 additions)
 ```
 lib/feed/query.ts
@@ -257,6 +198,26 @@ components/FeedCard.tsx
 app/[locale]/feed/page.tsx
 app/api/feed/route.ts
 ```
+
+---
+
+## Pipeline Integration (2026-04-08)
+
+### What was built
+- `lib/scrapers/pipeline.ts` — `runFullPipeline()` and `runHistoricalAnalysis()` orchestrators
+- `scripts/run-scraper.ts` updated — scraper commands now run full pipeline, added `historical` and `historical:all` commands
+- `scripts/scrape-historical.ts` — bulk historical document fetch (gazette 6mo, all bills, all Nairobi RSS)
+- `app/api/scrapers/run/route.ts` updated — uses pipeline, supports `historical` command
+- `supabase/migrations/20260408000001_update_cron_schedules.sql` — gazette daily, nairobi/parliament every 2 days
+- `supabase/migrations/20260408000002_public_read_policies.sql` — idempotent public read RLS policies
+
+### New npm scripts
+- `scrape:historical` — bulk fetch historical docs (no analysis)
+- `analyze:historical` — analyze 20 unanalyzed docs
+- `analyze:historical:all` — analyze 200 unanalyzed docs
+
+### Pending
+- Run `supabase db push` to apply new cron schedules + RLS policies
 
 ---
 
@@ -270,11 +231,6 @@ app/api/feed/route.ts
 - Mzalendo API key not yet obtained (needed for MP/MCA contact data in `representative-contact` action)
 - Ward/sub-county data not yet seeded in `admin_units` (IEBC authoritative list pending)
 - `NEXT_PUBLIC_ENABLE_MULTI_COUNTRY=false` until TZ/UG configs are built
-- RLS public read policies applied manually — not yet in a migration file
-  Must be added to `supabase/migrations/20260408000002_public_read_policies.sql`
-  before next `supabase db push`
-- ~27 documents unanalyzed — run `npm run analyze:historical` to process after design sprint
-
 
 ---
 

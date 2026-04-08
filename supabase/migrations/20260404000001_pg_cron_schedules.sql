@@ -43,7 +43,7 @@ SELECT cron.schedule(
   SELECT
     net.http_post(
       url := current_setting('app.webhook_base_url') || '/api/scrapers/run',
-      headers := '{"Content-Type": "application/json", "Authorization": "Bearer ' || current_setting('app.scraper_secret') || '"}'::jsonb,
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
       body := '{"scraper": "gazette", "country": "KE"}'::jsonb
     );
   $$
@@ -58,7 +58,7 @@ SELECT cron.schedule(
   SELECT
     net.http_post(
       url := current_setting('app.webhook_base_url') || '/api/scrapers/run',
-      headers := '{"Content-Type": "application/json", "Authorization": "Bearer ' || current_setting('app.scraper_secret') || '"}'::jsonb,
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
       body := '{"scraper": "county-nairobi", "country": "KE"}'::jsonb
     );
   $$
@@ -73,7 +73,7 @@ SELECT cron.schedule(
   SELECT
     net.http_post(
       url := current_setting('app.webhook_base_url') || '/api/scrapers/run',
-      headers := '{"Content-Type": "application/json", "Authorization": "Bearer ' || current_setting('app.scraper_secret') || '"}'::jsonb,
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
       body := '{"scraper": "parliament", "country": "KE"}'::jsonb
     );
   $$
@@ -89,7 +89,7 @@ SELECT cron.schedule(
   SELECT
     net.http_post(
       url := current_setting('app.webhook_base_url') || '/api/notifications/dispatch',
-      headers := '{"Content-Type": "application/json", "Authorization": "Bearer ' || current_setting('app.scraper_secret') || '"}'::jsonb,
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
       body := '{}'::jsonb
     );
   $$
@@ -106,6 +106,3 @@ SELECT cron.schedule(
 --     SET app.scraper_secret = 'your-secret-key';
 --
 -- IMPORTANT: Do not store secrets in migration files. Set them via the Supabase Vault.
-COMMENT ON SCHEMA cron IS
-  'pg_cron jobs for Tetea Africa automated scraping pipeline. ' ||
-  'Set app.webhook_base_url and app.scraper_secret via Supabase Vault before activating.';

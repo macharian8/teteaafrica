@@ -10,6 +10,7 @@
     "analyze": "Analyze Document",
     "subscriptions": "Subscriptions",
     "settings": "Settings",
+    "feed": "Feed",
     "signIn": "Sign In",
     "signOut": "Sign Out",
     "profile": "Profile"
@@ -143,7 +144,10 @@
       "trackPrompt": "Track this action in your dashboard?",
       "cancelConfirm": "Discard draft?"
     },
-    "signInToExecute": "Sign in to take action"
+    "signInToExecute": "Create a free account to draft and send this action.",
+    "signInLink": "Sign in",
+    "unlockToSend": "Create a free account to send this — takes 30 seconds",
+    "signUpFree": "Sign up free"
   },
   "subscription": {
     "title": "Subscriptions",
@@ -190,6 +194,57 @@
     "en": "English",
     "sw": "Kiswahili",
     "switchTo": "Switch language"
+  },
+  "deadlines": {
+    "title": "My Deadlines",
+    "pageDescription": "Track deadlines from government documents you've analysed.",
+    "empty": "No deadlines tracked yet. Analyse a document to get started.",
+    "overdue": "Overdue",
+    "today": "Due today",
+    "tomorrow": "Due tomorrow",
+    "daysLeft": "{count} days left",
+    "due": "Due",
+    "viewDocument": "View document",
+    "reminders": "Reminders at 7, 3 and 1 day before due date"
+  },
+  "feed": {
+    "title": "Your Feed",
+    "pageDescription": "Government documents that affect your rights, sorted by urgency.",
+    "unauthTitle": "What's happening in Kenya right now",
+    "authTitle": "What's happening in {region} right now",
+    "unauthSubtext": "Government documents that affect your rights, sorted by urgency",
+    "noSubscription": "You have no active subscriptions. Set one up to see matching documents.",
+    "noDocuments": "No matching documents yet. We'll notify you when something new arrives.",
+    "processingEmpty": "Documents are being processed. Check back in a few minutes.",
+    "refresh": "Refresh",
+    "personalizeHint": "Set your region and topics to see documents relevant to you.",
+    "locationBanner": "See documents relevant to your area",
+    "setLocation": "Set your location",
+    "noSummary": "Summary not available",
+    "national": "National",
+    "overdue": "Overdue",
+    "daysLeft": "{count} days left",
+    "actionCount": "{count} actions",
+    "actionCountBadge": "{count} actions available",
+    "setupSubscription": "Set up subscription",
+    "loadMore": "Load more",
+    "loading": "Loading feed…",
+    "affecting": "Affecting: {region}",
+    "affectingAll": "Affecting: All of Kenya",
+    "socialProof": "{count} people have taken action on this",
+    "filterAllCounties": "All counties",
+    "clearFilters": "Clear filters",
+    "share": "Share",
+    "copied": "Copied! Share on WhatsApp",
+    "urgency": {
+      "closesIn": "Closes in {count} days — act now",
+      "closesToday": "Closes today — act now",
+      "closesTomorrow": "Closes tomorrow — act now",
+      "daysLeft": "{count} days left to respond",
+      "canAct": "You can take action on this",
+      "knowRights": "Know your rights",
+      "overdue": "Deadline has passed"
+    }
   },
   "errors": {
     "notFound": "Page not found",
