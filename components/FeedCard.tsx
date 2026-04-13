@@ -16,7 +16,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { MapPin, Share2, Check, AlertCircle, Clock, Zap, BookOpen } from 'lucide-react';
+import { MapPin, Share2, Check, AlertCircle, Zap, BookOpen, FileText, Users } from 'lucide-react';
 import type { FeedDocument } from '@/lib/feed/query';
 
 interface FeedCardProps {
@@ -25,9 +25,14 @@ interface FeedCardProps {
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
-function extractTitle(summary: string | null): string {
+function extractTitle(titleField: string | null, summary: string | null): string {
+  // Prefer the headline-style title from analysis if available
+  if (titleField && titleField.trim().length > 0) {
+    const t = titleField.trim();
+    return t.length > 100 ? t.slice(0, 97).trimEnd() + '...' : t;
+  }
   if (!summary) return 'Government document';
-  // Take first sentence (up to first . ! or ?)
+  // Fallback: take first sentence (up to first . ! or ?)
   const sentence = summary.split(/(?<=[.!?])\s/)[0]?.trim() ?? summary;
   const clean = sentence
     .replace(/^the\s+kenya\s+gazette\s+(?:supplement\s+)?no\.?\s*\d+[^—–]*/i, '')
@@ -36,16 +41,35 @@ function extractTitle(summary: string | null): string {
     .replace(/^[\s—–:,]+/, '')
     .trim();
   const title = clean || sentence;
-  return title.length > 130 ? title.slice(0, 127).trimEnd() + '…' : title;
+  return title.length > 100 ? title.slice(0, 97).trimEnd() + '...' : title;
 }
 
-function relativeDate(dateStr: string): string {
-  const days = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86_400_000);
-  if (days === 0) return 'Today';
-  if (days === 1) return 'Yesterday';
-  if (days < 7) return `${days} days ago`;
-  if (days < 30) return `${Math.floor(days / 7)} weeks ago`;
-  return new Date(dateStr).toLocaleDateString('en-KE', { day: 'numeric', month: 'short' });
+function formatDate(dateStr: string): string {
+  const date = new Date(dateStr);
+  const days = Math.floor((Date.now() - date.getTime()) / 86_400_000);
+
+  // Relative part
+  let relative: string;
+  if (days === 0) relative = 'Today';
+  else if (days === 1) relative = 'Yesterday';
+  else if (days < 7) relative = `${days} days ago`;
+  else if (days < 30) {
+    const weeks = Math.floor(days / 7);
+    relative = weeks === 1 ? '1 week ago' : `${weeks} weeks ago`;
+  } else {
+    const months = Math.floor(days / 30);
+    relative = months === 1 ? '1 month ago' : `${months} months ago`;
+  }
+
+  // Absolute part — "3 Feb" or "3 Feb 2025" if not current year
+  if (days <= 1) return relative;
+  const isCurrentYear = date.getFullYear() === new Date().getFullYear();
+  const abs = date.toLocaleDateString('en-KE', {
+    day: 'numeric',
+    month: 'short',
+    ...(isCurrentYear ? {} : { year: 'numeric' }),
+  });
+  return `${relative} · ${abs}`;
 }
 
 const SOURCE_LABELS: Record<string, string> = {
@@ -74,46 +98,54 @@ export default function FeedCard({ doc }: FeedCardProps) {
 
   const hasExecutableAction =
     top_action && top_action.executability !== 'inform_only';
-  const isInformOnly =
-    !hasExecutableAction && action_count > 0;
 
-  // ── Urgency hook content ──────────────────────────────────────────────────
-  type UrgencyLevel = 'critical' | 'warning' | 'action' | 'inform' | null;
-  let urgencyLevel: UrgencyLevel = null;
-  let urgencyText = '';
+  const CIVIC_DOC_TYPES = new Set([
+    'parliamentary_bill', 'county_policy', 'budget', 'environment', 'land',
+  ]);
 
-  if (daysLeft !== null) {
-    if (daysLeft < 0) {
-      urgencyLevel = 'critical';
-      urgencyText = t('urgency.overdue');
-    } else if (daysLeft === 0) {
-      urgencyLevel = 'critical';
-      urgencyText = t('urgency.closesToday');
-    } else if (daysLeft === 1) {
-      urgencyLevel = 'critical';
-      urgencyText = t('urgency.closesTomorrow');
-    } else if (daysLeft <= 3) {
-      urgencyLevel = 'critical';
-      urgencyText = t('urgency.closesIn', { count: daysLeft });
-    } else if (daysLeft <= 7) {
-      urgencyLevel = 'warning';
-      urgencyText = t('urgency.daysLeft', { count: daysLeft });
-    }
-  }
-  if (!urgencyLevel) {
-    if (hasExecutableAction) {
-      urgencyLevel = 'action';
-      urgencyText = t('urgency.canAct');
-    } else if (isInformOnly) {
-      urgencyLevel = 'inform';
-      urgencyText = t('urgency.knowRights');
-    }
+  // ── 5-tier urgency label ──────────────────────────────────────────────────
+  // Every card gets exactly one label. Past-deadline is checked first
+  // regardless of executability.
+  type UrgencyLevel = 'green' | 'yellow' | 'blue' | 'red' | 'gray';
+  let urgencyLevel: UrgencyLevel;
+  let urgencyText: string;
+
+  const isRoutineType = !analysis.document_type
+    || analysis.document_type === 'gazette_notice'
+    || analysis.document_type === 'other';
+  const isInformOnly = !top_action || top_action.executability === 'inform_only';
+
+  if (daysLeft !== null && daysLeft <= 0) {
+    // Tier 4: Past deadline — regardless of executability
+    urgencyLevel = 'red';
+    urgencyText = t('urgency.passed');
+  } else if (daysLeft !== null && daysLeft <= 7 && hasExecutableAction) {
+    // Tier 1: Imminent deadline + executable action
+    urgencyLevel = 'green';
+    urgencyText = t('urgency.actNow', { days: daysLeft });
+  } else if (hasExecutableAction) {
+    // Tier 2: Executable action, no imminent deadline
+    urgencyLevel = 'yellow';
+    urgencyText = t('urgency.canAct');
+  } else if (!isInformOnly && action_count > 0 && CIVIC_DOC_TYPES.has(analysis.document_type ?? '')) {
+    // Tier 3: Inform-only but civically important
+    urgencyLevel = 'blue';
+    urgencyText = t('urgency.knowRights');
+  } else if (isInformOnly && isRoutineType) {
+    // Tier 5a: Routine — inform_only + gazette_notice/other/null
+    urgencyLevel = 'gray';
+    urgencyText = t('urgency.routine');
+  } else {
+    // Tier 5b: Anything else not caught above
+    urgencyLevel = 'gray';
+    urgencyText = t('urgency.routine');
   }
 
   // ── Text content ──────────────────────────────────────────────────────────
   const summary =
     locale === 'sw' ? (analysis.summary_sw ?? analysis.summary_en) : analysis.summary_en;
-  const title = extractTitle(summary);
+  const titleField = locale === 'sw' ? (analysis.title_sw ?? analysis.title_en ?? null) : (analysis.title_en ?? null);
+  const title = extractTitle(titleField, summary);
   const regions = analysis.affected_region_l1 ?? [];
 
   // ── Share ─────────────────────────────────────────────────────────────────
@@ -136,17 +168,19 @@ export default function FeedCard({ doc }: FeedCardProps) {
   }
 
   // ── Urgency banner style ──────────────────────────────────────────────────
-  const urgencyStyles: Record<NonNullable<UrgencyLevel>, string> = {
-    critical: 'bg-red-50 border-red-200 text-red-700',
-    warning: 'bg-amber-50 border-amber-200 text-amber-700',
-    action: 'bg-green-50 border-green-200 text-green-700',
-    inform: 'bg-gray-50 border-gray-200 text-gray-500',
+  const urgencyStyles: Record<UrgencyLevel, string> = {
+    green:  'bg-green-50 text-green-700 border border-green-200',
+    yellow: 'bg-green-50 text-green-700 border border-green-200',
+    blue:   'bg-blue-50 text-blue-700 border border-blue-200',
+    red:    'bg-red-50 text-red-600 border border-red-200 font-normal',
+    gray:   'bg-gray-50 text-gray-400 border border-gray-100 text-[11px]',
   };
-  const urgencyIcons: Record<NonNullable<UrgencyLevel>, React.ElementType> = {
-    critical: AlertCircle,
-    warning: Clock,
-    action: Zap,
-    inform: BookOpen,
+  const urgencyIcons: Record<UrgencyLevel, React.ElementType> = {
+    green:  Zap,
+    yellow: Zap,
+    blue:   BookOpen,
+    red:    AlertCircle,
+    gray:   FileText,
   };
 
   return (
@@ -158,15 +192,13 @@ export default function FeedCard({ doc }: FeedCardProps) {
       className="rounded-lg border border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm transition-all cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary/50 h-full flex flex-col"
     >
       {/* ── 1. Urgency hook ─────────────────────────────────────────────── */}
-      {urgencyLevel && (
-        <div className={`flex items-center gap-2 px-4 py-2 rounded-t-lg border-b text-xs font-medium ${urgencyStyles[urgencyLevel]}`}>
-          {(() => {
-            const Icon = urgencyIcons[urgencyLevel!];
-            return <Icon className="w-3.5 h-3.5 shrink-0" />;
-          })()}
-          {urgencyText}
-        </div>
-      )}
+      <div className={`flex items-center gap-2 px-4 py-2 rounded-t-lg border-b text-xs font-medium ${urgencyStyles[urgencyLevel]}`}>
+        {(() => {
+          const Icon = urgencyIcons[urgencyLevel];
+          return <Icon className="w-3.5 h-3.5 shrink-0" />;
+        })()}
+        {urgencyText}
+      </div>
 
       <div className="p-4 space-y-2 flex-1 flex flex-col">
         {/* ── 2. Document title ──────────────────────────────────────────── */}
@@ -181,20 +213,21 @@ export default function FeedCard({ doc }: FeedCardProps) {
           </p>
         )}
 
-        {/* ── 4. Affected region ─────────────────────────────────────────── */}
+        {/* ── 4. Social proof ────────────────────────────────────────────── */}
+        {execution_count > 0 && (
+          <p className="flex items-center gap-1 text-xs text-gray-500">
+            <Users className="w-3 h-3 shrink-0" />
+            {t('socialProof', { count: execution_count })}
+          </p>
+        )}
+
+        {/* ── 5. Affected region ─────────────────────────────────────────── */}
         {(regions.length > 0 || analysis.affected_region_l1 !== undefined) && (
           <p className="flex items-center gap-1 text-xs text-gray-500">
             <MapPin className="w-3 h-3 shrink-0" />
             {regions.length > 0
               ? t('affecting', { region: regions.slice(0, 2).join(', ') + (regions.length > 2 ? ` +${regions.length - 2}` : '') })
               : t('affectingAll')}
-          </p>
-        )}
-
-        {/* ── 5. Social proof ────────────────────────────────────────────── */}
-        {execution_count > 0 && (
-          <p className="text-xs text-blue-600 font-medium">
-            {t('socialProof', { count: execution_count })}
           </p>
         )}
 
@@ -206,12 +239,14 @@ export default function FeedCard({ doc }: FeedCardProps) {
           </span>
 
           {/* Relative date */}
-          <span>{relativeDate(doc.scraped_at ?? doc.created_at)}</span>
+          <span>{formatDate(doc.scraped_at ?? doc.created_at)}</span>
 
           {/* Action count */}
           {action_count > 0 && (
             <span className="text-gray-500">
-              {t('actionCountBadge', { count: action_count })}
+              {action_count === 1
+                ? t('actionCountBadgeOne')
+                : t('actionCountBadge', { count: action_count })}
             </span>
           )}
 

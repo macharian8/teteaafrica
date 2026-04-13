@@ -78,8 +78,10 @@ async function getUnanalyzedDocuments(
 /**
  * A) Run a named scraper, then analyze all newly scraped documents.
  */
+export type ScraperName = 'gazette' | 'nairobi' | 'parliament' | 'county-mombasa' | 'county-kisumu' | 'county-nakuru' | 'county-kisii';
+
 export async function runFullPipeline(
-  scraperName: 'gazette' | 'nairobi' | 'parliament'
+  scraperName: ScraperName
 ): Promise<PipelineResult> {
   // Run the scraper
   let scraperSummary: ScraperRunSummary;
@@ -97,6 +99,26 @@ export async function runFullPipeline(
     case 'parliament': {
       const { runParliamentScraper } = await import('@/lib/countries/KE/scrapers/parliament');
       scraperSummary = await runParliamentScraper();
+      break;
+    }
+    case 'county-mombasa': {
+      const { runMombasaCountyScraper } = await import('@/lib/countries/KE/scrapers/county-mombasa');
+      scraperSummary = await runMombasaCountyScraper();
+      break;
+    }
+    case 'county-kisumu': {
+      const { runKisumuCountyScraper } = await import('@/lib/countries/KE/scrapers/county-kisumu');
+      scraperSummary = await runKisumuCountyScraper();
+      break;
+    }
+    case 'county-nakuru': {
+      const { runNakuruCountyScraper } = await import('@/lib/countries/KE/scrapers/county-nakuru');
+      scraperSummary = await runNakuruCountyScraper();
+      break;
+    }
+    case 'county-kisii': {
+      const { runKisiiCountyScraper } = await import('@/lib/countries/KE/scrapers/county-kisii');
+      scraperSummary = await runKisiiCountyScraper();
       break;
     }
   }

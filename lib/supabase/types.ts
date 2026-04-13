@@ -216,7 +216,7 @@ export interface Database {
           region_l1: string | null;
           region_l2: string | null;
           topics: string[];
-          channel: 'whatsapp' | 'sms' | 'email';
+          channel: 'whatsapp' | 'sms' | 'email' | 'both';
           language_preference: string;
           is_active: boolean;
           created_at: string;
@@ -229,7 +229,7 @@ export interface Database {
           region_l1?: string | null;
           region_l2?: string | null;
           topics?: string[];
-          channel?: 'whatsapp' | 'sms' | 'email';
+          channel?: 'whatsapp' | 'sms' | 'email' | 'both';
           language_preference?: string;
           is_active?: boolean;
           created_at?: string;
@@ -291,7 +291,7 @@ export interface Database {
           id: string;
           user_id: string;
           country_code: CountryCode;
-          channel: 'whatsapp' | 'sms' | 'email';
+          channel: 'whatsapp' | 'sms' | 'email' | 'both';
           status: 'queued' | 'sent' | 'delivered' | 'failed';
           subject: string | null;
           body: string;
@@ -305,7 +305,7 @@ export interface Database {
           id?: string;
           user_id: string;
           country_code?: CountryCode;
-          channel: 'whatsapp' | 'sms' | 'email';
+          channel: 'whatsapp' | 'sms' | 'email' | 'both';
           status?: 'queued' | 'sent' | 'delivered' | 'failed';
           subject?: string | null;
           body: string;

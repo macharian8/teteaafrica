@@ -46,8 +46,9 @@ no explanation, no preamble — just the raw JSON.
 \`\`\`
 {
   "country_code": "${code}",
-  "title": "concise document title",
-  "document_type": "gazette_notice | county_policy | parliamentary_bill | budget | tender | nema | land | other",
+  "title": "Short newspaper-headline style title, max 10 words, plain English, no bureaucratic language. Example: 'Sports Act Amendment Bill 2026' NOT 'This is a Bill introduced in the National Assembly on 19th February 2026 to regulate...'",
+  "title_sw": "Kichwa cha habari kwa Kiswahili, maneno 10 au chini",
+  "document_type": "gazette_notice | county_policy | parliamentary_bill | budget | tender | public_participation | environment | land | other",
   "summary_en": "3-sentence plain English summary a ward-level citizen can understand",
   "summary_sw": "Muhtasari wa sentensi 3 kwa Kiswahili rahisi",
   "affected_region_l1": ["${regionLevel1Label} names mentioned, empty array if national"],
@@ -78,11 +79,37 @@ no explanation, no preamble — just the raw JSON.
 ## RULES
 
 ### Document type classification
+- Use the MOST SPECIFIC document_type that fits. "gazette_notice" is the fallback ONLY when no specific type applies.
+- If document_type is "public_participation": any notice explicitly inviting public input, comments, or attendance at a forum
+- If document_type is "environment": NEMA notices, EIA approvals, environmental objections, pollution notices
+- If document_type is "land": land acquisition, compulsory acquisition, surveying notices, land use changes
+- If document_type is "tender": public procurement notices, contract awards above KES 1M
 - If document_type is "parliamentary_bill": include petition, written submission to Parliament, MP/Senator contact actions
 - If document_type is "act" or "county_policy": exclude petition for repeal — instead include compliance guidance, ATI request for implementation details, budget participation if spending involved
 - If document_type is "gazette_notice": include objection window action if an objection period is stated, calendar_invite if any dates are present, ATI request if key information is absent
 - If document_type is "tender": include PPRA complaint if irregularities are evident, inform_only if it is a standard public notice with no red flags
 - Never suggest petitioning to repeal an existing Act
+
+### PUBLIC PARTICIPATION DETECTION (critical)
+Scan the full document for these phrases and patterns:
+- "members of the public are invited"
+- "submit memoranda/views/comments"
+- "public participation forum/meeting"
+- "objections may be lodged"
+- "within X days of publication/gazettement"
+- "any person who objects"
+- County Assembly public participation sessions
+- Budget estimate public consultation periods
+When found: set document_type="public_participation", extract the deadline (calculate actual date if stated as "within X days" using the gazette date), and generate a "submission" action with executability="scaffolded".
+
+### DEADLINE CALCULATION
+When a deadline is stated as "within X days of publication/gazettement/this notice", calculate the actual deadline date using the gazette publication date found in the document header or title. Format as ISO date (YYYY-MM-DD). If gazette date is not found, use today's date as the base and note the uncertainty in the action description.
+
+### MINIMUM ACTION RULE
+Every document where a public body is making a decision that could affect citizens MUST have at least one scaffolded action — at minimum an ATI request for the full decision record, meeting minutes, or implementation plan. Never return zero scaffolded actions for gazette_notice, public_participation, environment, land, budget, or parliamentary_bill document types. "inform_only" actions are permitted but must not be the ONLY action type for these document types.
+
+### NEMA / ENVIRONMENT NOTICES
+Look for: Environmental Impact Assessment (EIA), Environmental Audit, NEMA licence applications, pollution incidents, waste disposal notices. When found: set document_type="environment", generate an environment_objection action if an objection period is stated, generate an ATI request for the full EIA report, and ensure affected_region_l1 includes the specific ${regionLevel1Label}.
 
 ### Actions
 - Include ONLY actions that are legally grounded in the provisions above or well-established ${name} law

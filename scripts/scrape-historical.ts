@@ -131,8 +131,11 @@ async function scrapeHistoricalGazettes(): Promise<{ inserted: number; skipped: 
   console.log(`[historical] Found ${yearUrls.length} gazette years`);
 
   // Filter to last 6 months worth of years (current year and possibly previous)
+  // const sixMonthsAgo = new Date();
+  // sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
   const sixMonthsAgo = new Date();
   sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+  const sixMonthsAgoStr = sixMonthsAgo.toISOString().slice(0, 7); // 'YYYY-MM'
   const minYear = sixMonthsAgo.getFullYear();
   const relevantYears = yearUrls.filter((url) => {
     const yearMatch = url.match(/\/(\d{4})$/);

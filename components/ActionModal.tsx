@@ -69,67 +69,68 @@ export default function ActionModal({ action, open, onClose, langPref, actionId,
 
   return (
     <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] max-h-[60vh] flex flex-col overflow-hidden">
         <DialogHeader>
           <DialogTitle>{actionTitle}</DialogTitle>
         </DialogHeader>
 
-        {status !== 'done' && (
-          <>
-            {/* Editable draft */}
-            <div className="space-y-2">
-              <p className="text-xs text-muted-foreground">{tAction('draft.editableNote')}</p>
-              <Textarea
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                rows={14}
-                className="font-mono text-sm resize-y"
-                disabled={status === 'submitting'}
-              />
-            </div>
+        <div className="flex-1 overflow-y-auto space-y-4">
+          {status !== 'done' && (
+            <>
+              {/* Editable draft */}
+              <div className="space-y-2">
+                <p className="text-xs text-muted-foreground">{tAction('draft.editableNote')}</p>
+                <Textarea
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value)}
+                  rows={14}
+                  className="font-mono text-sm resize-y"
+                  disabled={status === 'submitting'}
+                />
+              </div>
 
-            {/* Legal basis */}
-            {action.legal_basis && (
-              <details className="rounded-lg border bg-muted/40 px-4 py-3 text-sm">
-                <summary className="cursor-pointer font-medium text-muted-foreground select-none">
-                  {tAction('legalBasis')}
-                </summary>
-                <p className="mt-2 text-muted-foreground leading-relaxed">{action.legal_basis}</p>
-              </details>
-            )}
-
-            {status === 'error' && (
-              <p className="text-sm text-destructive">{errorMsg}</p>
-            )}
-
-          </>
-        )}
-
-        {status === 'done' && (
-          <div className="flex flex-col items-center gap-4 py-8 text-center">
-            <CheckCircle2 className="h-12 w-12 text-green-500" />
-            <div>
-              <p className="font-semibold text-lg">{tAction('draft.submitted')}</p>
-              {referenceId && (
-                <p className="text-sm text-muted-foreground mt-1">
-                  {tAction('draft.referenceId', { id: referenceId })}
-                </p>
+              {/* Legal basis */}
+              {action.legal_basis && (
+                <details className="rounded-lg border bg-muted/40 px-4 py-3 text-sm">
+                  <summary className="cursor-pointer font-medium text-muted-foreground select-none">
+                    {tAction('legalBasis')}
+                  </summary>
+                  <p className="mt-2 text-muted-foreground leading-relaxed">{action.legal_basis}</p>
+                </details>
               )}
-            </div>
-            <p className="text-sm text-muted-foreground">{tAction('draft.trackPrompt')}</p>
-            <Button variant="outline" size="sm" className="gap-2" onClick={handleClose}>
-              <ExternalLink className="h-4 w-4" />
-              {tAction('trackThis')}
-            </Button>
-          </div>
-        )}
 
-        {/* Unlock prompt for unauthenticated users */}
-        {!isAuthenticated && status !== 'done' && (
-          <p className="text-sm text-blue-700 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 -mb-1">
-            {tAction('unlockToSend')}
-          </p>
-        )}
+              {status === 'error' && (
+                <p className="text-sm text-destructive">{errorMsg}</p>
+              )}
+            </>
+          )}
+
+          {status === 'done' && (
+            <div className="flex flex-col items-center gap-4 py-8 text-center">
+              <CheckCircle2 className="h-12 w-12 text-green-500" />
+              <div>
+                <p className="font-semibold text-lg">{tAction('draft.submitted')}</p>
+                {referenceId && (
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {tAction('draft.referenceId', { id: referenceId })}
+                  </p>
+                )}
+              </div>
+              <p className="text-sm text-muted-foreground">{tAction('draft.trackPrompt')}</p>
+              <Button variant="outline" size="sm" className="gap-2" onClick={handleClose}>
+                <ExternalLink className="h-4 w-4" />
+                {tAction('trackThis')}
+              </Button>
+            </div>
+          )}
+
+          {/* Unlock prompt for unauthenticated users */}
+          {!isAuthenticated && status !== 'done' && (
+            <p className="text-sm text-blue-700 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3">
+              {tAction('unlockToSend')}
+            </p>
+          )}
+        </div>
 
         <DialogFooter className="gap-2">
           {status === 'done' ? (

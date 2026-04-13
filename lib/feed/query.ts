@@ -42,6 +42,8 @@ export interface FeedDocument {
   analysis: {
     id: string;
     document_type: string | null;
+    title_en: string | null;
+    title_sw: string | null;
     summary_en: string | null;
     summary_sw: string | null;
     affected_region_l1: string[] | null;
@@ -87,6 +89,7 @@ type RawAction = {
 type RawAnalysis = {
   id: string;
   document_type: string | null;
+  analysis_json: Record<string, unknown> | null;
   summary_en: string | null;
   summary_sw: string | null;
   affected_region_l1: string[] | null;
@@ -105,6 +108,7 @@ const FEED_SELECT = `
   document_analyses (
     id,
     document_type,
+    analysis_json,
     summary_en,
     summary_sw,
     affected_region_l1,
@@ -148,19 +152,53 @@ function computeSoonestDeadline(actions: RawAction[]): string | null {
   return dates[0] ?? null;
 }
 
+function computeCivicScore(doc: FeedDocument): number {
+  let score = 0;
+
+  // 1. Deadline status — most important factor
+  if (doc.soonest_deadline) {
+    const daysUntil = (new Date(doc.soonest_deadline).getTime()
+      - Date.now()) / 86_400_000;
+    if (daysUntil > 0 && daysUntil <= 3) score += 120;       // urgent + active
+    else if (daysUntil > 3 && daysUntil <= 7) score += 100;  // active
+    else if (daysUntil > 7) score += 80;                     // future, not urgent
+    else score += 10;                                         // passed — deprioritise
+  } else {
+    score += 40; // no deadline, still actionable
+  }
+
+  // 2. Document type weight
+  const typeWeights: Record<string, number> = {
+    parliamentary_bill: 50,
+    county_policy:      40,
+    budget:             35,
+    environment:        30,
+    land:               25,
+    gazette_notice:     20,
+    other:               5,
+  };
+  score += typeWeights[doc.analysis.document_type ?? 'other'] ?? 5;
+
+  // 3. Executability of top action
+  if (doc.top_action?.executability === 'auto') score += 20;
+  else if (doc.top_action?.executability === 'scaffolded') score += 15;
+  // inform_only adds 0
+
+  // 4. Recency boost — up to 10 pts for docs scraped in last 7 days
+  const daysOld = (Date.now()
+    - new Date(doc.scraped_at ?? doc.created_at).getTime()) / 86_400_000;
+  score += Math.max(0, 10 - daysOld);
+
+  // 5. Social proof boost
+  if (doc.execution_count > 0) score += Math.min(doc.execution_count * 2, 10);
+
+  return score;
+}
+
 function sortByConsequence(docs: FeedDocument[]): FeedDocument[] {
-  return [...docs].sort((a, b) => {
-    // Primary: soonest deadline first (nulls last)
-    if (a.soonest_deadline && b.soonest_deadline) {
-      return new Date(a.soonest_deadline).getTime() - new Date(b.soonest_deadline).getTime();
-    }
-    if (a.soonest_deadline && !b.soonest_deadline) return -1;
-    if (!a.soonest_deadline && b.soonest_deadline) return 1;
-    // Secondary: most recent scraped_at / created_at
-    const aTime = new Date(a.scraped_at ?? a.created_at).getTime();
-    const bTime = new Date(b.scraped_at ?? b.created_at).getTime();
-    return bTime - aTime;
-  });
+  return [...docs].sort(
+    (a, b) => computeCivicScore(b) - computeCivicScore(a),
+  );
 }
 
 /**
@@ -215,6 +253,8 @@ function shapeDocs(
       analysis: {
         id: a.id,
         document_type: a.document_type,
+        title_en: (a.analysis_json as Record<string, unknown>)?.title as string | null ?? null,
+        title_sw: (a.analysis_json as Record<string, unknown>)?.title_sw as string | null ?? null,
         summary_en: a.summary_en,
         summary_sw: a.summary_sw,
         affected_region_l1: a.affected_region_l1,
@@ -228,6 +268,50 @@ function shapeDocs(
   }
 
   return sortByConsequence(result);
+}
+
+// ── Stats ────────────────────────────────────────────────────────────────────
+
+export interface FeedStats {
+  documentCount: number;
+  actionCount: number;
+  countiesCovered: number;
+}
+
+export async function getFeedStats(
+  countryCode: CountryCode = 'KE',
+): Promise<FeedStats> {
+  const supabase = await createServerSupabaseClient();
+
+  const [docRes, actionRes, regionRes] = await Promise.all([
+    supabase
+      .from('documents')
+      .select('id', { count: 'exact', head: true })
+      .eq('country_code', countryCode),
+    supabase
+      .from('actions')
+      .select('id, document_analyses!inner(country_code)', { count: 'exact', head: true })
+      .eq('document_analyses.country_code', countryCode),
+    supabase
+      .from('document_analyses')
+      .select('affected_region_l1')
+      .eq('country_code', countryCode)
+      .not('affected_region_l1', 'eq', '{}'),
+  ]);
+
+  // Count distinct regions from the arrays
+  const regionSet = new Set<string>();
+  for (const row of regionRes.data ?? []) {
+    for (const r of (row.affected_region_l1 as string[]) ?? []) {
+      regionSet.add(r);
+    }
+  }
+
+  return {
+    documentCount: docRes.count ?? 0,
+    actionCount: actionRes.count ?? 0,
+    countiesCovered: regionSet.size,
+  };
 }
 
 // ── Public API ────────────────────────────────────────────────────────────────
@@ -248,11 +332,7 @@ export async function getGeneralFeed(
     .eq('country_code', countryCode)
     .order('created_at', { ascending: false })
     .limit(FETCH_LIMIT);
-  // ADD THIS:
-  console.log('[feed debug] docs count:', docs?.length);
-  console.log('[feed debug] first doc raw:', JSON.stringify(docs?.[0], null, 2));
-  console.log('[feed debug] error:', error);
-  
+
   if (error || !docs) {
     console.error('[feed] General feed error:', error?.message);
     return { documents: [], page, hasMore: false, hasDocumentsBeingProcessed: false, userRegion: null };

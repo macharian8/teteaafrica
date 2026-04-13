@@ -65,6 +65,8 @@ export async function processNotificationBatch(limit = BATCH_SIZE): Promise<Proc
     (users ?? []).map((u) => [u.id, u as UserRow])
   );
 
+  const smsEnabled = process.env.NEXT_PUBLIC_ENABLE_SMS === 'true';
+
   for (const notification of notifications as NotificationRow[]) {
     result.processed++;
     const user = userMap.get(notification.user_id);
@@ -79,36 +81,64 @@ export async function processNotificationBatch(limit = BATCH_SIZE): Promise<Proc
     let externalId: string | undefined;
     let errorMsg: string | undefined;
 
+    // Helper: send email for this notification
+    async function trySendEmail(): Promise<{ ok: boolean; id?: string; err?: string }> {
+      const email = user!.email;
+      if (!email) return { ok: false, err: 'User has no email address' };
+      const r = await sendEmail({
+        to:      email,
+        subject: notification.subject ?? 'Tetea Africa — New Civic Alert',
+        body:    notification.body,
+        locale:  user!.language_preference as 'en' | 'sw',
+      });
+      return { ok: r.success, id: r.emailId, err: r.error };
+    }
+
+    // Helper: send SMS for this notification
+    async function trySendSms(): Promise<{ ok: boolean; id?: string; err?: string }> {
+      const phone = user!.phone;
+      if (!phone) return { ok: false, err: 'User has no phone number' };
+      if (!smsEnabled) {
+        console.log(`[processor] SMS disabled, skipping SMS for ${notification.id} — falling back to email`);
+        return trySendEmail();
+      }
+      const r = await sendSMS(phone, notification.body, notification.country_code);
+      return { ok: r.success, id: r.messageId, err: r.error };
+    }
+
     try {
       switch (notification.channel) {
-        case 'sms': {
-          const phone = user.phone;
-          if (!phone) {
-            errorMsg = 'User has no phone number';
-            break;
+        case 'both': {
+          // Send email first, then SMS
+          const emailRes = await trySendEmail();
+          if (emailRes.ok) {
+            success = true;
+            externalId = emailRes.id;
           }
-          const smsResult = await sendSMS(phone, notification.body, notification.country_code);
-          success    = smsResult.success;
-          externalId = smsResult.messageId;
-          errorMsg   = smsResult.error;
+          const smsRes = await trySendSms();
+          if (smsRes.ok) {
+            success = true;
+            externalId = externalId ?? smsRes.id;
+          }
+          if (!success) {
+            errorMsg = [emailRes.err, smsRes.err].filter(Boolean).join('; ');
+          }
+          break;
+        }
+
+        case 'sms': {
+          const res = await trySendSms();
+          success    = res.ok;
+          externalId = res.id;
+          errorMsg   = res.err;
           break;
         }
 
         case 'email': {
-          const email = user.email;
-          if (!email) {
-            errorMsg = 'User has no email address';
-            break;
-          }
-          const emailResult = await sendEmail({
-            to:      email,
-            subject: notification.subject ?? 'Tetea Africa — New Civic Alert',
-            body:    notification.body,
-            locale:  user.language_preference as 'en' | 'sw',
-          });
-          success    = emailResult.success;
-          externalId = emailResult.emailId;
-          errorMsg   = emailResult.error;
+          const res = await trySendEmail();
+          success    = res.ok;
+          externalId = res.id;
+          errorMsg   = res.err;
           break;
         }
 

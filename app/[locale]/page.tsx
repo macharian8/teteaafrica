@@ -6,7 +6,7 @@
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 import { createServerSupabaseClient } from '@/lib/supabase/server';
-import { getFeedDocuments, getGeneralFeed } from '@/lib/feed/query';
+import { getFeedDocuments, getGeneralFeed, getFeedStats } from '@/lib/feed/query';
 import HomeFeed from '@/components/HomeFeed';
 import DismissibleBanner from '@/components/DismissibleBanner';
 import { Newspaper, RefreshCw } from 'lucide-react';
@@ -61,17 +61,39 @@ export default async function HomePage({ params, searchParams }: PageProps) {
   }
   allRegions.sort();
 
+  const stats = await getFeedStats('KE');
+
   const headerTitle = userRegion
     ? t('authTitle', { region: userRegion })
     : t('unauthTitle');
 
   return (
     <main>
-      {/* ── Slim hero ─────────────────────────────────────────────────── */}
-      <div className="mb-6">
+      {/* ── Compact hero ──────────────────────────────────────────────── */}
+      <div className="mb-4">
         <h1 className="text-2xl font-bold text-gray-900">{headerTitle}</h1>
-        <p className="text-sm text-gray-500 mt-1">{t('unauthSubtext')}</p>
+        <p className="text-sm text-gray-500 mt-0.5">{t('unauthSubtext')}</p>
       </div>
+
+      {/* ── Stats bar ────────────────────────────────────────────────── */}
+      {stats.documentCount > 0 && (
+        <p className="text-sm text-gray-500 mb-4">
+          {t('statsDocuments', { count: stats.documentCount })}
+          {' · '}
+          {t('statsActions', { count: stats.actionCount })}
+          {' · '}
+          {t('statsCounties', { count: stats.countiesCovered })}
+        </p>
+      )}
+
+      {/* ── Sign-in incentive banner (unauthenticated only, homepage) ── */}
+      {!user && (
+        <DismissibleBanner
+          message={t('signInBanner')}
+          linkText={t('signInBannerLink')}
+          linkHref={`/${locale}/sign-in`}
+        />
+      )}
 
       {/* ── Location banner (authenticated, no subscription) ────────── */}
       {showSubsBanner && (

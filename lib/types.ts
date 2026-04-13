@@ -49,6 +49,7 @@ export interface ActionDraft {
 export interface DocumentAnalysisResult {
   country_code: CountryCode;
   title: string;
+  title_sw?: string;
   document_type: DocumentType;
   summary_en: string;
   summary_sw: string;

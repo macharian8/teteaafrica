@@ -15,6 +15,7 @@ interface SubscriptionBody {
   channel: Channel;
   language_preference: string;
   consents: string[]; // action_types granted
+  phone_number?: string | null;
 }
 
 interface SubscriptionData {
@@ -167,10 +168,14 @@ export async function POST(
     }
   }
 
-  // 3. Update language_preference on users table to match
+  // 3. Update language_preference (and phone if provided) on users table
+  const userUpdate: Record<string, string> = { language_preference: body.language_preference };
+  if (body.phone_number) {
+    userUpdate.phone = body.phone_number;
+  }
   await supabase
     .from('users')
-    .update({ language_preference: body.language_preference })
+    .update(userUpdate)
     .eq('id', user.id);
 
   return NextResponse.json({ success: true, data: { ok: true } });

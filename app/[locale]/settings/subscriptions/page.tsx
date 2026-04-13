@@ -13,14 +13,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { CheckCircle2, Globe, Loader2 } from 'lucide-react';
+import { CheckCircle2, Globe, Loader2, Mail, MessageSquare } from 'lucide-react';
 import type { Database } from '@/lib/supabase/types';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
 const TOPICS = ['land', 'environment', 'budget', 'health', 'tenders', 'general'] as const;
 const CONSENT_TYPES = ['calendar_invite', 'ati_request', 'petition'] as const;
-const CHANNELS = ['whatsapp', 'sms', 'email'] as const;
 const LANGUAGES = ['en', 'sw'] as const;
 
 const COUNTRIES = [
@@ -37,15 +36,20 @@ type AdminUnit = Database['public']['Tables']['admin_units']['Row'];
 
 export default function SubscriptionsPage() {
   const tSub = useTranslations('subscription');
+  const tNotif = useTranslations('notifications');
   const tCommon = useTranslations('common');
   const tLang = useTranslations('language');
+
+  const smsEnabled = process.env.NEXT_PUBLIC_ENABLE_SMS === 'true';
 
   // Form state
   const [countryCode, setCountryCode] = useState('KE');
   const [regionL1, setRegionL1] = useState<string>('');
   const [regionL2, setRegionL2] = useState<string>('');
   const [topics, setTopics] = useState<Set<string>>(new Set());
-  const [channel, setChannel] = useState<Channel>('email');
+  const [emailChecked, setEmailChecked] = useState(true);
+  const [smsChecked, setSmsChecked] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [langPref, setLangPref] = useState<string>('en');
   const [consents, setConsents] = useState<Set<string>>(new Set());
 
@@ -83,11 +87,18 @@ export default function SubscriptionsPage() {
             setRegionL1(subscription.region_l1 ?? '');
             setRegionL2(subscription.region_l2 ?? '');
             setTopics(new Set(subscription.topics));
-            setChannel(subscription.channel);
+            const ch = subscription.channel;
+            setEmailChecked(ch === 'email' || ch === 'both');
+            setSmsChecked(ch === 'sms' || ch === 'both');
             setLangPref(subscription.language_preference);
           }
           setConsents(new Set(existingConsents));
           setUserContact(contact);
+          if (contact.phone) {
+            // Strip +254 prefix for display
+            const stripped = contact.phone.replace(/^\+254/, '');
+            setPhoneNumber(stripped);
+          }
         }
       }
 
@@ -149,13 +160,20 @@ export default function SubscriptionsPage() {
     });
   }
 
-  function getChannelContact(): string | null {
-    if (channel === 'email') return userContact.email;
-    return userContact.phone;
+  function deriveChannel(): Channel {
+    if (emailChecked && smsChecked) return 'both';
+    if (smsChecked) return 'sms';
+    return 'email';
+  }
+
+  function isValidKenyaPhone(num: string): boolean {
+    // Accepts 7XXXXXXXX or 1XXXXXXXX (9 digits after +254)
+    return /^[17]\d{8}$/.test(num.replace(/\s/g, ''));
   }
 
   async function handleSave() {
     setSaveStatus('saving');
+    const channel = deriveChannel();
     try {
       const res = await fetch('/api/subscriptions', {
         method: 'POST',
@@ -168,6 +186,7 @@ export default function SubscriptionsPage() {
           channel,
           language_preference: langPref,
           consents: Array.from(consents),
+          phone_number: smsChecked && phoneNumber ? `+254${phoneNumber.replace(/\s/g, '')}` : null,
         }),
       });
       const data = await res.json() as { success: boolean; error?: string };
@@ -178,8 +197,6 @@ export default function SubscriptionsPage() {
       setSaveStatus('error');
     }
   }
-
-  const contactForChannel = getChannelContact();
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
@@ -240,8 +257,7 @@ export default function SubscriptionsPage() {
         </h2>
         {counties.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            {/* Location data is not yet seeded — user can skip */}
-            Location data not yet available — you can set this later.
+            {tSub('regionNotAvailable')}
           </p>
         ) : (
           <div className="flex flex-col sm:flex-row gap-3">
@@ -335,40 +351,82 @@ export default function SubscriptionsPage() {
       {/* ── Notification channel ─────────────────────────────────────────────── */}
       <section className="space-y-3">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-          {tSub('channel')}
+          {tNotif('channelTitle')}
         </h2>
-        <div className="flex flex-wrap gap-2">
-          {CHANNELS.map((ch) => (
-            <button
-              key={ch}
-              onClick={() => setChannel(ch)}
-              className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors ${
-                channel === ch
-                  ? 'border-primary bg-primary text-primary-foreground'
-                  : 'hover:bg-accent'
-              }`}
-            >
-              {tSub(`channelOptions.${ch}`)}
-            </button>
-          ))}
-        </div>
+        <div className="space-y-3">
+          {/* Email option */}
+          <label className="flex items-start gap-3 rounded-lg border p-4 cursor-pointer hover:bg-accent transition-colors">
+            <Checkbox
+              checked={emailChecked}
+              onCheckedChange={(checked) => {
+                // Don't allow unchecking both
+                if (!checked && !smsChecked) return;
+                setEmailChecked(!!checked);
+              }}
+              className="mt-0.5"
+            />
+            <div className="flex-1">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-muted-foreground" />
+                <span className="text-sm font-medium">{tNotif('email')}</span>
+              </div>
+              <p className="text-xs text-muted-foreground mt-0.5">{tNotif('emailDesc')}</p>
+              {emailChecked && userContact.email && (
+                <div className="flex items-center gap-2 mt-2">
+                  <p className="text-xs text-muted-foreground">{userContact.email}</p>
+                  <Badge variant="secondary" className="flex items-center gap-1 text-[10px] px-1.5 py-0">
+                    <CheckCircle2 className="h-2.5 w-2.5 text-green-500" />
+                    {tSub('channelVerified')}
+                  </Badge>
+                </div>
+              )}
+            </div>
+          </label>
 
-        {/* Contact for the selected channel */}
-        <div className="rounded-lg border bg-muted/30 p-4 flex items-center gap-3">
-          <div className="flex-1">
-            <p className="text-xs text-muted-foreground mb-1">{tSub('channelContact')}</p>
-            {contactForChannel ? (
-              <p className="text-sm font-medium">{contactForChannel}</p>
-            ) : (
-              <p className="text-sm text-muted-foreground">—</p>
+          {/* SMS option */}
+          <div className={`rounded-lg border p-4 transition-colors ${!smsEnabled ? 'opacity-50' : 'hover:bg-accent'}`}>
+            <label className={`flex items-start gap-3 ${smsEnabled ? 'cursor-pointer' : 'cursor-not-allowed'}`}>
+              <Checkbox
+                checked={smsChecked}
+                disabled={!smsEnabled}
+                onCheckedChange={(checked) => {
+                  if (!checked && !emailChecked) return;
+                  setSmsChecked(!!checked);
+                }}
+                className="mt-0.5"
+              />
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-sm font-medium">{tNotif('sms')}</span>
+                  {!smsEnabled && (
+                    <Badge variant="outline" className="text-[10px] px-1.5 py-0">
+                      {tNotif('smsComingSoon')}
+                    </Badge>
+                  )}
+                </div>
+                <p className="text-xs text-muted-foreground mt-0.5">{tNotif('smsDesc')}</p>
+              </div>
+            </label>
+            {smsChecked && smsEnabled && (
+              <div className="mt-3 ml-8 space-y-1.5">
+                <label className="text-xs text-muted-foreground">{tNotif('phoneNumber')}</label>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground font-medium">{tNotif('phonePrefix')}</span>
+                  <input
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value.replace(/[^\d\s]/g, ''))}
+                    placeholder="7XX XXX XXX"
+                    className="flex-1 rounded-md border bg-background px-3 py-2 text-sm max-w-[200px]"
+                  />
+                </div>
+                {phoneNumber && !isValidKenyaPhone(phoneNumber) && (
+                  <p className="text-xs text-destructive">Format: 7XX XXX XXX</p>
+                )}
+              </div>
             )}
           </div>
-          {contactForChannel && (
-            <Badge variant="secondary" className="flex items-center gap-1 shrink-0">
-              <CheckCircle2 className="h-3 w-3 text-green-500" />
-              {tSub('channelVerified')}
-            </Badge>
-          )}
         </div>
       </section>
 

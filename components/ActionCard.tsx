@@ -8,7 +8,7 @@ import ActionModal from './ActionModal';
 import type { ActionDraft } from '@/lib/types';
 import {
   FileText, Megaphone, CalendarDays, Send, ShieldAlert, Scale,
-  Leaf, User, Newspaper, Info, ChevronDown, ChevronUp, Clock,
+  Leaf, User, Newspaper, Info, Clock,
 } from 'lucide-react';
 
 const ACTION_ICONS: Record<string, React.ElementType> = {
@@ -49,7 +49,6 @@ interface Props {
 export default function ActionCard({ action, actionId, langPref, contentLang, isAuthenticated = true }: Props) {
   const tAction = useTranslations('action');
   const tDoc = useTranslations('document');
-  const [legalOpen, setLegalOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
 
   const Icon = ACTION_ICONS[action.type] ?? Info;
@@ -95,24 +94,6 @@ export default function ActionCard({ action, actionId, langPref, contentLang, is
             )}
           </div>
         </div>
-
-        {/* Legal basis expandable */}
-        {action.legal_basis && (
-          <div>
-            <button
-              onClick={() => setLegalOpen(!legalOpen)}
-              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {legalOpen ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-              {tAction(legalOpen ? 'legalBasisCollapse' : 'legalBasisExpand')}
-            </button>
-            {legalOpen && (
-              <p className="mt-2 text-xs text-muted-foreground bg-muted/40 rounded p-3 leading-relaxed">
-                {action.legal_basis}
-              </p>
-            )}
-          </div>
-        )}
 
         {/* CTAs */}
         {!isInformOnly && hasDraft && (

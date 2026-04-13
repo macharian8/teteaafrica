@@ -60,7 +60,7 @@ export default function Navbar() {
             </>
           ) : (
             <Link href={`/${locale}/sign-in`}>
-              <Button size="sm">{t('signIn')}</Button>
+              <Button size="sm">{t('getAlerts')}</Button>
             </Link>
           )}
         </div>

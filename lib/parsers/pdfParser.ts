@@ -9,6 +9,8 @@ export interface ParsedDocument {
   pageCount: number;
   /** True when text/page ratio is very low — likely a scanned PDF needing OCR */
   isScanned: boolean;
+  /** OCR confidence 0–100, null if not OCR'd */
+  ocrConfidence: number | null;
 }
 
 const SCANNED_CHARS_PER_PAGE_THRESHOLD = 100;
@@ -22,7 +24,27 @@ export async function parsePdfBuffer(buffer: Buffer): Promise<ParsedDocument> {
   const pageCount = result.total;
   const isScanned =
     pageCount > 0 && text.length / pageCount < SCANNED_CHARS_PER_PAGE_THRESHOLD;
-  return { text, pageCount, isScanned };
+
+  // OCR fallback for scanned PDFs with insufficient text
+  if (isScanned && text.length < 500) {
+    console.log('[parser] OCR fallback triggered for scanned PDF');
+    try {
+      const { ocrPdfBuffer } = await import('@/lib/parsers/ocrParser');
+      const ocrResult = await ocrPdfBuffer(buffer);
+      if (ocrResult.text.length > text.length) {
+        return {
+          text: preprocessText(ocrResult.text),
+          pageCount: ocrResult.pageCount,
+          isScanned: true,
+          ocrConfidence: ocrResult.confidence,
+        };
+      }
+    } catch (err) {
+      console.error('[parser] OCR fallback failed:', err instanceof Error ? err.message : err);
+    }
+  }
+
+  return { text, pageCount, isScanned, ocrConfidence: null };
 }
 
 export async function parseUrl(
@@ -46,7 +68,7 @@ export async function parseUrl(
   if (contentType.includes('text/html')) {
     const html = await response.text();
     const text = preprocessText(stripHtml(html));
-    return { text, pageCount: 1, isScanned: false, contentType };
+    return { text, pageCount: 1, isScanned: false, ocrConfidence: null, contentType };
   }
 
   throw new Error(`Unsupported content type: ${contentType}`);

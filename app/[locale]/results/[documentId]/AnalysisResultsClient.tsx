@@ -96,21 +96,24 @@ export default function AnalysisResultsClient({
             )}
           </div>
 
-          {/* EN / SW content toggle */}
-          <div className="flex rounded-md border overflow-hidden text-xs">
-            {(['en', 'sw'] as const).map((l) => (
-              <button
-                key={l}
-                onClick={() => setContentLang(l)}
-                className={`px-3 py-1 font-medium transition-colors ${
-                  contentLang === l
-                    ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:bg-accent'
-                }`}
-              >
-                {tDoc(l === 'en' ? 'viewInEnglish' : 'viewInSwahili')}
-              </button>
-            ))}
+          {/* Content language toggle (distinct from navbar locale switcher) */}
+          <div className="flex items-center gap-2" title={tDoc('switchSummaryLang')}>
+            <span className="text-[11px] text-muted-foreground hidden sm:inline">{tDoc('contentLanguage')}:</span>
+            <div className="flex rounded-full border border-dashed border-muted-foreground/30 overflow-hidden text-xs">
+              {(['en', 'sw'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => setContentLang(l)}
+                  className={`px-3 py-1 font-medium transition-colors ${
+                    contentLang === l
+                      ? 'bg-muted text-foreground'
+                      : 'text-muted-foreground hover:bg-accent'
+                  }`}
+                >
+                  {tDoc(l === 'en' ? 'viewInEnglish' : 'viewInSwahili')}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

@@ -8,9 +8,14 @@ import KE from '@/lib/countries/KE/config';
 import type { CountryCode, DocumentAnalysisResult, ActionDraft } from '@/lib/types';
 import type { CountryConfig } from '@/lib/countries/KE/config';
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+// const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const anthropic = new Anthropic({ 
+  apiKey: process.env.ANTHROPIC_API_KEY,
+  timeout: 120_000, // 2 minutes
+});
 
-const ANALYSIS_MODEL = 'claude-opus-4-6';
+// const ANALYSIS_MODEL = 'claude-opus-4-6';
+const ANALYSIS_MODEL = 'claude-sonnet-4-6';
 const MAX_TOKENS = 8192; // 4096 insufficient for complex Acts with many actions
 const CONFIDENCE_REVIEW_THRESHOLD = 0.7;
 

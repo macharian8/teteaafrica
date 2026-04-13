@@ -7,11 +7,12 @@
   "nav": {
     "home": "Home",
     "dashboard": "Dashboard",
-    "analyze": "Analyze Document",
+    "analyze": "Check a document",
     "subscriptions": "Subscriptions",
     "settings": "Settings",
     "feed": "Feed",
     "signIn": "Sign In",
+    "getAlerts": "Get alerts",
     "signOut": "Sign Out",
     "profile": "Profile"
   },
@@ -70,7 +71,9 @@
       "finish": "Start using Tetea",
       "skip": "Skip for now"
     },
-    "signedOutMessage": "You have been signed out."
+    "continueWithGoogle": "Continue with Google",
+    "signedOutMessage": "You have been signed out.",
+    "sendOtpError": "Could not send verification code. Please check your details and try again."
   },
   "document": {
     "upload": "Upload Document",
@@ -95,8 +98,10 @@
     "keyDates": "Key dates",
     "noDeadlines": "No deadlines identified",
     "summary": "Summary",
-    "viewInEnglish": "English",
-    "viewInSwahili": "Kiswahili",
+    "viewInEnglish": "EN",
+    "viewInSwahili": "SW",
+    "contentLanguage": "Content language",
+    "switchSummaryLang": "Switch summary language",
     "actions": "Available actions",
     "noActions": "No actions identified for this document",
     "deadline": "Deadline",
@@ -106,7 +111,8 @@
     "today": "Today",
     "noResults": "Analysis not found",
     "shareLink": "Share link",
-    "analyseAnother": "Analyse another document"
+    "analyseAnother": "Analyse another document",
+    "backToFeed": "Back to feed"
   },
   "action": {
     "types": {
@@ -159,6 +165,7 @@
     "regionL2": "Ward",
     "regionL1Placeholder": "Select county",
     "regionL2Placeholder": "Select ward (optional)",
+    "regionNotAvailable": "Location data not yet available — you can set this later.",
     "topics": "Topics of interest",
     "topicOptions": {
       "land": "Land",
@@ -190,6 +197,16 @@
     "saved": "Subscriptions saved",
     "saveError": "Failed to save — please try again"
   },
+  "notifications": {
+    "channelTitle": "How would you like to be notified?",
+    "email": "Email",
+    "emailDesc": "Get alerts in your inbox",
+    "sms": "SMS",
+    "smsDesc": "Get alerts by text message",
+    "smsComingSoon": "Coming soon",
+    "phoneNumber": "Phone number",
+    "phonePrefix": "+254"
+  },
   "language": {
     "en": "English",
     "sw": "Kiswahili",
@@ -212,7 +229,7 @@
     "pageDescription": "Government documents that affect your rights, sorted by urgency.",
     "unauthTitle": "What's happening in Kenya right now",
     "authTitle": "What's happening in {region} right now",
-    "unauthSubtext": "Government documents that affect your rights, sorted by urgency",
+    "unauthSubtext": "We read government documents so you don't have to — and show you what you can do about them.",
     "noSubscription": "You have no active subscriptions. Set one up to see matching documents.",
     "noDocuments": "No matching documents yet. We'll notify you when something new arrives.",
     "processingEmpty": "Documents are being processed. Check back in a few minutes.",
@@ -226,24 +243,47 @@
     "daysLeft": "{count} days left",
     "actionCount": "{count} actions",
     "actionCountBadge": "{count} actions available",
+    "actionCountBadgeOne": "1 action available",
     "setupSubscription": "Set up subscription",
     "loadMore": "Load more",
     "loading": "Loading feed…",
     "affecting": "Affecting: {region}",
     "affectingAll": "Affecting: All of Kenya",
-    "socialProof": "{count} people have taken action on this",
+    "socialProof": "{count} took action",
     "filterAllCounties": "All counties",
+    "filterAllTypes": "All types",
+    "filterGazetteNotice": "Gazette Notice",
+    "filterParliamentaryBill": "Parliamentary Bill",
+    "filterCountyPolicy": "County Policy",
+    "filterBudget": "Budget",
+    "filterEnvironment": "Environment",
+    "filterLand": "Land",
+    "filterOther": "Other",
+    "sortUrgent": "Urgent first",
+    "sortNewest": "Newest first",
+    "sortMostActions": "Most actions",
+    "filterAll": "All",
+    "filterCanAct": "Can act",
+    "filterInfoOnly": "Info only",
+    "searchPlaceholder": "Search by topic, county, or keyword...",
+    "moreFilters": "More filters",
+    "showing": "Showing {count} documents",
+    "showingOf": "Showing {count} of {total} documents",
+    "noResults": "No documents match your filters. Try broadening your search.",
     "clearFilters": "Clear filters",
     "share": "Share",
     "copied": "Copied! Share on WhatsApp",
+    "statsDocuments": "{count} government documents tracked",
+    "statsActions": "{count} actions available",
+    "statsCounties": "{count} counties covered",
+    "signInBanner": "Sign in to get notified when documents affect your area — free forever.",
+    "signInBannerLink": "Sign in",
     "urgency": {
-      "closesIn": "Closes in {count} days — act now",
-      "closesToday": "Closes today — act now",
-      "closesTomorrow": "Closes tomorrow — act now",
-      "daysLeft": "{count} days left to respond",
+      "actNow": "Act now — closes in {days} days",
       "canAct": "You can take action on this",
       "knowRights": "Know your rights",
-      "overdue": "Deadline has passed"
+      "routine": "Routine notice",
+      "passed": "Deadline has passed"
     }
   },
   "errors": {

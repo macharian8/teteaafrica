@@ -264,6 +264,54 @@ app/api/feed/route.ts
 
 ---
 
+## County Scrapers Expansion (2026-04-13)
+
+### 4 new county scrapers added
+
+1. **Mombasa County** (`lib/countries/KE/scrapers/county-mombasa.ts`)
+   - Source: `web.mombasa.go.ke/downloads/` (RSS + HTML fallback)
+   - SSL: `rejectUnauthorized: false` (cert issues like Nairobi)
+   - Max 15 docs/run
+
+2. **Kisumu County** (`lib/countries/KE/scrapers/county-kisumu.ts`)
+   - Sources: RSS `/feed/`, `/downloads/` page, `/county-acts/`
+   - Standard SSL, uses `scrapeFetch`
+   - Max 15 docs/run
+
+3. **Nakuru County** (`lib/countries/KE/scrapers/county-nakuru.ts`)
+   - Source A: County RSS (`nakuru.go.ke/feed/`) — news posts checked for embedded PDFs
+   - Source B: County Assembly (`nakuruassembly.go.ke/downloads/` + `/bills/`) — HIGH VALUE for PP notices, bills, budget consultations
+   - SSL: `rejectUnauthorized: false` for assembly site
+   - Max 20 docs/run (10 per source)
+   - Note: `assembly.nakuru.go.ke` (old domain) is unreachable; correct domain is `nakuruassembly.go.ke`
+
+4. **Kisii County** (`lib/countries/KE/scrapers/county-kisii.ts`)
+   - Source: Joomla CMS (not WordPress) at `kisii.go.ke/index.php/media-center/cdownloads` + `/index.php/county-downloads`
+   - URL pattern: `/index.php/files/153/Downloads/{id}/{filename}.pdf`
+   - SSL: `rejectUnauthorized: false` (precaution)
+   - Max 15 docs/run
+
+### Integration
+- `scripts/run-scraper.ts` — new commands: `county-mombasa`, `county-kisumu`, `county-nakuru`, `county-kisii`, `counties` (all 5)
+- `lib/scrapers/pipeline.ts` — `ScraperName` type exported, all new scrapers in switch
+- `package.json` — 5 new npm scripts added
+
+### Initial run results (2026-04-13)
+- Mombasa: 1 doc inserted (HTML fallback, RSS empty)
+- Kisumu: 158 items found (RSS + downloads page), 1+ inserted
+- Nakuru: 4 assembly docs inserted (bills, vetting, PP notice), 2 errors (old domain URLs)
+- Kisii: 9+ docs inserted (Joomla pattern), 0 errors
+
+### Key file paths
+```
+lib/countries/KE/scrapers/county-mombasa.ts
+lib/countries/KE/scrapers/county-kisumu.ts
+lib/countries/KE/scrapers/county-nakuru.ts
+lib/countries/KE/scrapers/county-kisii.ts
+```
+
+---
+
 ## Known issues / technical debt
 - Kenya Gazette PDFs are often scanned images — OCR needed before gazette scraper can extract text
   - Workaround: gazette scraper stores document + storage_path; analysis pipeline flags `is_scanned`

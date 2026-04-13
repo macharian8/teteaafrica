@@ -43,7 +43,8 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
   "cheerio": "1.2.0",
   "africastalking": "0.7.9",
   "resend": "6.10.0",
-  "googleapis": "171.4.0"
+  "googleapis": "171.4.0",
+  "tesseract.js": "5.1.1"
 }
 ```
 

@@ -90,7 +90,7 @@ export default async function ResultsPage({ params }: Props) {
           href={`/${locale}`}
           className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1"
         >
-          ← {t('analyseAnother')}
+          ← {t('backToFeed')}
         </Link>
       </div>
       <AnalysisResultsClient

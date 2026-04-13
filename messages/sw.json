@@ -7,11 +7,12 @@
   "nav": {
     "home": "Nyumbani",
     "dashboard": "Dashibodi",
-    "analyze": "Changanua Hati",
+    "analyze": "Angalia hati",
     "subscriptions": "Usajili",
     "settings": "Mipangilio",
     "feed": "Mlisho",
     "signIn": "Ingia",
+    "getAlerts": "Pata arifa",
     "signOut": "Toka",
     "profile": "Wasifu"
   },
@@ -70,7 +71,9 @@
       "finish": "Anza kutumia Tetea",
       "skip": "Ruka kwa sasa"
     },
-    "signedOutMessage": "Umetoka kwenye akaunti yako."
+    "continueWithGoogle": "Endelea na Google",
+    "signedOutMessage": "Umetoka kwenye akaunti yako.",
+    "sendOtpError": "Haikuweza kutuma nambari ya uthibitisho. Tafadhali angalia maelezo yako na ujaribu tena."
   },
   "document": {
     "upload": "Pakia Hati",
@@ -95,8 +98,10 @@
     "keyDates": "Tarehe muhimu",
     "noDeadlines": "Hakuna mipaka ya muda iliyotambuliwa",
     "summary": "Muhtasari",
-    "viewInEnglish": "Kiingereza",
-    "viewInSwahili": "Kiswahili",
+    "viewInEnglish": "EN",
+    "viewInSwahili": "SW",
+    "contentLanguage": "Lugha ya maudhui",
+    "switchSummaryLang": "Badilisha lugha ya muhtasari",
     "actions": "Hatua zinazopatikana",
     "noActions": "Hakuna hatua zilizotambuliwa kwa hati hii",
     "deadline": "Mwisho wa muda",
@@ -106,7 +111,8 @@
     "today": "Leo",
     "noResults": "Uchambuzi haupatikani",
     "shareLink": "Shiriki kiungo",
-    "analyseAnother": "Changanua hati nyingine"
+    "analyseAnother": "Changanua hati nyingine",
+    "backToFeed": "Rudi kwenye mlisho"
   },
   "action": {
     "types": {
@@ -159,6 +165,7 @@
     "regionL2": "Wodi",
     "regionL1Placeholder": "Chagua kaunti",
     "regionL2Placeholder": "Chagua wodi (si lazima)",
+    "regionNotAvailable": "Data ya eneo bado haijapatikana — unaweza kuiweka baadaye.",
     "topics": "Mada za kupendeza",
     "topicOptions": {
       "land": "Ardhi",
@@ -190,6 +197,16 @@
     "saved": "Usajili umehifadhiwa",
     "saveError": "Imeshindwa kuhifadhi — tafadhali jaribu tena"
   },
+  "notifications": {
+    "channelTitle": "Ungependa kupata arifa vipi?",
+    "email": "Barua pepe",
+    "emailDesc": "Pata arifa kwenye kikasha chako",
+    "sms": "Ujumbe mfupi",
+    "smsDesc": "Pata arifa kwa ujumbe mfupi",
+    "smsComingSoon": "Inakuja hivi karibuni",
+    "phoneNumber": "Nambari ya simu",
+    "phonePrefix": "+254"
+  },
   "language": {
     "en": "English",
     "sw": "Kiswahili",
@@ -212,7 +229,7 @@
     "pageDescription": "Hati za serikali zinazoathiri haki zako, zimepangwa kwa dharura.",
     "unauthTitle": "Kinachoendelea Kenya sasa hivi",
     "authTitle": "Kinachoendelea {region} sasa hivi",
-    "unauthSubtext": "Hati za serikali zinazoathiri haki zako, zimepangwa kwa dharura",
+    "unauthSubtext": "Tunasoma hati za serikali ili wewe usihitaji — na tunakuonyesha unachoweza kufanya.",
     "noSubscription": "Huna usajili unaotumika. Weka moja ili kuona hati zinazolingana.",
     "noDocuments": "Hakuna hati zinazolingana bado. Tutakuarifu hati mpya zitakapowasili.",
     "processingEmpty": "Hati zinachakatwa. Angalia tena baada ya dakika chache.",
@@ -226,24 +243,47 @@
     "daysLeft": "Siku {count} zimebaki",
     "actionCount": "Hatua {count}",
     "actionCountBadge": "Hatua {count} zinapatikana",
+    "actionCountBadgeOne": "Hatua 1 inapatikana",
     "setupSubscription": "Weka usajili",
     "loadMore": "Pakia zaidi",
     "loading": "Inapakia mlisho…",
     "affecting": "Inaathiri: {region}",
     "affectingAll": "Inaathiri: Kenya yote",
-    "socialProof": "Watu {count} wamechukua hatua hii",
+    "socialProof": "{count} walichukua hatua",
     "filterAllCounties": "Kaunti zote",
+    "filterAllTypes": "Aina zote",
+    "filterGazetteNotice": "Tangazo la Gazeti",
+    "filterParliamentaryBill": "Mswada wa Bunge",
+    "filterCountyPolicy": "Sera ya Kaunti",
+    "filterBudget": "Bajeti",
+    "filterEnvironment": "Mazingira",
+    "filterLand": "Ardhi",
+    "filterOther": "Nyingine",
+    "sortUrgent": "Muhimu kwanza",
+    "sortNewest": "Mpya kwanza",
+    "sortMostActions": "Vitendo vingi",
+    "filterAll": "Zote",
+    "filterCanAct": "Weza kutenda",
+    "filterInfoOnly": "Taarifa tu",
+    "searchPlaceholder": "Tafuta mada, kaunti, au neno...",
+    "moreFilters": "Vichujio zaidi",
+    "showing": "Inaonyesha hati {count}",
+    "showingOf": "Inaonyesha {count} kati ya {total}",
+    "noResults": "Hakuna hati zinazolingana na vichujio vyako. Jaribu kupanua utafutaji wako.",
     "clearFilters": "Ondoa vichujio",
     "share": "Shiriki",
     "copied": "Imenakiliwa! Shiriki kwenye WhatsApp",
+    "statsDocuments": "Hati {count} za serikali zinafuatiliwa",
+    "statsActions": "Hatua {count} zinapatikana",
+    "statsCounties": "Kaunti {count} zimefunikwa",
+    "signInBanner": "Ingia ili upate arifa hati zinapoathiri eneo lako — bure milele.",
+    "signInBannerLink": "Ingia",
     "urgency": {
-      "closesIn": "Inafungwa siku {count} — chukua hatua sasa",
-      "closesToday": "Inafungwa leo — chukua hatua sasa",
-      "closesTomorrow": "Inafungwa kesho — chukua hatua sasa",
-      "daysLeft": "Siku {count} zimebaki kujibu",
-      "canAct": "Unaweza kuchukua hatua hii",
+      "actNow": "Tenda sasa — inafunga siku {days}",
+      "canAct": "Unaweza kutenda hapa",
       "knowRights": "Jua haki zako",
-      "overdue": "Muda umepita"
+      "routine": "Tangazo la kawaida",
+      "passed": "Muda umepita"
     }
   },
   "errors": {

@@ -4,6 +4,28 @@ Format: `[YYYY-MM-DD] type(scope): description`
 
 ---
 
+## [2026-04-09] feat(ocr): OCR pipeline for scanned PDFs
+
+### OCR parser (`lib/parsers/ocrParser.ts`)
+- `ocrPdfBuffer(buffer)` — converts PDF pages to PNG via `pdftoppm` (poppler), OCRs with tesseract.js (eng+swa)
+- Caps at 20 pages, 200 DPI, logs per-page confidence
+- System dependency: `pdftoppm` (poppler-utils)
+
+### PDF parser update (`lib/parsers/pdfParser.ts`)
+- OCR fallback: if extracted text < 500 chars, runs `ocrPdfBuffer()` automatically
+- Added `ocrConfidence` field to `ParsedDocument` return type
+
+### OCR backfill script (`scripts/ocr-backfill.ts`)
+- Finds documents with `storage_path` but no/short `raw_text`
+- Downloads PDF from Supabase Storage, runs OCR, updates `raw_text`
+- Processes up to 10 per run. npm script: `ocr:backfill`
+- **Result:** 6 scanned Nairobi County PDFs backfilled (68–93% confidence, 9K–16K chars each)
+
+### Dependencies
+- Added: `tesseract.js@5.1.1`
+
+---
+
 ## [2026-04-08] feat(pipeline): Scraper→Analysis pipeline integration
 
 ### Pipeline orchestrator (`lib/scrapers/pipeline.ts`)
