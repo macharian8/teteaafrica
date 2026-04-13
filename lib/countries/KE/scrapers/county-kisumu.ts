@@ -13,7 +13,8 @@
 
 import { load } from 'cheerio';
 import { buildScraperSupabaseClient, computeHash, isDuplicate, computeContentHash } from '@/lib/scrapers/dedup';
-import { sleep, DEFAULT_CRAWL_DELAY_MS, SCRAPER_USER_AGENT, scrapeFetch } from '@/lib/scrapers/base';
+// import { sleep, DEFAULT_CRAWL_DELAY_MS, SCRAPER_USER_AGENT, scrapeFetch } from '@/lib/scrapers/base';
+import { sleep, DEFAULT_CRAWL_DELAY_MS, scrapeFetch } from '@/lib/scrapers/base';
 import type { ScraperRunSummary, ScraperResult } from '@/lib/scrapers/base';
 import { parsePdfBuffer } from '@/lib/parsers/pdfParser';
 
