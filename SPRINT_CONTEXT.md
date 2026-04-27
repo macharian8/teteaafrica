@@ -3,7 +3,76 @@
 
 ---
 
-## Current Sprint: 5 — Document Feed + Subscription Matching ✅ COMPLETE
+## Current Sprint: 7 — User Management (Onboarding + Account)
+
+**Started:** 2026-04-21
+**Branch:** sprint-7/design
+
+### Sprint 7 — What was built
+
+#### PART A — Session fixes
+- Sign-out now redirects to `/[locale]/` (the feed), not to sign-in
+- Middleware onboarding gate: authed + `onboarding_completed=false` → `/[locale]/onboarding`
+- Protected routes: `/account`, `/onboarding`, `/settings` require auth
+- `/api/*`, `/_next/*`, auth routes exempt from all redirects
+
+#### PART B — Onboarding flow (`app/[locale]/onboarding/page.tsx`)
+- Full-screen, dark green (#0f1a13) background, centered white card
+- 4 steps, no progress bar, conversation feel with slide transitions
+- Step 1: "What county are you in?" — searchable dropdown from admin_units
+- Step 2: "What matters to you?" — 2-col pill grid with emoji, mutual-exclude "Everything"
+- Step 3: "How should we reach you?" — email toggle (always on, verified badge), SMS toggle (ENABLE_SMS gate)
+- Step 4: "Want us to write your letters?" — optional full_name, national_id, ward with inline benefit hints
+- Skip always visible top-right, never greyed out
+- All data saved via POST /api/onboarding, sets onboarding_completed=true
+- Partial saves: skipped fields stay null
+
+#### PART C — Account page (`app/[locale]/account/page.tsx`)
+- Three-section single-scroll page
+- Section 1 — Profile: avatar (initials), full name, national ID, ward, phone, save button
+- Section 2 — Preferences: county (searchable), topics (pill grid), notifications (toggles), content language (EN/SW). Auto-saves on change with "Saved" indicator
+- Section 3 — My Actions: timeline of action_executions with type/status badges, expand to show draft_content. Empty state links to feed
+- Navbar updated: "Subscriptions" → "My Account" linking to /account
+- Old /settings/subscriptions redirects to /account (client-side)
+
+#### PART D — API routes
+- `POST /api/onboarding` — saves county/topics/notifications/credentials, marks onboarding complete
+- `PATCH /api/account/profile` — updates full_name, national_id, ward, phone
+- `PATCH /api/account/preferences` — updates county, topics, notifications, language (auto-save)
+- `GET /api/account/actions` — returns action_executions with joined action data
+
+#### PART E — Infrastructure
+- Migration: `supabase/migrations/20260421000001_onboarding_columns.sql`
+  - `users.onboarding_completed BOOLEAN NOT NULL DEFAULT FALSE`
+  - `users.full_name TEXT`, `users.national_id TEXT`, `users.ward TEXT`
+  - Partial index on unboarded users
+- Types: `lib/supabase/types.ts` updated with new columns
+- i18n: `onboarding.*` + `account.*` namespaces in en.json + sw.json
+- nav.account key added to both locale files
+
+### Sprint 7 completion criteria
+- [x] `npm run build` — zero errors
+- [x] Onboarding page renders at /en/onboarding
+- [x] Account page renders at /en/account
+- [x] All 4 API routes created
+- [x] Middleware redirects unboarded users
+- [x] Old /settings/subscriptions redirects to /account
+
+### Manual steps needed
+- Run migration: `supabase db push` (adds onboarding columns)
+- Existing users in DB will have `onboarding_completed=false` — run SQL to set true for existing users:
+  `UPDATE users SET onboarding_completed = true WHERE created_at < '2026-04-21';`
+
+---
+
+## Sprint 6 — Automation + Feed UX + OCR ✅ COMPLETE
+
+**Date completed:** 2026-04-13
+**Branch:** main
+
+---
+
+## Sprint 5 — Document Feed + Subscription Matching ✅ COMPLETE
 
 **Date completed:** 2026-04-06
 **Branch:** main

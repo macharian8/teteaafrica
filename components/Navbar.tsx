@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Button } from './ui/button';
@@ -13,8 +14,8 @@ export default function Navbar() {
   const t = useTranslations('nav');
   const tApp = useTranslations('app');
   const locale = useLocale();
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
-  // Memoize client so the same instance is used across renders
   const supabase = useMemo(() => createClient(), []);
 
   useEffect(() => {
@@ -27,6 +28,7 @@ export default function Navbar() {
 
   async function handleSignOut() {
     await supabase.auth.signOut();
+    router.push(`/${locale}`);
   }
 
   return (
@@ -49,9 +51,9 @@ export default function Navbar() {
 
           {user ? (
             <>
-              <Link href={`/${locale}/settings/subscriptions`}>
+              <Link href={`/${locale}/account`}>
                 <Button variant="ghost" size="sm">
-                  {t('subscriptions')}
+                  {t('account')}
                 </Button>
               </Link>
               <Button variant="outline" size="sm" onClick={handleSignOut}>

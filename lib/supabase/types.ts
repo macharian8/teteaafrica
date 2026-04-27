@@ -18,6 +18,11 @@ export interface Database {
           phone: string | null;
           country_code: CountryCode;
           language_preference: string;
+          onboarding_completed: boolean;
+          full_name: string | null;
+          national_id: string | null;
+          ward: string | null;
+          one_click_consent: boolean;
           google_access_token: string | null;
           google_refresh_token: string | null;
           google_token_expiry: string | null;
@@ -30,6 +35,11 @@ export interface Database {
           phone?: string | null;
           country_code?: CountryCode;
           language_preference?: string;
+          onboarding_completed?: boolean;
+          full_name?: string | null;
+          national_id?: string | null;
+          ward?: string | null;
+          one_click_consent?: boolean;
           google_access_token?: string | null;
           google_refresh_token?: string | null;
           google_token_expiry?: string | null;
