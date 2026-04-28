@@ -1,30 +1,17 @@
 # STACK.md — Tetea Africa
-**Last updated:** 2026-04-04
-**Status:** Authoritative version reference — update after every install
+**Updated:** 2026-04-21 | **Package manager: npm only (never pnpm)**
 
 ---
 
-## Critical Compatibility Notes
-
-### The next-intl trap (how we lost Sprint 2)
-next-intl v4.x requires Next.js 15. next-intl v3.x is designed for Next.js 14.
-Installing v4 with Next.js 14 breaks jsx-runtime resolution silently.
-**Always use next-intl v3.x with Next.js 14. Non-negotiable.**
-
-### moduleResolution trap
-Next.js 14 requires `"moduleResolution": "node"` in tsconfig.json.
-`"moduleResolution": "bundler"` breaks react/jsx-runtime resolution.
-**Never use "bundler" with Next.js 14.**
-
-### shadcn/ui CSS trap
-shadcn v2+ generates globals.css with `@import "shadcn/tailwind.css"` and
-`border-border` class references. These require Tailwind v4 plugin setup.
-With Tailwind v3, use bare `@tailwind base/components/utilities` only.
+## TRAPS (never repeat)
+- `next-intl@4.x` + `next@14` → jsx-runtime broken. Use v3 only.
+- `moduleResolution: "bundler"` + `next@14` → jsx-runtime broken. Use "node".
+- shadcn globals.css with `@import "shadcn/tailwind.css"` → broken with Tailwind v3. Use bare directives only.
+- `pnpm` + shadcn/ui → hoisting failures. npm only.
 
 ---
 
-## Pinned Production Dependencies
-
+## Pinned Dependencies (no ^ or ~ ever)
 ```json
 {
   "next": "14.2.35",
@@ -34,7 +21,6 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
   "@supabase/supabase-js": "2.47.0",
   "@supabase/ssr": "0.5.2",
   "@anthropic-ai/sdk": "0.39.0",
-  "openai": "4.77.0",
   "pdf-parse": "1.1.1",
   "xlsx": "0.18.5",
   "zod": "3.23.8",
@@ -44,12 +30,12 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
   "africastalking": "0.7.9",
   "resend": "6.10.0",
   "googleapis": "171.4.0",
-  "tesseract.js": "5.1.1"
+  "tesseract.js": "5.1.1",
+  "openai": "4.77.0"
 }
 ```
 
 ## Pinned Dev Dependencies
-
 ```json
 {
   "typescript": "5.3.3",
@@ -63,23 +49,19 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
 }
 ```
 
-## tsconfig.json Required Settings
-
+## tsconfig.json (required settings)
 ```json
 {
   "compilerOptions": {
     "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
+    "moduleResolution": "node",
+    "module": "esnext",
+    "jsx": "preserve",
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": { "@/*": ["./*"] }
@@ -87,44 +69,20 @@ With Tailwind v3, use bare `@tailwind base/components/utilities` only.
 }
 ```
 
-## Node.js
-
-- Minimum: 18.17.0
-- Recommended: 20.x LTS
-- Check with: `node --version`
-
-## Package Manager
-
-- npm (switched from pnpm due to hoisting failures)
-- Version: 10.x+
-- Check with: `npm --version`
-- **Never mix npm and pnpm in the same project**
-
-## globals.css — Correct Content
-
+## globals.css
 ```css
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 ```
-
 Nothing else. No shadcn imports. No tw-animate-css.
 
----
+## Node.js: 20.x LTS minimum
 
-## Before Installing Any New Package
-
-1. Search for the package's current stable version
-2. Check its peer dependencies against versions in this file
-3. Verify it works with Next.js 14 specifically
-4. Pin the exact version — no `^` or `~` ranges
-5. Run `npm run build` after installing — not just `npm run dev`
-6. Update this file immediately after any install
-
-## Red Flags — Never Install These Combinations
-
-- next-intl@4.x + next@14 → jsx-runtime broken
-- tailwindcss@4.x + next@14 → CSS pipeline broken
-- pnpm + shadcn/ui → hoisting failures
-- moduleResolution: bundler + next@14 → jsx-runtime broken
-- Any package with `^` or `~` version prefix → unpinned, risky
+## Before installing any package
+1. Search current stable version
+2. Check peer deps against this file
+3. Verify Next.js 14 compatibility
+4. Pin exact version
+5. `npm run build` after install
+6. Update this file immediately
