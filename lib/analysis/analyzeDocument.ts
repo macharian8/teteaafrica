@@ -47,7 +47,7 @@ export interface AnalyzeDocumentOutput {
  * 500-char windows around civic-action keywords, deduplicates overlapping
  * ranges, and falls back to a simple prefix slice if under budget.
  */
-function extractRelevantText(rawText: string, maxChars = 80000): string {
+function extractRelevantText(rawText: string, maxChars = 40000): string {
   if (rawText.length <= maxChars) return rawText;
 
   const KEYWORDS = [

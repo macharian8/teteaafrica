@@ -3,14 +3,16 @@
  * Backfill OCR text for scanned PDFs stored in Supabase Storage.
  *
  * Finds documents where:
- *   - is_scanned = true
- *   - raw_text IS NULL or length(raw_text) < 100
  *   - storage_path IS NOT NULL
+ *   - raw_text IS NULL OR length(raw_text) < 100
  *
- * Downloads each PDF, runs OCR, updates raw_text.
- * Processes up to 10 per run (OCR is ~30s/page).
+ * Downloads each PDF, runs OCR, updates raw_text + page_count.
  *
- * Usage: npx tsx --env-file=.env.local scripts/ocr-backfill.ts
+ * Usage:
+ *   npx tsx --env-file=.env.local scripts/ocr-backfill.ts
+ *   npx tsx --env-file=.env.local scripts/ocr-backfill.ts --limit=10
+ *   npx tsx --env-file=.env.local scripts/ocr-backfill.ts --max-pages=999
+ *   npx tsx --env-file=.env.local scripts/ocr-backfill.ts --limit=3 --max-pages=999
  */
 
 import { createClient } from '@supabase/supabase-js';
@@ -19,8 +21,16 @@ import { preprocessText } from '../lib/parsers/pdfParser';
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const MAX_DOCS = 10;
 const MIN_USEFUL_CHARS = 100;
+const DEFAULT_LIMIT = 3;
+const DEFAULT_MAX_PAGES = 20;
+
+function parseIntFlag(name: string, fallback: number): number {
+  const arg = process.argv.find((a) => a.startsWith(`--${name}=`));
+  if (!arg) return fallback;
+  const n = parseInt(arg.slice(name.length + 3), 10);
+  return Number.isFinite(n) && n > 0 ? n : fallback;
+}
 
 async function main() {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_KEY) {
@@ -28,7 +38,12 @@ async function main() {
     process.exit(1);
   }
 
+  const limit = parseIntFlag('limit', DEFAULT_LIMIT);
+  const maxPages = parseIntFlag('max-pages', DEFAULT_MAX_PAGES);
+
   const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
+
+  console.log(`[ocr-backfill] limit=${limit} maxPages=${maxPages}`);
 
   // Find docs with a stored PDF but no/minimal extracted text (likely scanned)
   const { data: docs, error } = await supabase
@@ -36,7 +51,7 @@ async function main() {
     .select('id, storage_path, raw_text')
     .not('storage_path', 'is', null)
     .order('created_at', { ascending: false })
-    .limit(MAX_DOCS * 5); // fetch extra, filter in app
+    .limit(limit * 5); // fetch extra, filter in app
 
   if (error) {
     console.error('[ocr-backfill] Query error:', error.message);
@@ -55,7 +70,7 @@ async function main() {
     process.exit(0);
   }
 
-  const toProcess = candidates.slice(0, MAX_DOCS);
+  const toProcess = candidates.slice(0, limit);
   let processed = 0;
   let skipped = 0;
 
@@ -80,10 +95,10 @@ async function main() {
       console.log(`[ocr-backfill] Downloaded ${buffer.length} bytes`);
 
       // Run OCR
-      const ocrResult = await ocrPdfBuffer(buffer);
+      const ocrResult = await ocrPdfBuffer(buffer, maxPages);
       const cleanText = preprocessText(ocrResult.text);
 
-      console.log(`[ocr-backfill] id=${doc.id} confidence=${ocrResult.confidence}% chars=${cleanText.length}`);
+      console.log(`[ocr-backfill] id=${doc.id} confidence=${ocrResult.confidence}% chars=${cleanText.length} pages=${ocrResult.pageCount}`);
 
       // Skip if OCR produced too little text
       if (cleanText.length < MIN_USEFUL_CHARS) {
@@ -92,10 +107,13 @@ async function main() {
         continue;
       }
 
-      // Update document with OCR'd text
+      // Update document with OCR'd text + page count
       const { error: updateError } = await supabase
         .from('documents')
-        .update({ raw_text: cleanText })
+        .update({
+          raw_text: cleanText,
+          page_count: ocrResult.pageCount,
+        })
         .eq('id', doc.id);
 
       if (updateError) {

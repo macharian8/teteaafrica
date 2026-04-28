@@ -79,6 +79,7 @@ export interface Database {
           uploaded_by: string | null;
           source: 'manual' | 'scraper' | 'whatsapp';
           created_at: string;
+          page_count: number | null;
         };
         Insert: {
           id?: string;
@@ -91,6 +92,7 @@ export interface Database {
           uploaded_by?: string | null;
           source?: 'manual' | 'scraper' | 'whatsapp';
           created_at?: string;
+          page_count?: number | null;
         };
         Update: Partial<Database['public']['Tables']['documents']['Insert']>;
       } & NoRelationships;

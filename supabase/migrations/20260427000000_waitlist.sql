@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS waitlist (
 
 ALTER TABLE waitlist ENABLE ROW LEVEL SECURITY;
 
+DROP POLICY IF EXISTS "Anyone can join waitlist" ON waitlist;
 CREATE POLICY "Anyone can join waitlist"
 ON waitlist FOR INSERT WITH CHECK (true);

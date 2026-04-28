@@ -3,7 +3,7 @@
  * OCR pipeline for scanned PDFs using pdftoppm (poppler) + tesseract.js.
  *
  * Flow: PDF buffer → pdftoppm renders pages to PNG → tesseract.js OCR → concat.
- * Caps at MAX_PAGES to avoid timeouts on long gazette issues.
+ * Caller passes maxPages to cap work on long gazette issues (default 20).
  *
  * System dependency: pdftoppm (poppler-utils).
  *   macOS:  brew install poppler
@@ -20,7 +20,6 @@ import { join } from 'path';
 
 const execFileAsync = promisify(execFile);
 
-const MAX_PAGES = 20;
 const DPI = 200; // 200 DPI balances quality vs. speed for OCR
 
 export interface OcrResult {
@@ -34,7 +33,7 @@ export interface OcrResult {
  * OCR a PDF buffer: converts pages to PNG via pdftoppm, runs Tesseract on each.
  * Languages: English + Swahili.
  */
-export async function ocrPdfBuffer(buffer: Buffer): Promise<OcrResult> {
+export async function ocrPdfBuffer(buffer: Buffer, maxPages = 20): Promise<OcrResult> {
   // Create temp directory for this run
   const tempDir = await mkdtemp(join(tmpdir(), 'tetea-ocr-'));
   const pdfPath = join(tempDir, 'input.pdf');
@@ -51,10 +50,10 @@ export async function ocrPdfBuffer(buffer: Buffer): Promise<OcrResult> {
       totalPages = match ? parseInt(match[1], 10) : 0;
     } catch {
       // pdfinfo not available — estimate from pdftoppm output
-      totalPages = MAX_PAGES;
+      totalPages = maxPages;
     }
 
-    const pagesToProcess = Math.min(totalPages, MAX_PAGES);
+    const pagesToProcess = Math.min(totalPages, maxPages);
     console.log(`[ocr] Starting OCR: ${totalPages} pages total, processing ${pagesToProcess}`);
 
     // Render PDF pages to PNG using pdftoppm

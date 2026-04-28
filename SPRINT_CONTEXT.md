@@ -3,7 +3,35 @@
 
 ---
 
-## CURRENT SPRINT: 7 — User Management ✅ BUILT, PENDING ACTIVATION
+## CURRENT SPRINT: 8 — Analysis pipeline fix + automation activation ✅ COMPLETE
+
+### What's built (Sprint 8)
+- **Large-doc abort fix**: `lib/analysis/analyzeDocument.ts` `extractRelevantText` default `maxChars` reduced 80,000 → 40,000. `max_tokens: 8192` already explicit on the Anthropic call (never omitted).
+- **Webhook auth audit**: `app/api/scrapers/run/route.ts` already enforces `Authorization: Bearer <SCRAPER_SECRET>` strict-equality. No change needed.
+- **pg_cron → Vault migration**: `supabase/migrations/20260404000001_pg_cron_schedules.sql` rewritten to read `scraper_secret` from `vault.decrypted_secrets` and hardcode `https://dev.tetea.africa` as the webhook base URL (the old `current_setting('app.*')` approach failed because Supabase Cloud `postgres` is non-superuser, so `ALTER DATABASE postgres SET …` is denied). New migration `20260428000001_update_cron_vault.sql` drops + reschedules the 4 live jobs (gazette / nairobi-county / parliament / notification-dispatcher) against the Vault-based SQL. One-time setup is `SELECT vault.create_secret('<value>', 'scraper_secret', '…')` — already done on the linked project.
+- **OCR coverage controls**:
+  - `lib/parsers/ocrParser.ts` — `ocrPdfBuffer(buffer, maxPages = 20)` parameterised; old `MAX_PAGES` const removed.
+  - `scripts/ocr-backfill.ts` — `--limit` (default 3) and `--max-pages` (default 20) flags. Saves `raw_text` + `page_count` together; log line now includes `pages=N`.
+  - `supabase/migrations/20260428000002_document_page_count.sql` — adds `page_count INTEGER` to `documents`. `lib/supabase/types.ts` `documents` Row + Insert updated.
+- **`scripts/status.ts`**: live ops dashboard. Documents (total/analyzed/unanalyzed via distinct `document_id` with confidence>0.3), cron jobs (best-effort RPC, falls back to SQL-editor hint since `cron` schema isn't on PostgREST), last scrape, last analysis, **Needs OCR** (count of docs with `storage_path` and `raw_text` null/<100 chars), **Last OCR run** (proxy: most recent `scraped_at` among OCR'd docs — `documents` has no `updated_at`), notifications sent in last 24h, users, waitlist, plus a partial-coverage warning counting `page_count > 20 AND raw_text NOT NULL` (re-run OCR with `--max-pages=999`). No new deps.
+
+### Run commands
+```bash
+npx tsx --env-file=.env.local scripts/status.ts
+npx tsx --env-file=.env.local scripts/ocr-backfill.ts --limit=3 --max-pages=999
+```
+
+### Optional follow-ups (not required)
+- To make `Cron jobs:` show a real number, create an SQL function:
+  ```sql
+  CREATE FUNCTION public.active_cron_job_count() RETURNS int LANGUAGE sql SECURITY DEFINER AS $$ SELECT count(*)::int FROM cron.job WHERE active $$;
+  ```
+  `status.ts` already calls `rpc('active_cron_job_count')` and uses it when present.
+- For accurate "Last OCR run", add `updated_at TIMESTAMPTZ` + an update trigger on `documents` so `ocr-backfill.ts` writes bump it.
+
+---
+
+## PREVIOUS SPRINT: 7 — User Management ✅ BUILT, PENDING ACTIVATION
 
 ### What's built (Sprint 7)
 - **Onboarding** `app/[locale]/onboarding/page.tsx` — full-screen dark (#0f1a13), 4-step, no navbar
@@ -59,7 +87,6 @@ Dedup is active (skipped= in logs). ~30 docs unanalyzed — needs Anthropic cred
 ### Known technical debt
 - RLS public read policies applied manually in prod — NOT in migration file yet
   Must add: `supabase/migrations/20260408000002_public_read_policies.sql`
-- `analyze:historical` aborts on large docs — fix: reduce `maxChars` to 40,000 in `lib/analysis/analyzeDocument.ts`
 - Ward data not seeded in `admin_units` (IEBC list pending)
 - Mzalendo API key not obtained (needed for representative-contact action)
 - Google OAuth still in test mode — only whitelisted emails can sign in

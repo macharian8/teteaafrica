@@ -42,8 +42,8 @@ SELECT cron.schedule(
   $$
   SELECT
     net.http_post(
-      url := current_setting('app.webhook_base_url') || '/api/scrapers/run',
-      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
+      url := 'https://dev.tetea.africa/api/scrapers/run',
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', (SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'scraper_secret' LIMIT 1))::jsonb,
       body := '{"scraper": "gazette", "country": "KE"}'::jsonb
     );
   $$
@@ -57,8 +57,8 @@ SELECT cron.schedule(
   $$
   SELECT
     net.http_post(
-      url := current_setting('app.webhook_base_url') || '/api/scrapers/run',
-      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
+      url := 'https://dev.tetea.africa/api/scrapers/run',
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', (SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'scraper_secret' LIMIT 1))::jsonb,
       body := '{"scraper": "county-nairobi", "country": "KE"}'::jsonb
     );
   $$
@@ -72,8 +72,8 @@ SELECT cron.schedule(
   $$
   SELECT
     net.http_post(
-      url := current_setting('app.webhook_base_url') || '/api/scrapers/run',
-      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
+      url := 'https://dev.tetea.africa/api/scrapers/run',
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', (SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'scraper_secret' LIMIT 1))::jsonb,
       body := '{"scraper": "parliament", "country": "KE"}'::jsonb
     );
   $$
@@ -88,21 +88,28 @@ SELECT cron.schedule(
   $$
   SELECT
     net.http_post(
-      url := current_setting('app.webhook_base_url') || '/api/notifications/dispatch',
-      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', current_setting('app.scraper_secret'))::jsonb,
+      url := 'https://dev.tetea.africa/api/notifications/dispatch',
+      headers := format('{"Content-Type": "application/json", "Authorization": "Bearer %s"}', (SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'scraper_secret' LIMIT 1))::jsonb,
       body := '{}'::jsonb
     );
   $$
 );
 
 -- ── App settings ─────────────────────────────────────────────────────────────
--- Set base URL and secret for webhook calls from pg_cron.
--- These must be set in Supabase Dashboard → Settings → Vault (or via ALTER DATABASE).
--- Example (run manually after migration):
+-- webhook_base_url: hardcoded above as 'https://dev.tetea.africa' (not sensitive).
+-- scraper_secret:   read from Supabase Vault via vault.decrypted_secrets.
 --
---   ALTER DATABASE postgres
---     SET app.webhook_base_url = 'https://your-deployment-url.com';
---   ALTER DATABASE postgres
---     SET app.scraper_secret = 'your-secret-key';
+-- One-time setup: insert the secret into Vault before the cron jobs run.
+-- Run in Supabase Studio → SQL Editor:
 --
--- IMPORTANT: Do not store secrets in migration files. Set them via the Supabase Vault.
+--   SELECT vault.create_secret(
+--     '<your-scraper-secret-value>',
+--     'scraper_secret',
+--     'pg_cron webhook auth for /api/scrapers/run and /api/notifications/dispatch'
+--   );
+--
+-- To rotate later:
+--   SELECT vault.update_secret(
+--     (SELECT id FROM vault.secrets WHERE name = 'scraper_secret'),
+--     '<new-value>'
+--   );
