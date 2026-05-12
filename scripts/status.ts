@@ -7,6 +7,9 @@
  *   npx tsx --env-file=.env.local scripts/status.ts
  */
 
+import { config } from 'dotenv';
+config({ path: '.env.local' });
+
 import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -162,6 +165,7 @@ async function main() {
     needsOcr,
     lastOcrTs,
     partialOcrCount,
+    preTrackingOcrCount,
     notifs24h,
     usersTotal,
     waitlistTotal,
@@ -176,6 +180,10 @@ async function main() {
     exactCount('documents', (q) =>
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fluent builder
       (q as any).gt('page_count', OCR_DEFAULT_MAX_PAGES).not('raw_text', 'is', null)
+    ),
+    exactCount('documents', (q) =>
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fluent builder
+      (q as any).is('page_count', null).not('raw_text', 'is', null).not('storage_path', 'is', null)
     ),
     exactCount('notifications', (q) =>
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- fluent builder
@@ -203,12 +211,10 @@ async function main() {
   console.log(`Users:         ${fmt(usersTotal)}`);
   console.log(`Waitlist:      ${fmt(waitlistTotal)}`);
 
-  // Partial-coverage warning — docs whose page_count exceeds the historical
-  // default of 20 but which still got OCR'd; re-run with --max-pages=999 to
-  // capture the rest.
+  // Partial-coverage warning — docs that may have incomplete OCR text.
   console.log('');
-  console.log(`Docs with page_count > ${OCR_DEFAULT_MAX_PAGES} that have raw_text:`);
-  console.log(`${fmt(partialOcrCount)} docs were OCR'd at partial coverage (first ${OCR_DEFAULT_MAX_PAGES} pages only)`);
+  console.log(`${fmt(partialOcrCount)} docs OCR'd at partial coverage (page_count > ${OCR_DEFAULT_MAX_PAGES})`);
+  console.log(`${fmt(preTrackingOcrCount)} docs OCR'd before page tracking (page_count unknown)`);
   console.log(`— re-run with --max-pages=999 to get full text`);
   console.log('');
 }

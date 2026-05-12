@@ -1,0 +1,46 @@
+name: Tetea OCR Backfill
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'   # Monday 3am UTC
+    - cron: '0 3 * * 4'   # Thursday 3am UTC
+  workflow_dispatch:
+
+env:
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  NEXT_PUBLIC_DEFAULT_COUNTRY: KE
+
+jobs:
+  ocr-backfill:
+    name: OCR Backfill
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install poppler
+        run: sudo apt-get install -y poppler-utils
+
+      - name: Install tesseract English
+        run: sudo apt-get install -y tesseract-ocr tesseract-ocr-eng
+
+      - name: Install tesseract Swahili (best effort)
+        continue-on-error: true
+        run: sudo apt-get install -y tesseract-ocr-swa
+
+      - name: Run OCR backfill
+        timeout-minutes: 90
+        run: npx tsx  scripts/ocr-backfill.ts --limit=3 --max-pages=100

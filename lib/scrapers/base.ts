@@ -30,10 +30,18 @@ export interface ScraperRunSummary {
   results: ScraperResult[];
 }
 
-export const SCRAPER_USER_AGENT =
-  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36';
+const USER_AGENTS = [
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+  'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15',
+];
 
-export const DEFAULT_CRAWL_DELAY_MS = 2_000; // 2 seconds between requests
+export function getRandomUserAgent(): string {
+  return USER_AGENTS[Math.floor(Math.random() * USER_AGENTS.length)];
+}
+
+export const DEFAULT_CRAWL_DELAY_MS = 4_000; // 4 seconds between requests
 
 /**
  * Sleep for the given number of milliseconds.
@@ -53,9 +61,17 @@ export async function scrapeFetch(
   const parsedUrl = new URL(url);
   const response = await fetch(url, {
     headers: {
-      'User-Agent': SCRAPER_USER_AGENT,
+      'User-Agent': getRandomUserAgent(),
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Sec-Fetch-Dest': 'document',
+      'Sec-Fetch-Mode': 'navigate',
+      'Sec-Fetch-Site': 'none',
+      'Sec-Fetch-User': '?1',
+      'Upgrade-Insecure-Requests': '1',
       'Referer': `${parsedUrl.protocol}//${parsedUrl.host}/`,
     },
     signal: AbortSignal.timeout(timeoutMs),

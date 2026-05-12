@@ -10,7 +10,7 @@
 
 import { load } from 'cheerio';
 import { buildScraperSupabaseClient, computeHash, isDuplicate, computeContentHash } from '@/lib/scrapers/dedup';
-import { scrapeFetch, sleep, SCRAPER_USER_AGENT } from '@/lib/scrapers/base';
+import { scrapeFetch, sleep, getRandomUserAgent } from '@/lib/scrapers/base';
 import { parsePdfBuffer } from '@/lib/parsers/pdfParser';
 
 const KENYA_LAW_BASE_URL = 'https://new.kenyalaw.org';
@@ -101,7 +101,7 @@ async function fetchAllGazetteYearLinks(): Promise<string[]> {
 async function fetchGazetteLinksFromYear(yearUrl: string): Promise<{ url: string; title: string }[]> {
   const response = await fetch(yearUrl, {
     headers: {
-      'User-Agent': SCRAPER_USER_AGENT,
+      'User-Agent': getRandomUserAgent(),
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'HX-Request': 'true',
       'Referer': GAZETTE_INDEX_URL,
@@ -174,7 +174,7 @@ async function scrapeHistoricalGazettes(): Promise<{ inserted: number; skipped: 
 async function fetchAllBillLinks(): Promise<{ url: string; title: string }[]> {
   const response = await fetch(BILLS_URL, {
     headers: {
-      'User-Agent': SCRAPER_USER_AGENT,
+      'User-Agent': getRandomUserAgent(),
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'HX-Request': 'true',
       'Referer': KENYA_LAW_BASE_URL + '/',
@@ -236,7 +236,7 @@ async function scrapeHistoricalNairobi(): Promise<{ inserted: number; skipped: n
     const response = await fetch(url, {
       dispatcher: nairobiAgent,
       headers: {
-        'User-Agent': SCRAPER_USER_AGENT,
+        'User-Agent': getRandomUserAgent(),
         'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
         'Referer': `${parsedUrl.protocol}//${parsedUrl.host}/`,
       },

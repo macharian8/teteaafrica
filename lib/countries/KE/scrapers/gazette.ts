@@ -20,7 +20,7 @@
 
 import { load } from 'cheerio';
 import { buildScraperSupabaseClient, computeHash, isDuplicate, computeContentHash } from '@/lib/scrapers/dedup';
-import { scrapeFetch, sleep, DEFAULT_CRAWL_DELAY_MS, SCRAPER_USER_AGENT } from '@/lib/scrapers/base';
+import { scrapeFetch, sleep, DEFAULT_CRAWL_DELAY_MS, getRandomUserAgent } from '@/lib/scrapers/base';
 import type { ScraperRunSummary, ScraperResult } from '@/lib/scrapers/base';
 import { parsePdfBuffer } from '@/lib/parsers/pdfParser';
 
@@ -46,9 +46,17 @@ async function fetchHtmxDocumentList(
 ): Promise<{ url: string; title: string }[]> {
   const response = await fetch(listingUrl, {
     headers: {
-      'User-Agent': SCRAPER_USER_AGENT,
+      'User-Agent': getRandomUserAgent(),
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.9',
+      'Accept-Encoding': 'gzip, deflate, br',
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Sec-Fetch-Dest': 'document',
+      'Sec-Fetch-Mode': 'navigate',
+      'Sec-Fetch-Site': 'none',
+      'Sec-Fetch-User': '?1',
+      'Upgrade-Insecure-Requests': '1',
       'Referer': referer,
       'HX-Request': 'true',
     },
@@ -302,6 +310,11 @@ export async function runGazetteScraper(): Promise<ScraperRunSummary> {
   let errors    = 0;
 
   console.log(`[gazette] Starting Kenya Gazette + County Legislation scraper at ${startedAt.toISOString()}`);
+
+  // Randomized initial delay to avoid bot-detection patterns
+  const initialDelay = 3000 + Math.random() * 2000;
+  console.log(`[gazette] Initial delay: ${Math.round(initialDelay)}ms`);
+  await sleep(initialDelay);
 
   // Fetch both link lists (gazette first, county legislation second)
   let gazetteLinks: { url: string; title: string }[] = [];

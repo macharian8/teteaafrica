@@ -15,7 +15,7 @@
 import { load } from 'cheerio';
 import { Agent } from 'undici';
 import { buildScraperSupabaseClient, computeHash, isDuplicate, computeContentHash } from '@/lib/scrapers/dedup';
-import { sleep, DEFAULT_CRAWL_DELAY_MS, SCRAPER_USER_AGENT } from '@/lib/scrapers/base';
+import { sleep, DEFAULT_CRAWL_DELAY_MS, getRandomUserAgent } from '@/lib/scrapers/base';
 import type { ScraperRunSummary, ScraperResult } from '@/lib/scrapers/base';
 import { parsePdfBuffer } from '@/lib/parsers/pdfParser';
 
@@ -28,7 +28,7 @@ async function kisiiScrapeFetch(url: string, timeoutMs = 30_000): Promise<Respon
   const options: UndiciRequestInit = {
     dispatcher: kisiiAgent,
     headers: {
-      'User-Agent': SCRAPER_USER_AGENT,
+      'User-Agent': getRandomUserAgent(),
       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
       'Accept-Language': 'en-US,en;q=0.9',
       'Referer': `${parsedUrl.protocol}//${parsedUrl.host}/`,

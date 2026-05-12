@@ -1,0 +1,67 @@
+name: Tetea Daily Pipeline
+
+on:
+  schedule:
+    - cron: '0 4 * * *'    # 4am UTC
+    - cron: '0 12 * * *'   # 12pm UTC
+    - cron: '0 20 * * *'   # 8pm UTC
+  workflow_dispatch:         # manual trigger from GitHub UI
+
+env:
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+  RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+  AFRICASTALKING_API_KEY: ${{ secrets.AFRICASTALKING_API_KEY }}
+  AFRICASTALKING_USERNAME: ${{ secrets.AFRICASTALKING_USERNAME }}
+  AFRICASTALKING_SENDER_ID: ${{ secrets.AFRICASTALKING_SENDER_ID }}
+  SCRAPER_SECRET: ${{ secrets.SCRAPER_SECRET }}
+  NEXT_PUBLIC_DEFAULT_COUNTRY: KE
+  NEXT_PUBLIC_ENABLE_SMS: false
+  NEXT_PUBLIC_ENABLE_WHATSAPP: false
+  NEXT_PUBLIC_ENABLE_CALENDAR: false
+
+jobs:
+  daily-pipeline:
+    name: Scrape + Analyze
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install poppler
+        run: sudo apt-get install -y poppler-utils
+
+      - name: Scrape gazette (max 10)
+        timeout-minutes: 15
+        continue-on-error: true
+        run: npx tsx scripts/run-scraper.ts gazette
+        # env vars injected at job level, /dev/null avoids missing .env.local error
+
+      - name: Scrape parliament (max 10)
+        timeout-minutes: 15
+        continue-on-error: true
+        run: npx tsx scripts/run-scraper.ts parliament
+
+      - name: Scrape county sites (max 10 each)
+        timeout-minutes: 15
+        continue-on-error: true
+        run: npx tsx scripts/run-scraper.ts counties
+
+      - name: Analyze unanalyzed documents
+        timeout-minutes: 30
+        continue-on-error: true
+        run: npx tsx scripts/analyze-scraped-docs.ts
+
+
